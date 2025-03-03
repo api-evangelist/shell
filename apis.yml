@@ -3,7 +3,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml
 apis:
   - aid: shell:shell
-    name: Shell
+    name: Shell APIs
     tags:
       - API
     humanURL: ' https://developer.shell.com/'
