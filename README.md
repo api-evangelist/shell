@@ -1,5 +1,5 @@
 # Shell (shell)
-Royal Dutch Shell, commonly known as Shell, is a multinational energy company headquartered in The Hague, Netherlands. Shell is one of the largest oil and gas companies in the world, with operations spanning across the entire energy spectrum, from exploration and production to refining and marketing. The company also invests heavily in renewable energy projects, such as wind and solar power, as part of its commitment to reducing its carbon footprint and transitioning to a more sustainable energy future. Shell is known for its innovative technologies and cutting-edge research in the energy sector, making it a leader in the industry. With a strong focus on driving progress and meeting the world's growing energy demand, Shell plays a crucial role in shaping the future of energy.
+APIs and developer resources for Royal Dutch Shell plc, a global energy and petrochemical company
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml)
 
@@ -11,7 +11,7 @@ Royal Dutch Shell, commonly known as Shell, is a multinational energy company he
 
 ## Tags:
 
- - Oil, Gas, Energy
+ - Electric Vehicle Charging, Energy, Fuel, Gas, Lubricants, Oil, Oil and Gas, Renewable Energy
 
 ## Timestamps
 
@@ -34,9 +34,23 @@ Shell APIs provide a way for developers to interact with the operating system's 
 
 - [Documentation]( https://developer.shell.com/)
 
+## Common Properties
+
+- [Developer Portal](https://developer.shell.com)
+- [Getting Started](https://developer.shell.com/getting-started)
+- [API Key Registration](https://developer.shell.com/signup)
+- [Terms of Service](https://www.shell.com/terms-and-conditions)
+- [Privacy Policy](https://www.shell.com/privacy)
+- [Support](https://developer.shell.com/support)
+- [Status Page](https://status.shell.com)
+- [Blog](https://developer.shell.com/blog)
+- [GitHub Organization](https://github.com/shell)
+
 ## Maintainers
 
 **FN:** Kin Lane
 
 **Email:** info@apievangelist.com
+**FN:** Shell Digital Services
 
+**Email:** api-maintainers@shell.com
