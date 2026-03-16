@@ -26,12 +26,12 @@ type: Index
 image: https://www.shell.com/etc/designs/shell/clientlib-main/img/shell-logo.png
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2025-03-02'
+modified: '2026-03-16'
 position: Consumer
 description: APIs and developer resources for Royal Dutch Shell plc, a global energy and petrochemical company
 maintainers:
 - FN: Kin Lane
-  email: info@apievangelist.com
+  email: kin@apievangelist.com
 - FN: Shell Digital Services
   email: api-maintainers@shell.com
   X-twitter: shell
