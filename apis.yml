@@ -1,13 +1,12 @@
 aid: shell
-url: 
-  https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml
 apis:
   - aid: shell:shell
     name: Shell APIs
     tags:
-      - Oil
-      - Gas
       - Energy
+      - Gas
+      - Oil
     humanURL: ' https://developer.shell.com/'
     properties:
       - url: ' https://developer.shell.com/'
