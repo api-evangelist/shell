@@ -1,57 +1,65 @@
 aid: shell
-url: https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml
 apis:
-- aid: shell:shell
-  name: Shell APIs
-  tags:
-  - Oil
-  - Gas
-  - Energy
-  humanURL: ' https://developer.shell.com/'
-  properties:
-  - url: ' https://developer.shell.com/'
-    type: Documentation
-  description: Shell APIs provide a way for developers to interact with the operating system's shell, or command line interface, through a set of predefined functions and commands. These APIs allow developers to access and manipulate files, directories, processes, and system settings through shell commands, making it easier to automate tasks and streamline workflow. By integrating Shell APIs into their applications, developers can execute shell commands, parse output, and handle error handling more efficiently, ultimately enhancing the functionality of their software.
+  - aid: shell:shell
+    name: Shell APIs
+    tags:
+      - Oil
+      - Gas
+      - Energy
+    humanURL: ' https://developer.shell.com/'
+    properties:
+      - url: ' https://developer.shell.com/'
+        type: Documentation
+    description: >-
+      Shell APIs provide a way for developers to interact with the operating system's
+      shell, or command line interface, through a set of predefined functions and
+      commands. These APIs allow developers to access and manipulate files, directories,
+      processes, and system settings through shell commands, making it easier to automate
+      tasks and streamline workflow.
 name: Shell
 tags:
-- Electric Vehicle Charging
-- Energy
-- Fuel
-- Gas
-- Lubricants
-- Oil
-- Oil and Gas
-- Renewable Energy
+  - Electric Vehicle Charging
+  - Energy
+  - Fuel
+  - Gas
+  - Lubricants
+  - Oil
+  - Oil and Gas
+  - Renewable Energy
 type: Index
 image: https://www.shell.com/etc/designs/shell/clientlib-main/img/shell-logo.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-03-16'
 position: Consumer
-description: APIs and developer resources for Royal Dutch Shell plc, a global energy and petrochemical company
+description: >-
+  APIs and developer resources for Royal Dutch Shell plc, a global energy and petrochemical
+  company.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-- FN: Shell Digital Services
-  email: api-maintainers@shell.com
-  X-twitter: shell
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+  - FN: Shell Digital Services
+    email: api-maintainers@shell.com
+    X-twitter: shell
 specificationVersion: '0.19'
 common:
-- url: https://developer.shell.com
-  type: Developer Portal
-- url: https://developer.shell.com/getting-started
-  type: Getting Started
-- url: https://developer.shell.com/signup
-  type: API Key Registration
-- url: https://www.shell.com/terms-and-conditions
-  type: Terms of Service
-- url: https://www.shell.com/privacy
-  type: Privacy Policy
-- url: https://developer.shell.com/support
-  type: Support
-- url: https://status.shell.com
-  type: Status Page
-- url: https://developer.shell.com/blog
-  type: Blog
-- url: https://github.com/shell
-  type: GitHub Organization
+  - url: https://developer.shell.com
+    type: Developer Portal
+  - url: https://developer.shell.com/getting-started
+    type: Getting Started
+  - url: https://developer.shell.com/signup
+    type: API Key Registration
+  - url: https://www.shell.com/terms-and-conditions
+    type: Terms of Service
+  - url: https://www.shell.com/privacy
+    type: Privacy Policy
+  - url: https://developer.shell.com/support
+    type: Support
+  - url: https://status.shell.com
+    type: Status Page
+  - url: https://developer.shell.com/blog
+    type: Blog
+  - url: https://github.com/shell
+    type: GitHub Organization
