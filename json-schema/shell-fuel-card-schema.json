@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shell/blob/main/json-schema/shell-fuel-card-schema.json",
+  "title": "Shell Fuel Card",
+  "description": "A Shell B2B fuel card used for fleet fuel purchases",
+  "type": "object",
+  "properties": {
+    "cardId": {
+      "type": "string",
+      "description": "Unique identifier for the fuel card"
+    },
+    "cardPAN": {
+      "type": "string",
+      "description": "Primary Account Number of the fuel card"
+    },
+    "maskedPAN": {
+      "type": "string",
+      "description": "Masked card number for display purposes"
+    },
+    "cardStatus": {
+      "type": "string",
+      "enum": ["Active", "Blocked", "Cancelled", "Expired", "Pending"],
+      "description": "Current status of the fuel card"
+    },
+    "expiryDate": {
+      "type": "string",
+      "description": "Card expiry date (MMYY format)"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Customer account number associated with the card"
+    },
+    "payerNumber": {
+      "type": "string",
+      "description": "Payer account number for billing"
+    },
+    "driverName": {
+      "type": "string",
+      "description": "Name of the driver assigned to the card"
+    },
+    "vehicleRegistration": {
+      "type": "string",
+      "description": "Vehicle registration number for vehicle-based cards"
+    },
+    "cardType": {
+      "type": "string",
+      "description": "Type of fuel card (e.g., multi-product, fuel-only)"
+    },
+    "colCoCode": {
+      "type": "integer",
+      "description": "Collecting Company country code"
+    },
+    "limits": {
+      "type": "array",
+      "description": "Spending limits and restrictions applied to the card",
+      "items": {
+        "$ref": "#/$defs/CardLimit"
+      }
+    }
+  },
+  "required": ["cardId", "maskedPAN", "cardStatus", "colCoCode"],
+  "$defs": {
+    "CardLimit": {
+      "type": "object",
+      "title": "Shell Card Limit",
+      "description": "A spending limit or restriction on a fuel card",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of limit (amount, volume, frequency)"
+        },
+        "value": {
+          "type": "number",
+          "description": "Limit value"
+        },
+        "period": {
+          "type": "string",
+          "description": "Period for the limit (daily, weekly, monthly)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code for amount-based limits"
+        }
+      }
+    }
+  }
+}

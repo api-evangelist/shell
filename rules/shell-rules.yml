@@ -1,0 +1,116 @@
+extends: spectral:oas
+rules:
+  # Shell API Naming Conventions
+  shell-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  shell-path-kebab-case:
+    description: Path segments must use kebab-case or curly-brace parameters
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}_/-]+)+$"
+
+  shell-must-have-summary:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: defined
+
+  shell-must-have-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  shell-must-have-operation-id:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  shell-oauth2-security:
+    description: Shell APIs use OAuth2 client credentials for authentication
+    severity: info
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shell-colcocode-required:
+    description: B2B Mobility endpoints require colCoCode (Collecting Company Code) parameter
+    severity: info
+    given: "$.paths[*][get,post].parameters[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shell-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".*/$"
+
+  shell-parameters-have-description:
+    description: All parameters should have a description
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: defined
+
+  shell-response-200-must-have-content:
+    description: 200 responses must have content defined
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[200]"
+    then:
+      field: content
+      function: defined
+
+  shell-schemas-use-camel-case:
+    description: Schema property names should use camelCase
+    severity: info
+    given: "$.components.schemas[*].properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shell-pagination-fields:
+    description: Paginated list responses should include totalCount, currentPage, pageCount
+    severity: info
+    given: "$.components.schemas[*ListResponse]"
+    then:
+      field: properties
+      function: defined
+
+  shell-versioned-servers:
+    description: Shell API servers must include version in the URL path
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "https://api.shell.com/[a-z-]+/v[0-9]+"

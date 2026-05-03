@@ -1,0 +1,200 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shell Loyalty Program"
+  description: >-
+    Unified Shell Go+ loyalty program workflow combining account management,
+    points tracking, rewards catalogue, offer assignment, and redemption.
+    Designed for partners integrating Shell loyalty into digital apps and services.
+  tags:
+    - Energy
+    - Loyalty
+    - Points
+    - Retail
+    - Rewards
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SHELL_LOYALTY_TOKEN: SHELL_LOYALTY_TOKEN
+
+capability:
+  consumes:
+    - import: shell-loyalty
+      location: ./shared/loyalty.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: shell-loyalty-program-api
+      description: "Unified REST API for Shell Go+ loyalty program integration."
+      resources:
+        - path: /v1/loyalty-accounts
+          name: loyalty-accounts
+          description: "Manage Shell Go+ loyalty accounts"
+          operations:
+            - method: POST
+              name: enroll-member
+              description: "Enroll a new loyalty program member"
+              call: "shell-loyalty.enroll-account"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/loyalty-accounts/{id}
+          name: loyalty-account
+          description: "Access specific loyalty account"
+          operations:
+            - method: GET
+              name: get-account
+              description: "Get loyalty account details"
+              call: "shell-loyalty.get-account"
+              with:
+                accountId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/loyalty-accounts/{id}/balance
+          name: points-balance
+          description: "Access points balance"
+          operations:
+            - method: GET
+              name: get-balance
+              description: "Get current points balance"
+              call: "shell-loyalty.get-points-balance"
+              with:
+                accountId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/loyalty-accounts/{id}/redeem
+          name: redemption
+          description: "Redeem loyalty points"
+          operations:
+            - method: POST
+              name: redeem-points
+              description: "Redeem points for a reward"
+              call: "shell-loyalty.redeem-points"
+              with:
+                accountId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/loyalty-accounts/{id}/transactions
+          name: loyalty-transactions
+          description: "Loyalty transaction history"
+          operations:
+            - method: GET
+              name: list-transactions
+              description: "Get loyalty transaction history"
+              call: "shell-loyalty.list-loyalty-transactions"
+              with:
+                accountId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/rewards
+          name: rewards
+          description: "Browse Shell rewards catalogue"
+          operations:
+            - method: GET
+              name: list-rewards
+              description: "List available rewards"
+              call: "shell-loyalty.list-catalogue"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/loyalty-accounts/{id}/offers
+          name: offers
+          description: "Manage loyalty offers"
+          operations:
+            - method: GET
+              name: list-offers
+              description: "List available offers"
+              call: "shell-loyalty.list-offers"
+              with:
+                accountId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: shell-loyalty-program-mcp
+      transport: http
+      description: "MCP server for AI-assisted Shell Go+ loyalty program management."
+      tools:
+        - name: enroll-loyalty-member
+          description: "Enroll a new customer in Shell Go+ loyalty program"
+          hints:
+            readOnly: false
+          call: "shell-loyalty.enroll-account"
+          with:
+            first_name: "tools.first_name"
+            last_name: "tools.last_name"
+            email: "tools.email"
+            country_code: "tools.country_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-loyalty-account
+          description: "Retrieve Shell Go+ loyalty account profile and tier information"
+          hints:
+            readOnly: true
+          call: "shell-loyalty.get-account"
+          with:
+            accountId: "tools.account_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-points-balance
+          description: "Get current redeemable and pending points balance for a loyalty account"
+          hints:
+            readOnly: true
+          call: "shell-loyalty.get-points-balance"
+          with:
+            accountId: "tools.account_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: redeem-loyalty-points
+          description: "Redeem loyalty points for a reward from the Shell catalogue"
+          hints:
+            readOnly: false
+          call: "shell-loyalty.redeem-points"
+          with:
+            reward_id: "tools.reward_id"
+            points_to_redeem: "tools.points_to_redeem"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-rewards-catalogue
+          description: "Browse available rewards in Shell Go+ loyalty catalogue"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shell-loyalty.list-catalogue"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-loyalty-transactions
+          description: "Get loyalty points earn and redeem transaction history"
+          hints:
+            readOnly: true
+          call: "shell-loyalty.list-loyalty-transactions"
+          with:
+            accountId: "tools.account_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-available-offers
+          description: "List personalized loyalty offers available for a member account"
+          hints:
+            readOnly: true
+          call: "shell-loyalty.list-offers"
+          with:
+            accountId: "tools.account_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

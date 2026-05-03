@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shell/blob/main/json-schema/shell-transaction-schema.json",
+  "title": "Shell Fuel Card Transaction",
+  "description": "A fuel card transaction at a Shell site",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "description": "Unique identifier for the transaction"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the transaction"
+    },
+    "cardPAN": {
+      "type": "string",
+      "description": "Card PAN used for the transaction"
+    },
+    "maskedPAN": {
+      "type": "string",
+      "description": "Masked card number"
+    },
+    "siteCode": {
+      "type": "string",
+      "description": "Shell site code where the transaction occurred"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Name of the Shell site"
+    },
+    "siteCountry": {
+      "type": "string",
+      "description": "Country code of the Shell site"
+    },
+    "productCode": {
+      "type": "string",
+      "description": "Fuel product code (e.g., diesel, petrol, EV charging)"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Name of the fuel product"
+    },
+    "quantity": {
+      "type": "number",
+      "format": "float",
+      "description": "Volume of fuel dispensed"
+    },
+    "quantityUnit": {
+      "type": "string",
+      "description": "Unit of measure for quantity (litres, gallons)"
+    },
+    "unitPrice": {
+      "type": "number",
+      "format": "float",
+      "description": "Price per unit of fuel"
+    },
+    "amount": {
+      "type": "number",
+      "format": "float",
+      "description": "Total transaction amount"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the transaction"
+    },
+    "mileage": {
+      "type": "number",
+      "description": "Vehicle mileage at time of transaction"
+    },
+    "driverName": {
+      "type": "string",
+      "description": "Name of the driver"
+    },
+    "vehicleRegistration": {
+      "type": "string",
+      "description": "Vehicle registration number"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Customer account number"
+    },
+    "payerNumber": {
+      "type": "string",
+      "description": "Payer account number"
+    }
+  },
+  "required": ["transactionId", "date", "maskedPAN", "amount", "currency"]
+}

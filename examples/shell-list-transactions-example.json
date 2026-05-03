@@ -1,0 +1,62 @@
+{
+  "example": "List Fuel Card Transactions",
+  "description": "Retrieve fuel card transactions for a fleet account over a date range",
+  "request": {
+    "method": "GET",
+    "url": "https://api.shell.com/mobility/v2/transactions?colCoCode=032&payerNumber=CZ56789012&fromDate=2026-05-01&toDate=2026-05-02&pageSize=10",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "transactions": [
+        {
+          "transactionId": "TXN-2026-0502-001",
+          "date": "2026-05-02T08:23:00Z",
+          "maskedPAN": "7002...1234",
+          "siteCode": "DE001234",
+          "siteName": "Shell Station Frankfurt Mitte",
+          "siteCountry": "DE",
+          "productCode": "10",
+          "productName": "Shell V-Power Diesel",
+          "quantity": 45.2,
+          "quantityUnit": "litres",
+          "unitPrice": 1.659,
+          "amount": 74.99,
+          "currency": "EUR",
+          "mileage": 125430,
+          "driverName": "Max Mueller",
+          "vehicleRegistration": "DE-MM-1234",
+          "accountNumber": "CZ1234567890",
+          "payerNumber": "CZ56789012"
+        },
+        {
+          "transactionId": "TXN-2026-0502-002",
+          "date": "2026-05-02T14:05:00Z",
+          "maskedPAN": "7002...5678",
+          "siteCode": "DE002345",
+          "siteName": "Shell Station Berlin Mitte",
+          "siteCountry": "DE",
+          "productCode": "01",
+          "productName": "Shell FuelSave Petrol",
+          "quantity": 38.7,
+          "quantityUnit": "litres",
+          "unitPrice": 1.789,
+          "amount": 69.23,
+          "currency": "EUR",
+          "mileage": 67890,
+          "driverName": "Anna Schmidt",
+          "vehicleRegistration": "DE-AS-5678",
+          "accountNumber": "CZ1234567890",
+          "payerNumber": "CZ56789012"
+        }
+      ],
+      "totalCount": 2,
+      "currentPage": 1,
+      "pageCount": 1
+    }
+  }
+}

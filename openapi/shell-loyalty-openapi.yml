@@ -1,0 +1,522 @@
+openapi: 3.1.0
+info:
+  title: Shell Loyalty API
+  description: >-
+    The Shell Loyalty API enables partners to integrate Shell Go+ loyalty program
+    functionality including account management, points balance queries, points
+    redemption, loyalty catalogue access, and loyalty transaction history.
+  version: '1.0.2'
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+  - url: https://api.shell.com/loyalty/v1
+    description: Shell Loyalty API
+security:
+  - OAuth2: []
+tags:
+  - name: Accounts
+    description: Manage loyalty accounts
+  - name: Points
+    description: Query and manage loyalty points
+  - name: Catalogue
+    description: Browse loyalty rewards catalogue
+  - name: Offers
+    description: Manage loyalty offers
+  - name: Transactions
+    description: Access loyalty transaction history
+paths:
+  /accounts:
+    post:
+      operationId: enrollAccount
+      summary: Enroll Loyalty Account
+      description: Creates a new Shell loyalty account for a customer.
+      tags:
+        - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountEnrollRequest'
+      responses:
+        '201':
+          description: Account enrolled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoyaltyAccount'
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Get Loyalty Account
+      description: Returns details for a specific loyalty account.
+      tags:
+        - Accounts
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Loyalty account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoyaltyAccount'
+    put:
+      operationId: updateAccount
+      summary: Update Loyalty Account
+      description: Updates details for a specific loyalty account.
+      tags:
+        - Accounts
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUpdateRequest'
+      responses:
+        '200':
+          description: Account updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoyaltyAccount'
+  /accounts/{accountId}/balance:
+    get:
+      operationId: getPointsBalance
+      summary: Get Points Balance
+      description: Returns the current points balance for a loyalty account.
+      tags:
+        - Points
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Points balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsBalance'
+  /accounts/{accountId}/redeem:
+    post:
+      operationId: redeemPoints
+      summary: Redeem Points
+      description: Redeems loyalty points for a reward or benefit.
+      tags:
+        - Points
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedemptionRequest'
+      responses:
+        '200':
+          description: Points redeemed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionResponse'
+  /accounts/{accountId}/transactions:
+    get:
+      operationId: listLoyaltyTransactions
+      summary: List Loyalty Transactions
+      description: Returns the loyalty transaction history for an account.
+      tags:
+        - Transactions
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: transactionType
+          in: query
+          schema:
+            type: string
+            enum: [Earn, Redeem, Expire, Bonus]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Loyalty transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse'
+  /catalogue:
+    get:
+      operationId: listCatalogue
+      summary: List Loyalty Catalogue
+      description: Returns the Shell loyalty rewards catalogue.
+      tags:
+        - Catalogue
+      parameters:
+        - name: category
+          in: query
+          description: Filter by reward category
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          description: Filter by availability country
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Loyalty catalogue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogueListResponse'
+  /catalogue/{rewardId}:
+    get:
+      operationId: getCatalogueItem
+      summary: Get Catalogue Item
+      description: Returns details for a specific loyalty reward.
+      tags:
+        - Catalogue
+      parameters:
+        - name: rewardId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reward details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogueItem'
+  /accounts/{accountId}/offers:
+    get:
+      operationId: listOffers
+      summary: List Account Offers
+      description: Returns available offers for a loyalty account.
+      tags:
+        - Offers
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Available offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferListResponse'
+  /accounts/{accountId}/offers/{offerId}/assign:
+    post:
+      operationId: assignOffer
+      summary: Assign Offer
+      description: Assigns a specific offer to a loyalty account.
+      tags:
+        - Offers
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Offer assigned
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            loyalty.accounts: Manage loyalty accounts
+            loyalty.points: Access points data
+            loyalty.catalogue: Browse rewards catalogue
+  schemas:
+    LoyaltyAccount:
+      type: object
+      properties:
+        accountId:
+          type: string
+        externalId:
+          type: string
+          description: Partner-provided customer identifier
+        status:
+          type: string
+          enum: [Active, Inactive, Suspended]
+        tier:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    AccountEnrollRequest:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+      properties:
+        externalId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        countryCode:
+          type: string
+        marketingConsent:
+          type: boolean
+    AccountUpdateRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        marketingConsent:
+          type: boolean
+    PointsBalance:
+      type: object
+      properties:
+        accountId:
+          type: string
+        totalPoints:
+          type: integer
+        redeemablePoints:
+          type: integer
+        pendingPoints:
+          type: integer
+        expiringPoints:
+          type: integer
+        expiryDate:
+          type: string
+          format: date
+        tier:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+    RedemptionRequest:
+      type: object
+      required:
+        - rewardId
+        - pointsToRedeem
+      properties:
+        rewardId:
+          type: string
+        pointsToRedeem:
+          type: integer
+        deliveryMethod:
+          type: string
+        deliveryAddress:
+          type: object
+    RedemptionResponse:
+      type: object
+      properties:
+        redemptionId:
+          type: string
+        status:
+          type: string
+        pointsRedeemed:
+          type: integer
+        remainingPoints:
+          type: integer
+        reward:
+          type: object
+          properties:
+            rewardId:
+              type: string
+            name:
+              type: string
+            code:
+              type: string
+              description: Redemption code if applicable
+    LoyaltyTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionType:
+          type: string
+          enum: [Earn, Redeem, Expire, Bonus]
+        points:
+          type: integer
+        balanceAfter:
+          type: integer
+        description:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        siteId:
+          type: string
+        siteName:
+          type: string
+    TransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyTransaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    CatalogueItem:
+      type: object
+      properties:
+        rewardId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        pointsRequired:
+          type: integer
+        imageUrl:
+          type: string
+        availableCountries:
+          type: array
+          items:
+            type: string
+        validFrom:
+          type: string
+          format: date
+        validTo:
+          type: string
+          format: date
+        stock:
+          type: integer
+    CatalogueListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogueItem'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Offer:
+      type: object
+      properties:
+        offerId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        bonusPoints:
+          type: integer
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time
+        conditions:
+          type: string
+    OfferListResponse:
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+        totalCount:
+          type: integer

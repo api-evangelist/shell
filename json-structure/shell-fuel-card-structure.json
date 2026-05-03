@@ -1,0 +1,35 @@
+{
+  "title": "Shell Fuel Card Structure",
+  "description": "Structural documentation for the Shell B2B Fuel Card object",
+  "type": "object",
+  "fields": {
+    "cardId": { "type": "string", "description": "Unique fuel card identifier" },
+    "cardPAN": { "type": "string", "description": "Primary Account Number (full PAN)" },
+    "maskedPAN": { "type": "string", "description": "Masked PAN for display", "example": "7002...1234" },
+    "cardStatus": { "type": "enum", "values": ["Active", "Blocked", "Cancelled", "Expired", "Pending"] },
+    "expiryDate": { "type": "string", "description": "Expiry date in MMYY format" },
+    "accountNumber": { "type": "string", "description": "Customer account number" },
+    "payerNumber": { "type": "string", "description": "Payer account number for billing" },
+    "driverName": { "type": "string", "description": "Name of assigned driver" },
+    "vehicleRegistration": { "type": "string", "description": "Vehicle registration plate" },
+    "cardType": { "type": "string", "description": "Card product type" },
+    "colCoCode": { "type": "integer", "description": "Collecting Company country code" },
+    "limits": { "type": "array[CardLimit]", "description": "Spending limits and restrictions" }
+  },
+  "nested": {
+    "CardLimit": {
+      "type": "string - Limit type (DailyAmount, WeeklyVolume, etc.)",
+      "value": "number - Limit threshold value",
+      "period": "string - Period (Daily, Weekly, Monthly)",
+      "currency": "string - ISO currency code for amount limits"
+    }
+  },
+  "lifecycle": {
+    "list": "GET /cards with colCoCode and optional filters",
+    "order": "POST /cards to order a new card",
+    "get": "GET /cards/{cardId}",
+    "block": "POST /cards/{cardId}/block to block/unblock",
+    "cancel": "POST /cards/{cardId}/cancel",
+    "update_limits": "POST /limits with cardId and new limits"
+  }
+}

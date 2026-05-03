@@ -1,0 +1,146 @@
+title: Shell API Vocabulary
+description: Operational and domain vocabulary for Shell developer APIs covering mobility, loyalty, and lubricants
+provider: Shell
+version: '2026-05-02'
+source: https://developer.shell.com/
+
+terms:
+  - term: Fuel Card
+    definition: >-
+      A Shell B2B fleet card (also called a fuel card or fleet card) used by drivers
+      to purchase fuel, EV charging, and other services at Shell stations. Cards are
+      managed per account and can have spending limits and product restrictions applied.
+    type: resource
+    related: [FuelCardTransaction, CardLimit, Fleet]
+
+  - term: Card PAN
+    definition: >-
+      Primary Account Number. The full card number on a Shell fuel card. In API
+      responses, this is typically masked (maskedPAN) for security, showing only
+      the first 4 and last 4 digits.
+    type: concept
+    related: [FuelCard]
+
+  - term: Collecting Company Code (colCoCode)
+    definition: >-
+      A numeric country code required on most B2B Mobility API requests identifying
+      the Shell collecting company in the operating country. Different countries have
+      different colCoCodes (e.g., 032 for Germany).
+    type: concept
+    related: [FuelCard, Transaction]
+
+  - term: Payer Number
+    definition: >-
+      The billing account number for a Shell B2B customer. The payer is the entity
+      responsible for paying invoices. Multiple accounts (account numbers) can be
+      associated with one payer.
+    type: concept
+    related: [FuelCard, Invoice]
+
+  - term: Account Number
+    definition: >-
+      The customer account number under which fuel cards are managed. An account is
+      a sub-entity under a payer. Cards belong to accounts.
+    type: concept
+    related: [FuelCard, Payer]
+
+  - term: Fleet Management
+    definition: >-
+      The management of corporate vehicle fleets including fuel card control, driver
+      assignment, vehicle tracking, spending limit setting, and transaction reporting.
+    type: concept
+    related: [FuelCard, FuelCardTransaction]
+
+  - term: Shell Go+
+    definition: >-
+      Shell's loyalty program that rewards customers for fueling at Shell stations.
+      Members earn points on fuel and in-store purchases, redeemable for discounts,
+      rewards, and partner offers.
+    type: concept
+    related: [LoyaltyAccount, LoyaltyPoints]
+
+  - term: Loyalty Points
+    definition: >-
+      Points earned through Shell Go+ purchases. Points accumulate in a loyalty
+      account and can be redeemed for rewards in the Shell loyalty catalogue.
+    type: concept
+    related: [LoyaltyAccount, Redemption]
+
+  - term: Loyalty Catalogue
+    definition: >-
+      The reward catalogue available through Shell Go+. Contains available rewards,
+      offers, and redemption options for loyalty points.
+    type: resource
+    related: [LoyaltyPoints, Redemption]
+
+  - term: EV Charging
+    definition: >-
+      Electric vehicle charging services available at Shell Recharge stations and
+      partner networks. Shell provides EV charging APIs to query available charging
+      points and integrate with fleet management systems.
+    type: concept
+    related: [Site, FuelCard]
+
+  - term: Shell Site
+    definition: >-
+      A Shell fuel or service station location. Sites have a unique site code, fuel
+      types available, EV charging points, amenities, and opening hours.
+    type: resource
+    related: [FuelCardTransaction]
+
+  - term: Card Status
+    definition: The lifecycle state of a Shell fuel card.
+    type: enum
+    values:
+      Active: Card is active and can be used for transactions
+      Blocked: Card is temporarily blocked
+      Cancelled: Card has been permanently cancelled
+      Expired: Card has passed its expiry date
+      Pending: Card has been ordered but not yet activated
+
+  - term: Card Limit
+    definition: >-
+      A spending or volume restriction applied to a fuel card. Limits can control
+      daily or weekly spend amounts, fuel volume, and product types.
+    type: concept
+    related: [FuelCard]
+
+  - term: Shell Lubricants
+    definition: >-
+      Shell's lubricants business providing engine oils, gear oils, hydraulic fluids,
+      and specialty lubricants. B2B customers and distributors use the Shell Lubricants
+      API to manage orders and browse the product catalogue.
+    type: concept
+
+  - term: OAuth2 Client Credentials
+    definition: >-
+      Shell APIs use OAuth2 client credentials flow for authentication. Partners
+      obtain client_id and client_secret from the Shell Developer Portal, exchange
+      them for an access token, and include the bearer token in API requests.
+    type: concept
+    related: [Authentication]
+
+capabilities:
+  - name: Fleet Card Management
+    description: Order, activate, block, cancel, and manage fuel card lifecycle
+    apis: [B2B Mobility Card Management]
+
+  - name: Transaction Reporting
+    description: Retrieve and analyze fuel card transaction data for fleet analytics
+    apis: [B2B Mobility Card Transaction Data]
+
+  - name: Invoice Management
+    description: Access and download B2B mobility invoices for reconciliation
+    apis: [B2B Mobility Invoice]
+
+  - name: Station Locator
+    description: Query Shell fuel and EV charging station locations
+    apis: [B2B Mobility Sites]
+
+  - name: Loyalty Program Integration
+    description: Integrate Shell Go+ loyalty into partner apps and websites
+    apis: [Loyalty Account Management, Loyalty Points Balance, Loyalty Points Redemption]
+
+  - name: Lubricants Ordering
+    description: Place and manage orders for Shell lubricants products
+    apis: [Lubricants Order Management]

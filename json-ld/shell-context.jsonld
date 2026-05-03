@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "shell": "https://api.shell.com/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "FuelCard": "shell:FuelCard",
+    "FuelTransaction": "shell:FuelTransaction",
+    "FuelSite": "schema:GasStation",
+    "Invoice": "schema:Invoice",
+    "LoyaltyAccount": "schema:LoyaltyProgram",
+    "LoyaltyTransaction": "shell:LoyaltyTransaction",
+    "LubricantsOrder": "schema:Order",
+
+    "cardId": "schema:identifier",
+    "cardPAN": "shell:cardPAN",
+    "maskedPAN": "shell:maskedPAN",
+    "cardStatus": "schema:status",
+    "expiryDate": "schema:expires",
+    "accountNumber": "schema:accountId",
+    "payerNumber": "shell:payerNumber",
+    "driverName": { "@id": "schema:name", "@type": "xsd:string" },
+    "vehicleRegistration": "shell:vehicleRegistration",
+    "cardType": "schema:additionalType",
+    "colCoCode": "shell:collectingCompanyCode",
+
+    "transactionId": "schema:identifier",
+    "date": { "@id": "schema:startDate", "@type": "xsd:dateTime" },
+    "siteCode": "schema:identifier",
+    "siteName": "schema:name",
+    "productCode": "schema:productID",
+    "productName": "schema:name",
+    "quantity": { "@id": "schema:amount", "@type": "xsd:float" },
+    "quantityUnit": "schema:unitCode",
+    "unitPrice": { "@id": "schema:unitPrice", "@type": "xsd:float" },
+    "amount": { "@id": "schema:totalPrice", "@type": "xsd:float" },
+    "currency": "schema:priceCurrency",
+    "mileage": "shell:mileage",
+
+    "siteId": "schema:identifier",
+    "address": { "@id": "schema:address", "@type": "schema:PostalAddress" },
+    "location": { "@id": "schema:geo", "@type": "schema:GeoCoordinates" },
+    "latitude": { "@id": "schema:latitude", "@type": "xsd:float" },
+    "longitude": { "@id": "schema:longitude", "@type": "xsd:float" },
+    "fuelTypes": "shell:fuelTypes",
+    "evCharging": "shell:hasEVCharging",
+    "evChargingPoints": "shell:evChargingPoints",
+    "amenities": "schema:amenityFeature",
+
+    "invoiceNumber": "schema:identifier",
+    "invoiceDate": { "@id": "schema:dateCreated", "@type": "xsd:date" },
+    "dueDate": { "@id": "schema:paymentDueDate", "@type": "xsd:date" },
+    "totalAmount": { "@id": "schema:totalPrice", "@type": "xsd:float" },
+    "status": "schema:status",
+
+    "accountId": "schema:identifier",
+    "totalPoints": "shell:loyaltyPoints",
+    "redeemablePoints": "shell:redeemablePoints",
+    "pendingPoints": "shell:pendingPoints",
+    "tier": "schema:membershipLevel",
+
+    "rewardId": "schema:identifier",
+    "pointsRequired": "shell:pointsRequired",
+    "availableCountries": "schema:availableAtOrFrom",
+
+    "offerId": "schema:identifier",
+    "bonusPoints": "shell:bonusPoints",
+    "validFrom": { "@id": "schema:validFrom", "@type": "xsd:dateTime" },
+    "validTo": { "@id": "schema:validThrough", "@type": "xsd:dateTime" }
+  }
+}

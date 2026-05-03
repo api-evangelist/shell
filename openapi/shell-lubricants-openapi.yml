@@ -1,0 +1,373 @@
+openapi: 3.1.0
+info:
+  title: Shell Lubricants API
+  description: >-
+    The Shell Lubricants API enables business customers and distributors to
+    place and manage orders for Shell lubricants products, query the product
+    catalogue, manage delivery schedules, and track orders.
+  version: '1.0.0'
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+  - url: https://api.shell.com/lubricants/v1
+    description: Shell Lubricants API
+security:
+  - OAuth2: []
+tags:
+  - name: Orders
+    description: Manage lubricants orders
+  - name: Products
+    description: Browse lubricants product catalogue
+  - name: Accounts
+    description: Manage customer accounts
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Returns a list of lubricants orders for the account.
+      tags:
+        - Orders
+      parameters:
+        - name: accountNumber
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum: [Pending, Confirmed, Processing, Shipped, Delivered, Cancelled]
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+    post:
+      operationId: placeOrder
+      summary: Place Order
+      description: Places a new lubricants order.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '201':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Returns details for a specific lubricants order.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Returns the Shell lubricants product catalogue.
+      tags:
+        - Products
+      parameters:
+        - name: category
+          in: query
+          description: Filter by product category (engine oil, gear oil, hydraulic, etc.)
+          schema:
+            type: string
+        - name: application
+          in: query
+          description: Filter by application type
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product catalogue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+  /products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Returns details for a specific lubricants product.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /accounts/{accountNumber}:
+    get:
+      operationId: getAccount
+      summary: Get Account
+      description: Returns details for a lubricants customer account.
+      tags:
+        - Accounts
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LubricantsAccount'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            lubricants.orders: Manage lubricants orders
+            lubricants.products: Access product catalogue
+  schemas:
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        accountNumber:
+          type: string
+        status:
+          type: string
+          enum: [Pending, Confirmed, Processing, Shipped, Delivered, Cancelled]
+        orderDate:
+          type: string
+          format: date-time
+        expectedDeliveryDate:
+          type: string
+          format: date
+        deliveryAddress:
+          type: object
+          properties:
+            name:
+              type: string
+            street:
+              type: string
+            city:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        totalAmount:
+          type: number
+          format: float
+        currency:
+          type: string
+        tracking:
+          type: object
+    OrderItem:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: number
+          format: float
+        unit:
+          type: string
+          enum: [litre, kg, drum, pail, can]
+        unitPrice:
+          type: number
+          format: float
+        totalPrice:
+          type: number
+          format: float
+    OrderCreateRequest:
+      type: object
+      required:
+        - accountNumber
+        - deliveryAddress
+        - items
+      properties:
+        accountNumber:
+          type: string
+        poNumber:
+          type: string
+          description: Customer purchase order number
+        requestedDeliveryDate:
+          type: string
+          format: date
+        deliveryAddress:
+          type: object
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              quantity:
+                type: number
+              unit:
+                type: string
+        notes:
+          type: string
+    OrderListResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        category:
+          type: string
+        application:
+          type: string
+        viscosity:
+          type: string
+        description:
+          type: string
+        packagingOptions:
+          type: array
+          items:
+            type: object
+            properties:
+              unit:
+                type: string
+              size:
+                type: number
+              price:
+                type: number
+        specifications:
+          type: array
+          items:
+            type: string
+        approvals:
+          type: array
+          items:
+            type: string
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    LubricantsAccount:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        companyName:
+          type: string
+        accountType:
+          type: string
+        creditLimit:
+          type: number
+        availableCredit:
+          type: number
+        currency:
+          type: string
+        paymentTerms:
+          type: string
+        primaryContact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
