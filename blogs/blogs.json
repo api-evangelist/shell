@@ -1,0 +1,13 @@
+{
+  "repo": "shell",
+  "feeds": [
+    {
+      "source": "https://developer.shell.com/latest-updates",
+      "feed_url": "https://developer.shell.com/rss.xml",
+      "saved": 10,
+      "title": "Shell Developer Portal"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:36:32Z"
+}
