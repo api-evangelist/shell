@@ -1,218 +1,86 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Shell
+providerId: shell
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Energy
+  - Mobility
+  - Fleet
+  - Fuel Cards
+  - FinOps
+  - FOCUS
+description: FinOps shape for Shell B2B APIs — gated to existing partners with no public per-call pricing.
+  The dominant cost line is the underlying B2B contract (fuel-card transactions, mobility services, loyalty
+  programme); the API itself is typically a free service layer on top of that contract. Reconciliation
+  to FOCUS columns is best-effort because Shell does not publish a meter-level rate sheet.
+sources:
+  - https://developer.shell.com/api-catalog
+notes: No public per-meter pricing. Cost flows through the underlying Shell B2B agreement (fuel-card
+  fees, transaction commissions, etc.) rather than per-API metering.
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Shell
-providerId: shell
-publisherName: Shell
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Aviation
-  - Electric Vehicle Charging
-  - Energy
-  - Fleet Management
-  - Fuel
-  - Gas
-  - Loyalty
-  - Lubricants
-  - Mobility
-  - Oil and Gas
-  - Renewable Energy
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Shell API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Shell plc
+serviceCategory: Energy / Mobility B2B
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Embedded in B2B Contract
+  billingFrequency: Per-Invoice
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
-  ServiceName: Shell
-  ServiceCategory: Developer Tools / API
+  ServiceName: Shell B2B APIs
+  ServiceCategory: Energy / Mobility B2B
   ProviderName: Shell
-  PublisherName: Shell
-  InvoiceIssuerName: Shell
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Shell plc
+  InvoiceIssuerName: Shell plc
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
+  - name: card_transactions
+    description: Fuel-card transactions processed under the partner's Shell agreement
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - card_program
+      - country
+  - name: cards_managed
+    description: Active cards under management for a B2B partner
+    unit: card
+    aggregation: max
+    dimensions:
+      - card_program
   - name: api_requests
-    description: Count of billable API requests
+    description: API requests against Shell developer endpoints (operational meter; not billed at the
+      API layer)
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Shell B2B Mobility Card Management API
-    baseURL: ''
-    tags:
-      - B2B
-      - Cards
-      - Fleet
-      - Mobility
-    serviceName: Shell B2B Mobility Card Management API
-    serviceCategory: API
-  - name: Shell B2B Mobility Card Transaction Data API
-    baseURL: ''
-    tags:
-      - B2B
-      - Fleet
-      - Mobility
-      - Transactions
-    serviceName: Shell B2B Mobility Card Transaction Data API
-    serviceCategory: API
-  - name: Shell B2B Mobility Invoice API
-    baseURL: ''
-    tags:
-      - B2B
-      - Finance
-      - Fleet
-      - Invoices
-    serviceName: Shell B2B Mobility Invoice API
-    serviceCategory: API
-  - name: Shell Loyalty Catalogue API
-    baseURL: ''
-    tags:
-      - Loyalty
-      - Rewards
-      - Retail
-    serviceName: Shell Loyalty Catalogue API
-    serviceCategory: API
-  - name: Shell Loyalty Account Management API
-    baseURL: ''
-    tags:
-      - Loyalty
-      - Rewards
-      - Accounts
-    serviceName: Shell Loyalty Account Management API
-    serviceCategory: API
-  - name: Shell Loyalty Points Balance API
-    baseURL: ''
-    tags:
-      - Loyalty
-      - Points
-      - Rewards
-    serviceName: Shell Loyalty Points Balance API
-    serviceCategory: API
-  - name: Shell Loyalty Points Redemption API
-    baseURL: ''
-    tags:
-      - Loyalty
-      - Points
-      - Redemption
-    serviceName: Shell Loyalty Points Redemption API
-    serviceCategory: API
-  - name: Shell Lubricants Order Management API
-    baseURL: ''
-    tags:
-      - Lubricants
-      - Oil
-      - Orders
-      - B2B
-    serviceName: Shell Lubricants Order Management API
-    serviceCategory: API
-  - name: Shell Aviation Fuel Reseller API
-    baseURL: ''
-    tags:
-      - Aviation
-      - Fuel
-      - B2B
-    serviceName: Shell Aviation Fuel Reseller API
-    serviceCategory: API
-  - name: Shell B2B Mobility Sites API
-    baseURL: ''
-    tags:
-      - B2B
-      - Fleet
-      - Locations
-      - Mobility
-    serviceName: Shell B2B Mobility Sites API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Visibility comes from the partner's Shell B2B portal and invoice (transaction reports,
+      card-level statements). API call volume should be instrumented client-side because Shell does not
+      publish a usage API.
+  - name: Allocation
+    description: Allocate fuel-card and transaction cost by cost center / fleet / driver via card metadata;
+      align with the partner's existing fuel-card cost-allocation process rather than re-deriving it
+      from API logs.
+  - name: Optimization
+    description: Optimization happens at the Shell B2B contract level (volume rebates, network preference)
+      rather than via API tuning. On the integration side, batch transaction queries and respect partner
+      rate limits to avoid disruption.
+  - name: Accountability
+    description: Procurement / Fleet management owns the Shell partner relationship. Integration-platform
+      engineering owns API hygiene and is the contact for partner-side rate-limit issues escalated through
+      the Shell account team.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-  - FN: Shell Digital Services
-    email: api-maintainers@shell.com
-    X-twitter: shell
