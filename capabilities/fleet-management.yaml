@@ -1,199 +1,376 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Shell Fleet Management"
-  description: >-
-    Unified fleet management workflow combining B2B mobility card management,
-    transaction reporting, invoice management, and site location data. Designed
-    for fleet managers and corporate finance teams managing fuel cards across
-    the Shell global network.
+  label: Shell Fleet Management
+  description: Unified fleet management workflow combining B2B mobility card management, transaction reporting, invoice management,
+    and site location data. Designed for fleet managers and corporate finance teams managing fuel cards across the Shell global
+    network.
   tags:
-    - B2B
-    - Energy
-    - Fleet Management
-    - Fuel
-    - Mobility
-    - Transactions
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - B2B
+  - Energy
+  - Fleet Management
+  - Fuel
+  - Mobility
+  - Transactions
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SHELL_MOBILITY_TOKEN: SHELL_MOBILITY_TOKEN
-
+- namespace: env
+  keys:
+    SHELL_MOBILITY_TOKEN: SHELL_MOBILITY_TOKEN
 capability:
   consumes:
-    - import: shell-mobility
-      location: ./shared/b2b-mobility.yaml
-
+  - type: http
+    namespace: shell-mobility
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility fleet management API
+    authentication:
+      type: bearer
+      token: '{{SHELL_MOBILITY_TOKEN}}'
+    resources:
+    - name: cards
+      path: /cards
+      description: Manage B2B fuel cards
+      operations:
+      - name: list-cards
+        method: GET
+        description: List fuel cards for a B2B account
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+          description: Collecting Company country code
+        - name: payerNumber
+          in: query
+          type: string
+          required: false
+          description: Payer account number
+        - name: cardStatus
+          in: query
+          type: string
+          required: false
+          description: Filter by card status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: order-card
+        method: POST
+        description: Order a new fuel card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            colCoCode: '{{tools.col_co_code}}'
+            accountNumber: '{{tools.account_number}}'
+            driverName: '{{tools.driver_name}}'
+            vehicleRegistration: '{{tools.vehicle_registration}}'
+      - name: block-card
+        method: POST
+        description: Block or unblock a fuel card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            colCoCode: '{{tools.col_co_code}}'
+            action: '{{tools.action}}'
+    - name: transactions
+      path: /transactions
+      description: Retrieve fuel card transaction data
+      operations:
+      - name: list-transactions
+        method: GET
+        description: List fuel card transactions for a date range
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+          description: Collecting Company country code
+        - name: payerNumber
+          in: query
+          type: string
+          required: false
+          description: Payer account number
+        - name: fromDate
+          in: query
+          type: string
+          required: true
+          description: Start date (YYYY-MM-DD)
+        - name: toDate
+          in: query
+          type: string
+          required: true
+          description: End date (YYYY-MM-DD)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invoices
+      path: /invoices
+      description: Access fuel card invoices
+      operations:
+      - name: list-invoices
+        method: GET
+        description: List invoices for a B2B account
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+          description: Collecting Company country code
+        - name: payerNumber
+          in: query
+          type: string
+          required: false
+          description: Payer account number
+        - name: invoiceDateFrom
+          in: query
+          type: string
+          required: false
+          description: Invoice date from
+        - name: invoiceDateTo
+          in: query
+          type: string
+          required: false
+          description: Invoice date to
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites
+      path: /sites
+      description: Query Shell fuel and EV charging sites
+      operations:
+      - name: list-sites
+        method: GET
+        description: List Shell sites by location or country
+        inputParameters:
+        - name: latitude
+          in: query
+          type: number
+          required: false
+          description: Latitude for location search
+        - name: longitude
+          in: query
+          type: number
+          required: false
+          description: Longitude for location search
+        - name: radius
+          in: query
+          type: number
+          required: false
+          description: Search radius in kilometers
+        - name: countryCode
+          in: query
+          type: string
+          required: false
+          description: ISO country code
+        - name: evCharging
+          in: query
+          type: boolean
+          required: false
+          description: Filter for EV charging sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: limits
+      path: /limits
+      description: Manage card spending limits
+      operations:
+      - name: update-card-limits
+        method: POST
+        description: Update spending limits for a fuel card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            colCoCode: '{{tools.col_co_code}}'
+            cardId: '{{tools.card_id}}'
+            limits: '{{tools.limits}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: shell-fleet-api
-      description: "Unified REST API for Shell B2B fleet fuel card management and reporting."
-      resources:
-        - path: /v1/cards
-          name: cards
-          description: "Manage fleet fuel cards"
-          operations:
-            - method: GET
-              name: list-cards
-              description: "List all fuel cards for the fleet"
-              call: "shell-mobility.list-cards"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: order-card
-              description: "Order a new fuel card for a driver or vehicle"
-              call: "shell-mobility.order-card"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cards/{id}/block
-          name: card-block
-          description: "Block or unblock a fuel card"
-          operations:
-            - method: POST
-              name: block-card
-              description: "Block or unblock a card"
-              call: "shell-mobility.block-card"
-              with:
-                card_id: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/transactions
-          name: transactions
-          description: "Fleet fuel transaction data"
-          operations:
-            - method: GET
-              name: list-transactions
-              description: "Retrieve fleet transaction history"
-              call: "shell-mobility.list-transactions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/invoices
-          name: invoices
-          description: "Fleet fuel invoices"
-          operations:
-            - method: GET
-              name: list-invoices
-              description: "List fuel invoices for the fleet account"
-              call: "shell-mobility.list-invoices"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/sites
-          name: sites
-          description: "Shell fuel and EV charging site locations"
-          operations:
-            - method: GET
-              name: list-sites
-              description: "Find Shell sites near a location"
-              call: "shell-mobility.list-sites"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/card-limits
-          name: card-limits
-          description: "Manage card spending limits"
-          operations:
-            - method: POST
-              name: update-limits
-              description: "Update spending limits for a fuel card"
-              call: "shell-mobility.update-card-limits"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: shell-fleet-mcp
-      transport: http
-      description: "MCP server for AI-assisted fleet fuel card management and reporting."
-      tools:
-        - name: list-fleet-cards
-          description: "List all fuel cards for the fleet with status and driver information"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "shell-mobility.list-cards"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: order-fuel-card
-          description: "Order a new Shell fuel card for a driver or vehicle"
-          hints:
-            readOnly: false
-          call: "shell-mobility.order-card"
-          with:
-            col_co_code: "tools.col_co_code"
-            account_number: "tools.account_number"
-            driver_name: "tools.driver_name"
-            vehicle_registration: "tools.vehicle_registration"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: block-fuel-card
-          description: "Block or unblock a fuel card for a driver or vehicle"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "shell-mobility.block-card"
-          with:
-            col_co_code: "tools.col_co_code"
-            action: "tools.action"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-fleet-transactions
-          description: "List fuel card transactions for date range with spend analytics"
-          hints:
-            readOnly: true
-          call: "shell-mobility.list-transactions"
-          with:
-            colCoCode: "tools.col_co_code"
-            fromDate: "tools.from_date"
-            toDate: "tools.to_date"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-fleet-invoices
-          description: "List fuel invoices for the fleet account"
-          hints:
-            readOnly: true
-          call: "shell-mobility.list-invoices"
-          with:
-            colCoCode: "tools.col_co_code"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: find-shell-stations
-          description: "Find Shell fuel and EV charging stations near a location"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "shell-mobility.list-sites"
-          with:
-            latitude: "tools.latitude"
-            longitude: "tools.longitude"
-            radius: "tools.radius"
-            evCharging: "tools.ev_charging"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-card-spending-limits
-          description: "Update spending limits and restrictions on a fuel card"
-          hints:
-            readOnly: false
-          call: "shell-mobility.update-card-limits"
-          with:
-            col_co_code: "tools.col_co_code"
-            card_id: "tools.card_id"
-            limits: "tools.limits"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: shell-fleet-api
+    description: Unified REST API for Shell B2B fleet fuel card management and reporting.
+    resources:
+    - path: /v1/cards
+      name: cards
+      description: Manage fleet fuel cards
+      operations:
+      - method: GET
+        name: list-cards
+        description: List all fuel cards for the fleet
+        call: shell-mobility.list-cards
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: order-card
+        description: Order a new fuel card for a driver or vehicle
+        call: shell-mobility.order-card
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{id}/block
+      name: card-block
+      description: Block or unblock a fuel card
+      operations:
+      - method: POST
+        name: block-card
+        description: Block or unblock a card
+        call: shell-mobility.block-card
+        with:
+          card_id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions
+      name: transactions
+      description: Fleet fuel transaction data
+      operations:
+      - method: GET
+        name: list-transactions
+        description: Retrieve fleet transaction history
+        call: shell-mobility.list-transactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invoices
+      name: invoices
+      description: Fleet fuel invoices
+      operations:
+      - method: GET
+        name: list-invoices
+        description: List fuel invoices for the fleet account
+        call: shell-mobility.list-invoices
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites
+      name: sites
+      description: Shell fuel and EV charging site locations
+      operations:
+      - method: GET
+        name: list-sites
+        description: Find Shell sites near a location
+        call: shell-mobility.list-sites
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/card-limits
+      name: card-limits
+      description: Manage card spending limits
+      operations:
+      - method: POST
+        name: update-limits
+        description: Update spending limits for a fuel card
+        call: shell-mobility.update-card-limits
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: shell-fleet-mcp
+    transport: http
+    description: MCP server for AI-assisted fleet fuel card management and reporting.
+    tools:
+    - name: list-fleet-cards
+      description: List all fuel cards for the fleet with status and driver information
+      hints:
+        readOnly: true
+        openWorld: true
+      call: shell-mobility.list-cards
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: order-fuel-card
+      description: Order a new Shell fuel card for a driver or vehicle
+      hints:
+        readOnly: false
+      call: shell-mobility.order-card
+      with:
+        col_co_code: tools.col_co_code
+        account_number: tools.account_number
+        driver_name: tools.driver_name
+        vehicle_registration: tools.vehicle_registration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: block-fuel-card
+      description: Block or unblock a fuel card for a driver or vehicle
+      hints:
+        readOnly: false
+        destructive: false
+      call: shell-mobility.block-card
+      with:
+        col_co_code: tools.col_co_code
+        action: tools.action
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-fleet-transactions
+      description: List fuel card transactions for date range with spend analytics
+      hints:
+        readOnly: true
+      call: shell-mobility.list-transactions
+      with:
+        colCoCode: tools.col_co_code
+        fromDate: tools.from_date
+        toDate: tools.to_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-fleet-invoices
+      description: List fuel invoices for the fleet account
+      hints:
+        readOnly: true
+      call: shell-mobility.list-invoices
+      with:
+        colCoCode: tools.col_co_code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: find-shell-stations
+      description: Find Shell fuel and EV charging stations near a location
+      hints:
+        readOnly: true
+        openWorld: true
+      call: shell-mobility.list-sites
+      with:
+        latitude: tools.latitude
+        longitude: tools.longitude
+        radius: tools.radius
+        evCharging: tools.ev_charging
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-card-spending-limits
+      description: Update spending limits and restrictions on a fuel card
+      hints:
+        readOnly: false
+      call: shell-mobility.update-card-limits
+      with:
+        col_co_code: tools.col_co_code
+        card_id: tools.card_id
+        limits: tools.limits
+      outputParameters:
+      - type: object
+        mapping: $.
