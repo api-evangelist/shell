@@ -3,11 +3,12 @@
   "feeds": [
     {
       "source": "https://developer.shell.com/latest-updates",
-      "feed_url": "https://developer.shell.com/rss.xml",
-      "saved": 10,
-      "title": "Shell Developer Portal"
+      "feed_url": "",
+      "title": "",
+      "saved": 0,
+      "error": "no_feed"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:36:32Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
