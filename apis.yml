@@ -194,7 +194,7 @@ tags:
   - Mobility
   - Oil and Gas
   - Renewable Energy
-type: Contract
+kind: contract
 image: https://www.shell.com/etc/designs/shell/clientlib-main/img/shell-logo.png
 access: 3rd-Party
 created: '2025-03-01'
@@ -219,23 +219,23 @@ common:
   - url: https://developer.shell.com/api-catalog
     type: API Catalog
   - url: https://developer.shell.com/docs/welcome-shell-developer-portal
-    type: Getting Started
+    type: GettingStarted
   - url: https://developer.shell.com/signup
     type: API Key Registration
   - url: https://developer.shell.com/docs/authentication
     type: Authentication
   - url: https://www.shell.com/terms-and-conditions
-    type: Terms of Service
+    type: TermsOfService
   - url: https://www.shell.com/privacy
-    type: Privacy Policy
+    type: PrivacyPolicy
   - url: https://developer.shell.com/support
     type: Support
   - url: https://developer.shell.com/support/api-status
-    type: Status Page
+    type: StatusPage
   - url: https://developer.shell.com/latest-updates
     type: Blog
   - url: https://github.com/shell
-    type: GitHub Organization
+    type: GitHubOrganization
   - url: https://www.shell.com
     type: Website
   - url: json-ld/shell-context.jsonld
