@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell Loyalty API — Transactions
+  description: 'Shell Loyalty API — Transactions. 1 operations. Lead operation: List Loyalty Transactions. Self-contained
+    Naftiko capability covering one Shell business surface.'
+  tags:
+  - Shell
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: loyalty-transactions
+    baseUri: https://api.shell.com/loyalty/v1
+    description: Shell Loyalty API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-transactions
+      path: /accounts/{accountId}/transactions
+      operations:
+      - name: listloyaltytransactions
+        method: GET
+        description: List Loyalty Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: fromDate
+          in: query
+          type: string
+        - name: toDate
+          in: query
+          type: string
+        - name: transactionType
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: loyalty-transactions-rest
+    port: 8080
+    description: REST adapter for Shell Loyalty API — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/transactions
+      name: accounts-accountid-transactions
+      description: REST surface for accounts-accountId-transactions.
+      operations:
+      - method: GET
+        name: listloyaltytransactions
+        description: List Loyalty Transactions
+        call: loyalty-transactions.listloyaltytransactions
+        with:
+          accountId: rest.accountId
+          fromDate: rest.fromDate
+          toDate: rest.toDate
+          transactionType: rest.transactionType
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: loyalty-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell Loyalty API — Transactions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-loyalty-transactions
+      description: List Loyalty Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: loyalty-transactions.listloyaltytransactions
+      with:
+        accountId: tools.accountId
+        fromDate: tools.fromDate
+        toDate: tools.toDate
+        transactionType: tools.transactionType
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

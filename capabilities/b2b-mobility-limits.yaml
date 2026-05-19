@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell B2B Mobility API — Limits
+  description: 'Shell B2B Mobility API — Limits. 1 operations. Lead operation: Update Card Limits. Self-contained Naftiko
+    capability covering one Shell business surface.'
+  tags:
+  - Shell
+  - Limits
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: b2b-mobility-limits
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API — Limits business capability. Self-contained, no shared references.
+    resources:
+    - name: limits
+      path: /limits
+      operations:
+      - name: updatecardlimits
+        method: POST
+        description: Update Card Limits
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: b2b-mobility-limits-rest
+    port: 8080
+    description: REST adapter for Shell B2B Mobility API — Limits. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/limits
+      name: limits
+      description: REST surface for limits.
+      operations:
+      - method: POST
+        name: updatecardlimits
+        description: Update Card Limits
+        call: b2b-mobility-limits.updatecardlimits
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: b2b-mobility-limits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell B2B Mobility API — Limits. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: update-card-limits
+      description: Update Card Limits
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: b2b-mobility-limits.updatecardlimits
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

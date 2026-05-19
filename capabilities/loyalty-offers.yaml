@@ -1,0 +1,126 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell Loyalty API — Offers
+  description: 'Shell Loyalty API — Offers. 2 operations. Lead operation: List Account Offers. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Offers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: loyalty-offers
+    baseUri: https://api.shell.com/loyalty/v1
+    description: Shell Loyalty API — Offers business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-offers
+      path: /accounts/{accountId}/offers
+      operations:
+      - name: listoffers
+        method: GET
+        description: List Account Offers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    - name: accounts-accountId-offers-offerId-assign
+      path: /accounts/{accountId}/offers/{offerId}/assign
+      operations:
+      - name: assignoffer
+        method: POST
+        description: Assign Offer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: offerId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: loyalty-offers-rest
+    port: 8080
+    description: REST adapter for Shell Loyalty API — Offers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/offers
+      name: accounts-accountid-offers
+      description: REST surface for accounts-accountId-offers.
+      operations:
+      - method: GET
+        name: listoffers
+        description: List Account Offers
+        call: loyalty-offers.listoffers
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/offers/{offerid}/assign
+      name: accounts-accountid-offers-offerid-assign
+      description: REST surface for accounts-accountId-offers-offerId-assign.
+      operations:
+      - method: POST
+        name: assignoffer
+        description: Assign Offer
+        call: loyalty-offers.assignoffer
+        with:
+          accountId: rest.accountId
+          offerId: rest.offerId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: loyalty-offers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell Loyalty API — Offers. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-account-offers
+      description: List Account Offers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: loyalty-offers.listoffers
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-offer
+      description: Assign Offer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: loyalty-offers.assignoffer
+      with:
+        accountId: tools.accountId
+        offerId: tools.offerId
+      outputParameters:
+      - type: object
+        mapping: $.

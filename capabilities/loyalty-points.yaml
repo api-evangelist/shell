@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell Loyalty API — Points
+  description: 'Shell Loyalty API — Points. 2 operations. Lead operation: Get Points Balance. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Points
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: loyalty-points
+    baseUri: https://api.shell.com/loyalty/v1
+    description: Shell Loyalty API — Points business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-balance
+      path: /accounts/{accountId}/balance
+      operations:
+      - name: getpointsbalance
+        method: GET
+        description: Get Points Balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    - name: accounts-accountId-redeem
+      path: /accounts/{accountId}/redeem
+      operations:
+      - name: redeempoints
+        method: POST
+        description: Redeem Points
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: loyalty-points-rest
+    port: 8080
+    description: REST adapter for Shell Loyalty API — Points. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/balance
+      name: accounts-accountid-balance
+      description: REST surface for accounts-accountId-balance.
+      operations:
+      - method: GET
+        name: getpointsbalance
+        description: Get Points Balance
+        call: loyalty-points.getpointsbalance
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/redeem
+      name: accounts-accountid-redeem
+      description: REST surface for accounts-accountId-redeem.
+      operations:
+      - method: POST
+        name: redeempoints
+        description: Redeem Points
+        call: loyalty-points.redeempoints
+        with:
+          accountId: rest.accountId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: loyalty-points-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell Loyalty API — Points. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-points-balance
+      description: Get Points Balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: loyalty-points.getpointsbalance
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: redeem-points
+      description: Redeem Points
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: loyalty-points.redeempoints
+      with:
+        accountId: tools.accountId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,160 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell B2B Mobility API — Sites
+  description: 'Shell B2B Mobility API — Sites. 2 operations. Lead operation: List Sites. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Sites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: b2b-mobility-sites
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API — Sites business capability. Self-contained, no shared references.
+    resources:
+    - name: sites
+      path: /sites
+      operations:
+      - name: listsites
+        method: GET
+        description: List Sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: latitude
+          in: query
+          type: number
+          description: Latitude coordinate for location-based search
+        - name: longitude
+          in: query
+          type: number
+          description: Longitude coordinate for location-based search
+        - name: radius
+          in: query
+          type: number
+          description: Search radius in kilometers
+        - name: countryCode
+          in: query
+          type: string
+          description: ISO 2-letter country code
+        - name: fuelType
+          in: query
+          type: string
+          description: Filter by fuel type
+        - name: evCharging
+          in: query
+          type: boolean
+          description: Filter for EV charging available sites
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: sites-siteId
+      path: /sites/{siteId}
+      operations:
+      - name: getsite
+        method: GET
+        description: Get Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: b2b-mobility-sites-rest
+    port: 8080
+    description: REST adapter for Shell B2B Mobility API — Sites. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sites
+      name: sites
+      description: REST surface for sites.
+      operations:
+      - method: GET
+        name: listsites
+        description: List Sites
+        call: b2b-mobility-sites.listsites
+        with:
+          latitude: rest.latitude
+          longitude: rest.longitude
+          radius: rest.radius
+          countryCode: rest.countryCode
+          fuelType: rest.fuelType
+          evCharging: rest.evCharging
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{siteid}
+      name: sites-siteid
+      description: REST surface for sites-siteId.
+      operations:
+      - method: GET
+        name: getsite
+        description: Get Site
+        call: b2b-mobility-sites.getsite
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: b2b-mobility-sites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell B2B Mobility API — Sites. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-sites
+      description: List Sites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-sites.listsites
+      with:
+        latitude: tools.latitude
+        longitude: tools.longitude
+        radius: tools.radius
+        countryCode: tools.countryCode
+        fuelType: tools.fuelType
+        evCharging: tools.evCharging
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-site
+      description: Get Site
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-sites.getsite
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.

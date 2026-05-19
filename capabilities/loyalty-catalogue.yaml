@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell Loyalty API — Catalogue
+  description: 'Shell Loyalty API — Catalogue. 2 operations. Lead operation: List Loyalty Catalogue. Self-contained Naftiko
+    capability covering one Shell business surface.'
+  tags:
+  - Shell
+  - Catalogue
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: loyalty-catalogue
+    baseUri: https://api.shell.com/loyalty/v1
+    description: Shell Loyalty API — Catalogue business capability. Self-contained, no shared references.
+    resources:
+    - name: catalogue
+      path: /catalogue
+      operations:
+      - name: listcatalogue
+        method: GET
+        description: List Loyalty Catalogue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          description: Filter by reward category
+        - name: countryCode
+          in: query
+          type: string
+          description: Filter by availability country
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: catalogue-rewardId
+      path: /catalogue/{rewardId}
+      operations:
+      - name: getcatalogueitem
+        method: GET
+        description: Get Catalogue Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rewardId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: loyalty-catalogue-rest
+    port: 8080
+    description: REST adapter for Shell Loyalty API — Catalogue. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/catalogue
+      name: catalogue
+      description: REST surface for catalogue.
+      operations:
+      - method: GET
+        name: listcatalogue
+        description: List Loyalty Catalogue
+        call: loyalty-catalogue.listcatalogue
+        with:
+          category: rest.category
+          countryCode: rest.countryCode
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/catalogue/{rewardid}
+      name: catalogue-rewardid
+      description: REST surface for catalogue-rewardId.
+      operations:
+      - method: GET
+        name: getcatalogueitem
+        description: Get Catalogue Item
+        call: loyalty-catalogue.getcatalogueitem
+        with:
+          rewardId: rest.rewardId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: loyalty-catalogue-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell Loyalty API — Catalogue. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-loyalty-catalogue
+      description: List Loyalty Catalogue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: loyalty-catalogue.listcatalogue
+      with:
+        category: tools.category
+        countryCode: tools.countryCode
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalogue-item
+      description: Get Catalogue Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: loyalty-catalogue.getcatalogueitem
+      with:
+        rewardId: tools.rewardId
+      outputParameters:
+      - type: object
+        mapping: $.

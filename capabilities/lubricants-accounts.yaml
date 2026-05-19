@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell Lubricants API — Accounts
+  description: 'Shell Lubricants API — Accounts. 1 operations. Lead operation: Get Account. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lubricants-accounts
+    baseUri: https://api.shell.com/lubricants/v1
+    description: Shell Lubricants API — Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountNumber
+      path: /accounts/{accountNumber}
+      operations:
+      - name: getaccount
+        method: GET
+        description: Get Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountNumber
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lubricants-accounts-rest
+    port: 8080
+    description: REST adapter for Shell Lubricants API — Accounts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountnumber}
+      name: accounts-accountnumber
+      description: REST surface for accounts-accountNumber.
+      operations:
+      - method: GET
+        name: getaccount
+        description: Get Account
+        call: lubricants-accounts.getaccount
+        with:
+          accountNumber: rest.accountNumber
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lubricants-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell Lubricants API — Accounts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-account
+      description: Get Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lubricants-accounts.getaccount
+      with:
+        accountNumber: tools.accountNumber
+      outputParameters:
+      - type: object
+        mapping: $.

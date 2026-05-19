@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell B2B Mobility API — Transactions
+  description: 'Shell B2B Mobility API — Transactions. 2 operations. Lead operation: List Transactions. Self-contained Naftiko
+    capability covering one Shell business surface.'
+  tags:
+  - Shell
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: b2b-mobility-transactions
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: listtransactions
+        method: GET
+        description: List Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+        - name: payerNumber
+          in: query
+          type: string
+        - name: accountNumber
+          in: query
+          type: string
+        - name: cardPAN
+          in: query
+          type: string
+          description: Card PAN to filter transactions
+        - name: fromDate
+          in: query
+          type: string
+          description: Start date for transaction search (YYYY-MM-DD)
+          required: true
+        - name: toDate
+          in: query
+          type: string
+          description: End date for transaction search (YYYY-MM-DD)
+          required: true
+        - name: productCode
+          in: query
+          type: string
+          description: Filter by fuel product code
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: transactions-transactionId
+      path: /transactions/{transactionId}
+      operations:
+      - name: gettransaction
+        method: GET
+        description: Get Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          required: true
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: b2b-mobility-transactions-rest
+    port: 8080
+    description: REST adapter for Shell B2B Mobility API — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for transactions.
+      operations:
+      - method: GET
+        name: listtransactions
+        description: List Transactions
+        call: b2b-mobility-transactions.listtransactions
+        with:
+          colCoCode: rest.colCoCode
+          payerNumber: rest.payerNumber
+          accountNumber: rest.accountNumber
+          cardPAN: rest.cardPAN
+          fromDate: rest.fromDate
+          toDate: rest.toDate
+          productCode: rest.productCode
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/{transactionid}
+      name: transactions-transactionid
+      description: REST surface for transactions-transactionId.
+      operations:
+      - method: GET
+        name: gettransaction
+        description: Get Transaction
+        call: b2b-mobility-transactions.gettransaction
+        with:
+          transactionId: rest.transactionId
+          colCoCode: rest.colCoCode
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: b2b-mobility-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell B2B Mobility API — Transactions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-transactions
+      description: List Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-transactions.listtransactions
+      with:
+        colCoCode: tools.colCoCode
+        payerNumber: tools.payerNumber
+        accountNumber: tools.accountNumber
+        cardPAN: tools.cardPAN
+        fromDate: tools.fromDate
+        toDate: tools.toDate
+        productCode: tools.productCode
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-transaction
+      description: Get Transaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-transactions.gettransaction
+      with:
+        transactionId: tools.transactionId
+        colCoCode: tools.colCoCode
+      outputParameters:
+      - type: object
+        mapping: $.

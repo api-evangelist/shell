@@ -1,0 +1,286 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell B2B Mobility API — Cards
+  description: 'Shell B2B Mobility API — Cards. 5 operations. Lead operation: List Cards. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Cards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: b2b-mobility-cards
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API — Cards business capability. Self-contained, no shared references.
+    resources:
+    - name: cards
+      path: /cards
+      operations:
+      - name: listcards
+        method: GET
+        description: List Cards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          description: Country code for the collecting company
+          required: true
+        - name: payerNumber
+          in: query
+          type: string
+          description: Payer account number
+        - name: accountNumber
+          in: query
+          type: string
+          description: Customer account number
+        - name: cardStatus
+          in: query
+          type: string
+          description: Filter cards by status
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: ordercard
+        method: POST
+        description: Order Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-cardId
+      path: /cards/{cardId}
+      operations:
+      - name: getcard
+        method: GET
+        description: Get Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cardId
+          in: path
+          type: string
+          required: true
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+    - name: cards-cardId-block
+      path: /cards/{cardId}/block
+      operations:
+      - name: blockcard
+        method: POST
+        description: Block Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cardId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-cardId-cancel
+      path: /cards/{cardId}/cancel
+      operations:
+      - name: cancelcard
+        method: POST
+        description: Cancel Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cardId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: b2b-mobility-cards-rest
+    port: 8080
+    description: REST adapter for Shell B2B Mobility API — Cards. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cards
+      name: cards
+      description: REST surface for cards.
+      operations:
+      - method: GET
+        name: listcards
+        description: List Cards
+        call: b2b-mobility-cards.listcards
+        with:
+          colCoCode: rest.colCoCode
+          payerNumber: rest.payerNumber
+          accountNumber: rest.accountNumber
+          cardStatus: rest.cardStatus
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: ordercard
+        description: Order Card
+        call: b2b-mobility-cards.ordercard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{cardid}
+      name: cards-cardid
+      description: REST surface for cards-cardId.
+      operations:
+      - method: GET
+        name: getcard
+        description: Get Card
+        call: b2b-mobility-cards.getcard
+        with:
+          cardId: rest.cardId
+          colCoCode: rest.colCoCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{cardid}/block
+      name: cards-cardid-block
+      description: REST surface for cards-cardId-block.
+      operations:
+      - method: POST
+        name: blockcard
+        description: Block Card
+        call: b2b-mobility-cards.blockcard
+        with:
+          cardId: rest.cardId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{cardid}/cancel
+      name: cards-cardid-cancel
+      description: REST surface for cards-cardId-cancel.
+      operations:
+      - method: POST
+        name: cancelcard
+        description: Cancel Card
+        call: b2b-mobility-cards.cancelcard
+        with:
+          cardId: rest.cardId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: b2b-mobility-cards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell B2B Mobility API — Cards. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-cards
+      description: List Cards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-cards.listcards
+      with:
+        colCoCode: tools.colCoCode
+        payerNumber: tools.payerNumber
+        accountNumber: tools.accountNumber
+        cardStatus: tools.cardStatus
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: order-card
+      description: Order Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: b2b-mobility-cards.ordercard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card
+      description: Get Card
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-cards.getcard
+      with:
+        cardId: tools.cardId
+        colCoCode: tools.colCoCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: block-card
+      description: Block Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: b2b-mobility-cards.blockcard
+      with:
+        cardId: tools.cardId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-card
+      description: Cancel Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: b2b-mobility-cards.cancelcard
+      with:
+        cardId: tools.cardId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

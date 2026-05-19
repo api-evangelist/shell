@@ -1,0 +1,156 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shell B2B Mobility API — Invoices
+  description: 'Shell B2B Mobility API — Invoices. 2 operations. Lead operation: List Invoices. Self-contained Naftiko capability
+    covering one Shell business surface.'
+  tags:
+  - Shell
+  - Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHELL_API_KEY: SHELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: b2b-mobility-invoices
+    baseUri: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API — Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: invoices
+      path: /invoices
+      operations:
+      - name: listinvoices
+        method: GET
+        description: List Invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+        - name: payerNumber
+          in: query
+          type: string
+        - name: accountNumber
+          in: query
+          type: string
+        - name: invoiceDateFrom
+          in: query
+          type: string
+        - name: invoiceDateTo
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: invoices-invoiceNumber
+      path: /invoices/{invoiceNumber}
+      operations:
+      - name: getinvoice
+        method: GET
+        description: Get Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: invoiceNumber
+          in: path
+          type: string
+          required: true
+        - name: colCoCode
+          in: query
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHELL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: b2b-mobility-invoices-rest
+    port: 8080
+    description: REST adapter for Shell B2B Mobility API — Invoices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/invoices
+      name: invoices
+      description: REST surface for invoices.
+      operations:
+      - method: GET
+        name: listinvoices
+        description: List Invoices
+        call: b2b-mobility-invoices.listinvoices
+        with:
+          colCoCode: rest.colCoCode
+          payerNumber: rest.payerNumber
+          accountNumber: rest.accountNumber
+          invoiceDateFrom: rest.invoiceDateFrom
+          invoiceDateTo: rest.invoiceDateTo
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invoices/{invoicenumber}
+      name: invoices-invoicenumber
+      description: REST surface for invoices-invoiceNumber.
+      operations:
+      - method: GET
+        name: getinvoice
+        description: Get Invoice
+        call: b2b-mobility-invoices.getinvoice
+        with:
+          invoiceNumber: rest.invoiceNumber
+          colCoCode: rest.colCoCode
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: b2b-mobility-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shell B2B Mobility API — Invoices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-invoices
+      description: List Invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-invoices.listinvoices
+      with:
+        colCoCode: tools.colCoCode
+        payerNumber: tools.payerNumber
+        accountNumber: tools.accountNumber
+        invoiceDateFrom: tools.invoiceDateFrom
+        invoiceDateTo: tools.invoiceDateTo
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-invoice
+      description: Get Invoice
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: b2b-mobility-invoices.getinvoice
+      with:
+        invoiceNumber: tools.invoiceNumber
+        colCoCode: tools.colCoCode
+      outputParameters:
+      - type: object
+        mapping: $.
