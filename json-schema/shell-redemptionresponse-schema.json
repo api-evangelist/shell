@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RedemptionResponse",
+  "title": "RedemptionResponse",
+  "type": "object",
+  "properties": {
+    "redemptionId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "pointsRedeemed": {
+      "type": "integer"
+    },
+    "remainingPoints": {
+      "type": "integer"
+    },
+    "reward": {
+      "type": "object",
+      "properties": {
+        "rewardId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string",
+          "description": "Redemption code if applicable"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Invoice",
+  "title": "Invoice",
+  "type": "object",
+  "properties": {
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "invoiceDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "payerNumber": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "float"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Paid",
+        "Overdue",
+        "Cancelled"
+      ]
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

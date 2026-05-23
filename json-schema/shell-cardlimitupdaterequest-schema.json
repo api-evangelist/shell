@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardLimitUpdateRequest",
+  "title": "CardLimitUpdateRequest",
+  "type": "object",
+  "required": [
+    "colCoCode",
+    "cardId"
+  ],
+  "properties": {
+    "colCoCode": {
+      "type": "integer"
+    },
+    "payerNumber": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "cardId": {
+      "type": "string"
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CardLimit"
+      }
+    }
+  }
+}

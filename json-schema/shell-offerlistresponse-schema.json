@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OfferListResponse",
+  "title": "OfferListResponse",
+  "type": "object",
+  "properties": {
+    "offers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Offer"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    }
+  }
+}

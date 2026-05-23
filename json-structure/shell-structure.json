@@ -1,0 +1,198 @@
+{
+  "provider": "Shell",
+  "providerId": "shell",
+  "kind": "json-structure",
+  "description": "Structural overview of the Shell API surface; extracted from openapi/.",
+  "schemaCount": 12,
+  "operationCount": 12,
+  "schemas": [
+    {
+      "name": "Card",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "CardLimit",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CardListResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CardOrderRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "colCoCode",
+        "accountNumber"
+      ]
+    },
+    {
+      "name": "CardOrderResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Transaction",
+      "type": "object",
+      "propertyCount": 19,
+      "required": []
+    },
+    {
+      "name": "TransactionListResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Invoice",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "InvoiceListResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Site",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "SiteListResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CardLimitUpdateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "colCoCode",
+        "cardId"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/cards",
+      "operationId": "listCards",
+      "summary": "List Cards",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards",
+      "operationId": "orderCard",
+      "summary": "Order Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/{cardId}",
+      "operationId": "getCard",
+      "summary": "Get Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{cardId}/cancel",
+      "operationId": "cancelCard",
+      "summary": "Cancel Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{cardId}/block",
+      "operationId": "blockCard",
+      "summary": "Block Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions",
+      "operationId": "listTransactions",
+      "summary": "List Transactions",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/{transactionId}",
+      "operationId": "getTransaction",
+      "summary": "Get Transaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/invoices",
+      "operationId": "listInvoices",
+      "summary": "List Invoices",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/invoices/{invoiceNumber}",
+      "operationId": "getInvoice",
+      "summary": "Get Invoice",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites",
+      "operationId": "listSites",
+      "summary": "List Sites",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{siteId}",
+      "operationId": "getSite",
+      "summary": "Get Site",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/limits",
+      "operationId": "updateCardLimits",
+      "summary": "Update Card Limits",
+      "tags": [
+        "Limits"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoyaltyTransaction",
+  "title": "LoyaltyTransaction",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string"
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": [
+        "Earn",
+        "Redeem",
+        "Expire",
+        "Bonus"
+      ]
+    },
+    "points": {
+      "type": "integer"
+    },
+    "balanceAfter": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "transactionDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "siteId": {
+      "type": "string"
+    },
+    "siteName": {
+      "type": "string"
+    }
+  }
+}

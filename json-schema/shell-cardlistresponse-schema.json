@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardListResponse",
+  "title": "CardListResponse",
+  "type": "object",
+  "properties": {
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Card"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "pageCount": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionListResponse",
+  "title": "TransactionListResponse",
+  "type": "object",
+  "properties": {
+    "transactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Transaction"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "pageCount": {
+      "type": "integer"
+    }
+  }
+}

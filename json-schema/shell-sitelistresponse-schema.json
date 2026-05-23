@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SiteListResponse",
+  "title": "SiteListResponse",
+  "type": "object",
+  "properties": {
+    "sites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Site"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "pageCount": {
+      "type": "integer"
+    }
+  }
+}

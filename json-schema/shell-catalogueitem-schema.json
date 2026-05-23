@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogueItem",
+  "title": "CatalogueItem",
+  "type": "object",
+  "properties": {
+    "rewardId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "pointsRequired": {
+      "type": "integer"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "availableCountries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date"
+    },
+    "validTo": {
+      "type": "string",
+      "format": "date"
+    },
+    "stock": {
+      "type": "integer"
+    }
+  }
+}

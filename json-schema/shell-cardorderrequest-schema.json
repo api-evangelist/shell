@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardOrderRequest",
+  "title": "CardOrderRequest",
+  "type": "object",
+  "required": [
+    "colCoCode",
+    "accountNumber"
+  ],
+  "properties": {
+    "colCoCode": {
+      "type": "integer"
+    },
+    "payerNumber": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "driverName": {
+      "type": "string"
+    },
+    "vehicleRegistration": {
+      "type": "string"
+    },
+    "cardType": {
+      "type": "string"
+    },
+    "embossText": {
+      "type": "string"
+    }
+  }
+}

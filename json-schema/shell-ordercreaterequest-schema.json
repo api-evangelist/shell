@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderCreateRequest",
+  "title": "OrderCreateRequest",
+  "type": "object",
+  "required": [
+    "accountNumber",
+    "deliveryAddress",
+    "items"
+  ],
+  "properties": {
+    "accountNumber": {
+      "type": "string"
+    },
+    "poNumber": {
+      "type": "string",
+      "description": "Customer purchase order number"
+    },
+    "requestedDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "deliveryAddress": {
+      "type": "object"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

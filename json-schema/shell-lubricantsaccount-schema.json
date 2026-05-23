@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LubricantsAccount",
+  "title": "LubricantsAccount",
+  "type": "object",
+  "properties": {
+    "accountNumber": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "accountType": {
+      "type": "string"
+    },
+    "creditLimit": {
+      "type": "number"
+    },
+    "availableCredit": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "paymentTerms": {
+      "type": "string"
+    },
+    "primaryContact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

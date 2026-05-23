@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Card",
+  "title": "Card",
+  "type": "object",
+  "properties": {
+    "cardId": {
+      "type": "string"
+    },
+    "cardPAN": {
+      "type": "string",
+      "description": "Primary Account Number"
+    },
+    "maskedPAN": {
+      "type": "string"
+    },
+    "cardStatus": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Blocked",
+        "Cancelled",
+        "Expired",
+        "Pending"
+      ]
+    },
+    "expiryDate": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "payerNumber": {
+      "type": "string"
+    },
+    "driverName": {
+      "type": "string"
+    },
+    "vehicleRegistration": {
+      "type": "string"
+    },
+    "cardType": {
+      "type": "string"
+    },
+    "colCoCode": {
+      "type": "integer"
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CardLimit"
+      }
+    }
+  }
+}

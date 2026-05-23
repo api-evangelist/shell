@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Site",
+  "title": "Site",
+  "type": "object",
+  "properties": {
+    "siteId": {
+      "type": "string"
+    },
+    "siteName": {
+      "type": "string"
+    },
+    "siteCode": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "float"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "fuelTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evCharging": {
+      "type": "boolean"
+    },
+    "evChargingPoints": {
+      "type": "integer"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "openingHours": {
+      "type": "object"
+    }
+  }
+}

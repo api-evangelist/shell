@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductListResponse",
+  "title": "ProductListResponse",
+  "type": "object",
+  "properties": {
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Product"
+      }
+    },
+    "totalCount": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "pageCount": {
+      "type": "integer"
+    }
+  }
+}
