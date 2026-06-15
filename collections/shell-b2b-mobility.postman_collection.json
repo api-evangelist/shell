@@ -1,0 +1,1565 @@
+{
+  "item": [
+    {
+      "id": "f1acf8ea-a090-47dd-9fdd-8eb424d5630f",
+      "name": "Cards",
+      "description": {
+        "content": "Manage B2B fuel cards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24f4998c-e9f7-4643-a91b-1e492aaf5621",
+          "name": "List Cards",
+          "request": {
+            "name": "List Cards",
+            "description": {
+              "content": "Returns a list of fuel cards associated with the B2B account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) Country code for the collecting company"
+                },
+                {
+                  "disabled": false,
+                  "key": "payerNumber",
+                  "value": "<string>",
+                  "description": "Payer account number"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>",
+                  "description": "Customer account number"
+                },
+                {
+                  "disabled": false,
+                  "key": "cardStatus",
+                  "value": "<string>",
+                  "description": "Filter cards by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c850d08f-5fa2-4d33-873a-0936be5ea125",
+              "name": "A list of fuel cards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cards\": [\n    {\n      \"cardId\": \"string\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"cardStatus\": \"Pending\",\n      \"expiryDate\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\",\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"cardType\": \"string\",\n      \"colCoCode\": 7623,\n      \"limits\": [\n        {\n          \"type\": \"string\",\n          \"value\": 7259.127990872972,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 8513.44839773195,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"cardId\": \"string\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"cardStatus\": \"Pending\",\n      \"expiryDate\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\",\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"cardType\": \"string\",\n      \"colCoCode\": 4059,\n      \"limits\": [\n        {\n          \"type\": \"string\",\n          \"value\": 9413.142191640303,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 4036.0458445870618,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalCount\": 6737,\n  \"currentPage\": 457,\n  \"pageCount\": 9828\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05fc5298-1684-4c12-9885-b706496a02be",
+          "name": "Order Card",
+          "request": {
+            "name": "Order Card",
+            "description": {
+              "content": "Places an order for a new fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"accountNumber\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"driverName\": \"<string>\",\n  \"vehicleRegistration\": \"<string>\",\n  \"cardType\": \"<string>\",\n  \"embossText\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8052c56-59e7-4892-b8bb-f44e7e3dd8cf",
+              "name": "Card order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"accountNumber\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"driverName\": \"<string>\",\n  \"vehicleRegistration\": \"<string>\",\n  \"cardType\": \"<string>\",\n  \"embossText\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"status\": \"string\",\n  \"estimatedDeliveryDate\": \"1999-02-23\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca0cd10b-f5ef-4a7e-9525-55132b5a74e9",
+          "name": "Get Card",
+          "request": {
+            "name": "Get Card",
+            "description": {
+              "content": "Returns details for a specific fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0073b7d9-5c3d-452d-b75f-0e6c00c384a2",
+              "name": "Card details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardId\": \"string\",\n  \"cardPAN\": \"string\",\n  \"maskedPAN\": \"string\",\n  \"cardStatus\": \"Cancelled\",\n  \"expiryDate\": \"string\",\n  \"accountNumber\": \"string\",\n  \"payerNumber\": \"string\",\n  \"driverName\": \"string\",\n  \"vehicleRegistration\": \"string\",\n  \"cardType\": \"string\",\n  \"colCoCode\": 6658,\n  \"limits\": [\n    {\n      \"type\": \"string\",\n      \"value\": 419.39218615498316,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": 4612.36855335044,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e00a64ab-58fc-48fa-aee4-870b37602e61",
+          "name": "Cancel Card",
+          "request": {
+            "name": "Cancel Card",
+            "description": {
+              "content": "Cancels a fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "144cbd40-77b4-47cd-b79b-66c3a7b3419a",
+              "name": "Card cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e6f4e22-4a6a-4c12-bcb7-39ab501a9bbb",
+          "name": "Block Card",
+          "request": {
+            "name": "Block Card",
+            "description": {
+              "content": "Blocks or unblocks a fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId",
+                "block"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"action\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1cf00a8b-b7dd-4a8b-9b36-ff3d4ca0c654",
+              "name": "Card block status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId",
+                    "block"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"action\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fd0c204c-68bf-4b20-a4a9-72ddc3d5b12e",
+      "name": "Transactions",
+      "description": {
+        "content": "Retrieve fuel card transaction data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba502780-f813-4bac-8f21-f627bbe38f3d",
+          "name": "List Transactions",
+          "request": {
+            "name": "List Transactions",
+            "description": {
+              "content": "Returns a list of fuel card transactions for the specified date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payerNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cardPAN",
+                  "value": "<string>",
+                  "description": "Card PAN to filter transactions"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>",
+                  "description": "(Required) Start date for transaction search (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>",
+                  "description": "(Required) End date for transaction search (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "productCode",
+                  "value": "<string>",
+                  "description": "Filter by fuel product code"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc3bd8d1-910a-4a5e-bd23-65827f63f8fc",
+              "name": "A list of transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "productCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"string\",\n      \"date\": \"1946-12-29T12:53:42.243Z\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"siteCode\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCountry\": \"string\",\n      \"productCode\": \"string\",\n      \"productName\": \"string\",\n      \"quantity\": 7672.6647487695645,\n      \"quantityUnit\": \"string\",\n      \"unitPrice\": 4910.284572613447,\n      \"amount\": 2350.829664289561,\n      \"currency\": \"string\",\n      \"mileage\": 9203.067698411909,\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\"\n    },\n    {\n      \"transactionId\": \"string\",\n      \"date\": \"1966-12-11T15:17:15.328Z\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"siteCode\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCountry\": \"string\",\n      \"productCode\": \"string\",\n      \"productName\": \"string\",\n      \"quantity\": 5370.6773902110235,\n      \"quantityUnit\": \"string\",\n      \"unitPrice\": 5044.480343951441,\n      \"amount\": 8365.741719995132,\n      \"currency\": \"string\",\n      \"mileage\": 813.9091521833053,\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\"\n    }\n  ],\n  \"totalCount\": 5276,\n  \"currentPage\": 4532,\n  \"pageCount\": 3886\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bb6bbca-a69c-4de1-85bb-0fbd867629c7",
+          "name": "Get Transaction",
+          "request": {
+            "name": "Get Transaction",
+            "description": {
+              "content": "Returns details for a specific fuel card transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a222d59c-889e-4f70-8c26-21efd2bed874",
+              "name": "Transaction details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"date\": \"1994-09-16T15:02:34.319Z\",\n  \"cardPAN\": \"string\",\n  \"maskedPAN\": \"string\",\n  \"siteCode\": \"string\",\n  \"siteName\": \"string\",\n  \"siteCountry\": \"string\",\n  \"productCode\": \"string\",\n  \"productName\": \"string\",\n  \"quantity\": 1792.4380147510556,\n  \"quantityUnit\": \"string\",\n  \"unitPrice\": 7965.353060730957,\n  \"amount\": 5192.2987121280175,\n  \"currency\": \"string\",\n  \"mileage\": 1838.2002315216273,\n  \"driverName\": \"string\",\n  \"vehicleRegistration\": \"string\",\n  \"accountNumber\": \"string\",\n  \"payerNumber\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0ce7c4a7-a2e6-4d5e-9759-eeca06e5bbc3",
+      "name": "Invoices",
+      "description": {
+        "content": "Manage fuel card invoices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c36a87df-52a3-4116-b3c4-d1b4a92ef4c5",
+          "name": "List Invoices",
+          "request": {
+            "name": "List Invoices",
+            "description": {
+              "content": "Returns a list of invoices for the B2B account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payerNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoiceDateFrom",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoiceDateTo",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82da1e30-2d20-45ee-be0a-3570696b1a53",
+              "name": "A list of invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invoiceDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "invoiceDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoices\": [\n    {\n      \"invoiceNumber\": \"string\",\n      \"invoiceDate\": \"1963-07-19\",\n      \"dueDate\": \"1954-06-12\",\n      \"payerNumber\": \"string\",\n      \"accountNumber\": \"string\",\n      \"totalAmount\": 1749.4322768633285,\n      \"currency\": \"string\",\n      \"status\": \"Paid\"\n    },\n    {\n      \"invoiceNumber\": \"string\",\n      \"invoiceDate\": \"1986-05-06\",\n      \"dueDate\": \"2012-08-05\",\n      \"payerNumber\": \"string\",\n      \"accountNumber\": \"string\",\n      \"totalAmount\": 2707.472613876025,\n      \"currency\": \"string\",\n      \"status\": \"Overdue\"\n    }\n  ],\n  \"totalCount\": 2943,\n  \"currentPage\": 8441,\n  \"pageCount\": 3127\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "804264ee-ca9f-44de-99d7-6643d41bd25c",
+          "name": "Get Invoice",
+          "request": {
+            "name": "Get Invoice",
+            "description": {
+              "content": "Returns a specific invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceNumber",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff6ee77d-1dcd-462c-aee1-e28f5ce366c8",
+              "name": "Invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceNumber",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceNumber\": \"string\",\n  \"invoiceDate\": \"1965-06-11\",\n  \"dueDate\": \"2005-03-16\",\n  \"payerNumber\": \"string\",\n  \"accountNumber\": \"string\",\n  \"totalAmount\": 535.6369853108934,\n  \"currency\": \"string\",\n  \"status\": \"Overdue\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "15f10f7a-d500-4627-b5db-6540eaeab264",
+      "name": "Sites",
+      "description": {
+        "content": "Query Shell fuel and EV charging sites",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "423c0462-14c3-49ba-afe8-ddbb802910f6",
+          "name": "List Sites",
+          "request": {
+            "name": "List Sites",
+            "description": {
+              "content": "Returns a list of Shell fuel and EV charging sites matching the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "Latitude coordinate for location-based search"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "Longitude coordinate for location-based search"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<float>",
+                  "description": "Search radius in kilometers"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "ISO 2-letter country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "fuelType",
+                  "value": "<string>",
+                  "description": "Filter by fuel type"
+                },
+                {
+                  "disabled": false,
+                  "key": "evCharging",
+                  "value": "<boolean>",
+                  "description": "Filter for EV charging available sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0bb48b2-67c1-4ba3-8467-bc3aa22c82ee",
+              "name": "A list of Shell sites",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fuelType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "evCharging",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sites\": [\n    {\n      \"siteId\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCode\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 9501.465481454115,\n        \"longitude\": 3310.7500362710816\n      },\n      \"fuelTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evCharging\": true,\n      \"evChargingPoints\": 9731,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"openingHours\": {}\n    },\n    {\n      \"siteId\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCode\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 1251.3825675860458,\n        \"longitude\": 7115.118393934421\n      },\n      \"fuelTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evCharging\": true,\n      \"evChargingPoints\": 9005,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"openingHours\": {}\n    }\n  ],\n  \"totalCount\": 5956,\n  \"currentPage\": 4518,\n  \"pageCount\": 8643\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9843f7dd-e44f-41e2-bf4c-e09a057afcd9",
+          "name": "Get Site",
+          "request": {
+            "name": "Get Site",
+            "description": {
+              "content": "Returns details for a specific Shell site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44284630-aedc-4530-b6c5-62ac070e638d",
+              "name": "Site details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteId\": \"string\",\n  \"siteName\": \"string\",\n  \"siteCode\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 8422.811997245633,\n    \"longitude\": 5817.525642282785\n  },\n  \"fuelTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"evCharging\": true,\n  \"evChargingPoints\": 6759,\n  \"amenities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"openingHours\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4311e4a9-2178-463d-a2d4-2042c50e852c",
+      "name": "Customers",
+      "description": {
+        "content": "Manage B2B customer data",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "ae61be3b-5261-4065-bd2d-6933f672bab2",
+      "name": "Limits",
+      "description": {
+        "content": "Manage card spending limits and restrictions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "684cb2b3-5dd5-4cba-ba53-33b89f141d48",
+          "name": "Update Card Limits",
+          "request": {
+            "name": "Update Card Limits",
+            "description": {
+              "content": "Updates spending limits and restrictions for fuel cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6edb9516-a81a-46b9-b0e1-f82f11012cb0",
+              "name": "Card limits updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"string\",\n      \"value\": 6740.683578584297,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": 2550.3486446556476,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d711aa64-b731-4017-ac0b-9f9f3503e105",
+    "name": "Shell B2B Mobility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}
