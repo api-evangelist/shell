@@ -201,7 +201,7 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/shell
   - url: https://developer.shell.com
-    type: Developer Portal
+    type: DeveloperPortal
   - url: https://developer.shell.com/api-catalog
     type: API Catalog
   - url: https://developer.shell.com/docs/welcome-shell-developer-portal

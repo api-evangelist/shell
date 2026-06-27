@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://developer.shell.com/latest-updates",
-      "feed_url": "https://developer.shell.com/latest-updates",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T13:09:51Z",
+  "agent_pulled": "2026-06-27"
 }
