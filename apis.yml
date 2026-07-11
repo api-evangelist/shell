@@ -198,6 +198,10 @@ maintainers:
     X-twitter: shell
 specificationVersion: '0.19'
 common:
+  - type: Authentication
+    url: authentication/shell-authentication.yml
+  - type: OAuthScopes
+    url: scopes/shell-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/shell
   - url: https://developer.shell.com

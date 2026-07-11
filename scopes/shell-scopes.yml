@@ -1,0 +1,74 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shell-b2b-mobility-openapi.yml, openapi/shell-loyalty-openapi.yml, openapi/shell-lubricants-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/shell-b2b-mobility-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.shell.com/oauth/token
+- name: OAuth2
+  source: openapi/shell-loyalty-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.shell.com/oauth/token
+- name: OAuth2
+  source: openapi/shell-lubricants-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.shell.com/oauth/token
+scopes:
+- scope: loyalty.accounts
+  description: Manage loyalty accounts
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-loyalty-openapi.yml
+- scope: loyalty.catalogue
+  description: Browse rewards catalogue
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-loyalty-openapi.yml
+- scope: loyalty.points
+  description: Access points data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-loyalty-openapi.yml
+- scope: lubricants.orders
+  description: Manage lubricants orders
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-lubricants-openapi.yml
+- scope: lubricants.products
+  description: Access product catalogue
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-lubricants-openapi.yml
+- scope: mobility.cards
+  description: Manage fuel cards
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-b2b-mobility-openapi.yml
+- scope: mobility.invoices
+  description: Access invoice data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-b2b-mobility-openapi.yml
+- scope: mobility.sites
+  description: Query site data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-b2b-mobility-openapi.yml
+- scope: mobility.transactions
+  description: Access transaction data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/shell-b2b-mobility-openapi.yml
