@@ -198,6 +198,8 @@ maintainers:
     X-twitter: shell
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/shell-domain-security.yml
   - type: Authentication
     url: authentication/shell-authentication.yml
   - type: OAuthScopes

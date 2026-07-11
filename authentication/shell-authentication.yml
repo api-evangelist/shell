@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shell-b2b-mobility-openapi.yml, openapi/shell-loyalty-openapi.yml, openapi/shell-lubricants-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.shell.com/oauth/token
+    scopes: 4
+  sources:
+  - openapi/shell-b2b-mobility-openapi.yml
+  - openapi/shell-loyalty-openapi.yml
+  - openapi/shell-lubricants-openapi.yml
