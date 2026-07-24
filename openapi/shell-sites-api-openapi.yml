@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Sites API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Sites
+  description: Query Shell fuel and EV charging sites
+paths:
+  /sites:
+    get:
+      operationId: listSites
+      summary: List Sites
+      description: Returns a list of Shell fuel and EV charging sites matching the specified criteria.
+      tags:
+      - Sites
+      parameters:
+      - name: latitude
+        in: query
+        description: Latitude coordinate for location-based search
+        schema:
+          type: number
+          format: float
+      - name: longitude
+        in: query
+        description: Longitude coordinate for location-based search
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        description: Search radius in kilometers
+        schema:
+          type: number
+          format: float
+      - name: countryCode
+        in: query
+        description: ISO 2-letter country code
+        schema:
+          type: string
+      - name: fuelType
+        in: query
+        description: Filter by fuel type
+        schema:
+          type: string
+      - name: evCharging
+        in: query
+        description: Filter for EV charging available sites
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of Shell sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+  /sites/{siteId}:
+    get:
+      operationId: getSite
+      summary: Get Site
+      description: Returns details for a specific Shell site.
+      tags:
+      - Sites
+      parameters:
+      - name: siteId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Site details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+components:
+  schemas:
+    SiteListResponse:
+      type: object
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Site:
+      type: object
+      properties:
+        siteId:
+          type: string
+        siteName:
+          type: string
+        siteCode:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: float
+            longitude:
+              type: number
+              format: float
+        fuelTypes:
+          type: array
+          items:
+            type: string
+        evCharging:
+          type: boolean
+        evChargingPoints:
+          type: integer
+        amenities:
+          type: array
+          items:
+            type: string
+        openingHours:
+          type: object
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

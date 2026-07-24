@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Catalogue API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Catalogue
+  description: Browse loyalty rewards catalogue
+paths:
+  /catalogue:
+    get:
+      operationId: listCatalogue
+      summary: List Loyalty Catalogue
+      description: Returns the Shell loyalty rewards catalogue.
+      tags:
+      - Catalogue
+      parameters:
+      - name: category
+        in: query
+        description: Filter by reward category
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        description: Filter by availability country
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Loyalty catalogue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogueListResponse'
+  /catalogue/{rewardId}:
+    get:
+      operationId: getCatalogueItem
+      summary: Get Catalogue Item
+      description: Returns details for a specific loyalty reward.
+      tags:
+      - Catalogue
+      parameters:
+      - name: rewardId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reward details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogueItem'
+components:
+  schemas:
+    CatalogueListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogueItem'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    CatalogueItem:
+      type: object
+      properties:
+        rewardId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        pointsRequired:
+          type: integer
+        imageUrl:
+          type: string
+        availableCountries:
+          type: array
+          items:
+            type: string
+        validFrom:
+          type: string
+          format: date
+        validTo:
+          type: string
+          format: date
+        stock:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

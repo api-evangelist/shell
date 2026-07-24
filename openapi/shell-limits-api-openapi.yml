@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Limits API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Limits
+  description: Manage card spending limits and restrictions
+paths:
+  /limits:
+    post:
+      operationId: updateCardLimits
+      summary: Update Card Limits
+      description: Updates spending limits and restrictions for fuel cards.
+      tags:
+      - Limits
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardLimitUpdateRequest'
+      responses:
+        '200':
+          description: Card limits updated
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    CardLimitUpdateRequest:
+      type: object
+      required:
+      - colCoCode
+      - cardId
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        cardId:
+          type: string
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardLimit'
+    CardLimit:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: number
+        period:
+          type: string
+        currency:
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

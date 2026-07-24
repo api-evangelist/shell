@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Points API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Points
+  description: Query and manage loyalty points
+paths:
+  /accounts/{accountId}/balance:
+    get:
+      operationId: getPointsBalance
+      summary: Get Points Balance
+      description: Returns the current points balance for a loyalty account.
+      tags:
+      - Points
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Points balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsBalance'
+  /accounts/{accountId}/redeem:
+    post:
+      operationId: redeemPoints
+      summary: Redeem Points
+      description: Redeems loyalty points for a reward or benefit.
+      tags:
+      - Points
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedemptionRequest'
+      responses:
+        '200':
+          description: Points redeemed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionResponse'
+components:
+  schemas:
+    RedemptionRequest:
+      type: object
+      required:
+      - rewardId
+      - pointsToRedeem
+      properties:
+        rewardId:
+          type: string
+        pointsToRedeem:
+          type: integer
+        deliveryMethod:
+          type: string
+        deliveryAddress:
+          type: object
+    PointsBalance:
+      type: object
+      properties:
+        accountId:
+          type: string
+        totalPoints:
+          type: integer
+        redeemablePoints:
+          type: integer
+        pendingPoints:
+          type: integer
+        expiringPoints:
+          type: integer
+        expiryDate:
+          type: string
+          format: date
+        tier:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+    RedemptionResponse:
+      type: object
+      properties:
+        redemptionId:
+          type: string
+        status:
+          type: string
+        pointsRedeemed:
+          type: integer
+        remainingPoints:
+          type: integer
+        reward:
+          type: object
+          properties:
+            rewardId:
+              type: string
+            name:
+              type: string
+            code:
+              type: string
+              description: Redemption code if applicable
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

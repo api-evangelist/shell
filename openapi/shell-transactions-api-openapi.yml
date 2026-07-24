@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Transactions API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Transactions
+  description: Retrieve fuel card transaction data
+paths:
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List Transactions
+      description: Returns a list of fuel card transactions for the specified date range.
+      tags:
+      - Transactions
+      parameters:
+      - name: colCoCode
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: payerNumber
+        in: query
+        schema:
+          type: string
+      - name: accountNumber
+        in: query
+        schema:
+          type: string
+      - name: cardPAN
+        in: query
+        description: Card PAN to filter transactions
+        schema:
+          type: string
+      - name: fromDate
+        in: query
+        description: Start date for transaction search (YYYY-MM-DD)
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: toDate
+        in: query
+        description: End date for transaction search (YYYY-MM-DD)
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: productCode
+        in: query
+        description: Filter by fuel product code
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          maximum: 500
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse'
+  /transactions/{transactionId}:
+    get:
+      operationId: getTransaction
+      summary: Get Transaction
+      description: Returns details for a specific fuel card transaction.
+      tags:
+      - Transactions
+      parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: colCoCode
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /accounts/{accountId}/transactions:
+    get:
+      operationId: listLoyaltyTransactions
+      summary: List Loyalty Transactions
+      description: Returns the loyalty transaction history for an account.
+      tags:
+      - Transactions
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: fromDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: toDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: transactionType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Earn
+          - Redeem
+          - Expire
+          - Bonus
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Loyalty transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse_2'
+components:
+  schemas:
+    TransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    TransactionListResponse_2:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyTransaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    LoyaltyTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionType:
+          type: string
+          enum:
+          - Earn
+          - Redeem
+          - Expire
+          - Bonus
+        points:
+          type: integer
+        balanceAfter:
+          type: integer
+        description:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        siteId:
+          type: string
+        siteName:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        cardPAN:
+          type: string
+        maskedPAN:
+          type: string
+        siteCode:
+          type: string
+        siteName:
+          type: string
+        siteCountry:
+          type: string
+        productCode:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: number
+          format: float
+        quantityUnit:
+          type: string
+        unitPrice:
+          type: number
+          format: float
+        amount:
+          type: number
+          format: float
+        currency:
+          type: string
+        mileage:
+          type: number
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        accountNumber:
+          type: string
+        payerNumber:
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

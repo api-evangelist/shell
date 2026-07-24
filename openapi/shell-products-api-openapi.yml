@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Products API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Products
+  description: Browse lubricants product catalogue
+paths:
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Returns the Shell lubricants product catalogue.
+      tags:
+      - Products
+      parameters:
+      - name: category
+        in: query
+        description: Filter by product category (engine oil, gear oil, hydraulic, etc.)
+        schema:
+          type: string
+      - name: application
+        in: query
+        description: Filter by application type
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Product catalogue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+  /products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Returns details for a specific lubricants product.
+      tags:
+      - Products
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        category:
+          type: string
+        application:
+          type: string
+        viscosity:
+          type: string
+        description:
+          type: string
+        packagingOptions:
+          type: array
+          items:
+            type: object
+            properties:
+              unit:
+                type: string
+              size:
+                type: number
+              price:
+                type: number
+        specifications:
+          type: array
+          items:
+            type: string
+        approvals:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

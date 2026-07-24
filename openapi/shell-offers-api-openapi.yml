@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Offers API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Offers
+  description: Manage loyalty offers
+paths:
+  /accounts/{accountId}/offers:
+    get:
+      operationId: listOffers
+      summary: List Account Offers
+      description: Returns available offers for a loyalty account.
+      tags:
+      - Offers
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Available offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferListResponse'
+  /accounts/{accountId}/offers/{offerId}/assign:
+    post:
+      operationId: assignOffer
+      summary: Assign Offer
+      description: Assigns a specific offer to a loyalty account.
+      tags:
+      - Offers
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offer assigned
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    OfferListResponse:
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+        totalCount:
+          type: integer
+    Offer:
+      type: object
+      properties:
+        offerId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        bonusPoints:
+          type: integer
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time
+        conditions:
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data

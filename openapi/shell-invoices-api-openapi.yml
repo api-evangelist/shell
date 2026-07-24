@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility Accounts Invoices API
+  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
+  version: 2.1.0
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+- url: https://api.shell.com/mobility/v2
+  description: Shell B2B Mobility API
+security:
+- OAuth2: []
+tags:
+- name: Invoices
+  description: Manage fuel card invoices
+paths:
+  /invoices:
+    get:
+      operationId: listInvoices
+      summary: List Invoices
+      description: Returns a list of invoices for the B2B account.
+      tags:
+      - Invoices
+      parameters:
+      - name: colCoCode
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: payerNumber
+        in: query
+        schema:
+          type: string
+      - name: accountNumber
+        in: query
+        schema:
+          type: string
+      - name: invoiceDateFrom
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: invoiceDateTo
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of invoices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceListResponse'
+  /invoices/{invoiceNumber}:
+    get:
+      operationId: getInvoice
+      summary: Get Invoice
+      description: Returns a specific invoice.
+      tags:
+      - Invoices
+      parameters:
+      - name: invoiceNumber
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: colCoCode
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+components:
+  schemas:
+    Invoice:
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        totalAmount:
+          type: number
+          format: float
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - Open
+          - Paid
+          - Overdue
+          - Cancelled
+        lineItems:
+          type: array
+          items:
+            type: object
+    InvoiceListResponse:
+      type: object
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data
