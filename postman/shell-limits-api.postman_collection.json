@@ -1,0 +1,150 @@
+{
+  "info": {
+    "_postman_id": "e890af51-f164-4d19-8b1f-89c94c12fcd3",
+    "name": "Shell B2B Mobility Accounts Limits API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:53.000Z",
+    "updatedAt": "2026-07-28T02:52:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e890af51-f164-4d19-8b1f-89c94c12fcd3"
+  },
+  "item": [
+    {
+      "name": "limits",
+      "item": [
+        {
+          "name": "Update Card Limits",
+          "id": "8e00ff7b-1699-42e4-be83-8edb996f4e54",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/limits",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "limits"
+              ]
+            },
+            "description": "Updates spending limits and restrictions for fuel cards."
+          },
+          "response": [
+            {
+              "id": "6e1a5849-8047-4e0d-8dea-aedc3e12e66b",
+              "name": "Card limits updated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/limits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "limits"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T02:52:53.000Z",
+              "updatedAt": "2026-07-28T02:52:53.000Z",
+              "uid": "35240-6e1a5849-8047-4e0d-8dea-aedc3e12e66b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:53.000Z",
+          "updatedAt": "2026-07-28T02:52:53.000Z",
+          "uid": "35240-8e00ff7b-1699-42e4-be83-8edb996f4e54"
+        }
+      ],
+      "id": "565a8724-e3c6-48fb-b828-37216a11a2bd",
+      "createdAt": "2026-07-28T02:52:53.000Z",
+      "updatedAt": "2026-07-28T02:52:53.000Z",
+      "uid": "35240-565a8724-e3c6-48fb-b828-37216a11a2bd"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

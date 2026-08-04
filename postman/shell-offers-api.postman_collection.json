@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "c2857291-dc42-4cff-a0eb-61962abc1556",
+    "name": "Shell B2B Mobility Accounts Offers API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:53.000Z",
+    "updatedAt": "2026-07-28T02:52:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c2857291-dc42-4cff-a0eb-61962abc1556"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "offers",
+              "item": [
+                {
+                  "name": "{offerId}",
+                  "item": [
+                    {
+                      "name": "assign",
+                      "item": [
+                        {
+                          "name": "Assign Offer",
+                          "id": "4f5b3c2a-8815-44d4-ad2e-f57d8656a491",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/offers/:offerId/assign",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "offers",
+                                ":offerId",
+                                "assign"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "af0e964b-1833-4035-a845-39b3f3e70dbd",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "8685dd70-4ae5-4ee2-bde9-5e23880270b0",
+                                  "key": "offerId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Assigns a specific offer to a loyalty account."
+                          },
+                          "response": [
+                            {
+                              "id": "709353a9-7658-428c-84f4-f832bb5743d5",
+                              "name": "Offer assigned",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/offers/:offerId/assign",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "offers",
+                                    ":offerId",
+                                    "assign"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "offerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:52:54.000Z",
+                              "updatedAt": "2026-07-28T02:52:54.000Z",
+                              "uid": "35240-709353a9-7658-428c-84f4-f832bb5743d5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:52:54.000Z",
+                          "updatedAt": "2026-07-28T02:52:54.000Z",
+                          "uid": "35240-4f5b3c2a-8815-44d4-ad2e-f57d8656a491"
+                        }
+                      ],
+                      "id": "0eccf9bb-f3dc-4495-b52a-a21231b052c4",
+                      "createdAt": "2026-07-28T02:52:54.000Z",
+                      "updatedAt": "2026-07-28T02:52:54.000Z",
+                      "uid": "35240-0eccf9bb-f3dc-4495-b52a-a21231b052c4"
+                    }
+                  ],
+                  "id": "623f7a7e-0d68-4635-8671-9ccf1f6f8198",
+                  "createdAt": "2026-07-28T02:52:54.000Z",
+                  "updatedAt": "2026-07-28T02:52:54.000Z",
+                  "uid": "35240-623f7a7e-0d68-4635-8671-9ccf1f6f8198"
+                },
+                {
+                  "name": "List Account Offers",
+                  "id": "85405f0f-0cf2-4af7-8305-48821ab1b609",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/offers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "offers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ca75eb91-d9c2-4571-99d1-b591688722ee",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns available offers for a loyalty account."
+                  },
+                  "response": [
+                    {
+                      "id": "43370259-1c23-4e55-8839-b8b0243a3e79",
+                      "name": "Available offers",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/offers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "offers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"offers\": [\n    {\n      \"offerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"bonusPoints\": \"<integer>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validTo\": \"<dateTime>\",\n      \"conditions\": \"<string>\"\n    },\n    {\n      \"offerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"bonusPoints\": \"<integer>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validTo\": \"<dateTime>\",\n      \"conditions\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:52:54.000Z",
+                      "updatedAt": "2026-07-28T02:52:54.000Z",
+                      "uid": "35240-43370259-1c23-4e55-8839-b8b0243a3e79"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:52:54.000Z",
+                  "updatedAt": "2026-07-28T02:52:54.000Z",
+                  "uid": "35240-85405f0f-0cf2-4af7-8305-48821ab1b609"
+                }
+              ],
+              "id": "401a7535-18d3-42ed-8771-2438fed5cd13",
+              "createdAt": "2026-07-28T02:52:54.000Z",
+              "updatedAt": "2026-07-28T02:52:54.000Z",
+              "uid": "35240-401a7535-18d3-42ed-8771-2438fed5cd13"
+            }
+          ],
+          "id": "5179c1f9-8f84-4153-8325-56ee311e39fe",
+          "createdAt": "2026-07-28T02:52:54.000Z",
+          "updatedAt": "2026-07-28T02:52:54.000Z",
+          "uid": "35240-5179c1f9-8f84-4153-8325-56ee311e39fe"
+        }
+      ],
+      "id": "0a94c512-e518-40c2-bb30-7c4348ae48a2",
+      "createdAt": "2026-07-28T02:52:54.000Z",
+      "updatedAt": "2026-07-28T02:52:54.000Z",
+      "uid": "35240-0a94c512-e518-40c2-bb30-7c4348ae48a2"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

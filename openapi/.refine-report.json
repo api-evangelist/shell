@@ -1,0 +1,34 @@
+{
+  "provider": "shell",
+  "sources": [
+    "shell-accounts-api-openapi.yml",
+    "shell-cards-api-openapi.yml",
+    "shell-catalogue-api-openapi.yml",
+    "shell-invoices-api-openapi.yml",
+    "shell-limits-api-openapi.yml",
+    "shell-offers-api-openapi.yml",
+    "shell-orders-api-openapi.yml",
+    "shell-points-api-openapi.yml",
+    "shell-products-api-openapi.yml",
+    "shell-sites-api-openapi.yml",
+    "shell-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "shell-accounts-api-openapi.yml",
+    "shell-cards-api-openapi.yml",
+    "shell-catalogue-api-openapi.yml",
+    "shell-invoices-api-openapi.yml",
+    "shell-limits-api-openapi.yml",
+    "shell-offers-api-openapi.yml",
+    "shell-orders-api-openapi.yml",
+    "shell-points-api-openapi.yml",
+    "shell-products-api-openapi.yml",
+    "shell-sites-api-openapi.yml",
+    "shell-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

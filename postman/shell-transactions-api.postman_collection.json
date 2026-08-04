@@ -1,0 +1,480 @@
+{
+  "info": {
+    "_postman_id": "a6da092d-bb93-4dad-97b9-7a344872616f",
+    "name": "Shell B2B Mobility Accounts Transactions API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:58.000Z",
+    "updatedAt": "2026-07-28T02:52:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a6da092d-bb93-4dad-97b9-7a344872616f"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "{transactionId}",
+          "item": [
+            {
+              "name": "Get Transaction",
+              "id": "0ee9f4fe-3a33-4e18-931e-045bedf157b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/:transactionId?colCoCode=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "c8a71a6c-8553-4a02-a608-15e9fd36e771",
+                      "key": "transactionId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific fuel card transaction."
+              },
+              "response": [
+                {
+                  "id": "10ddf38b-9fe1-4554-b489-5d4cc36ff818",
+                  "name": "Transaction details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?colCoCode=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "colCoCode",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transactionId\": \"<string>\",\n  \"date\": \"<dateTime>\",\n  \"cardPAN\": \"<string>\",\n  \"maskedPAN\": \"<string>\",\n  \"siteCode\": \"<string>\",\n  \"siteName\": \"<string>\",\n  \"siteCountry\": \"<string>\",\n  \"productCode\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"quantity\": \"<float>\",\n  \"quantityUnit\": \"<string>\",\n  \"unitPrice\": \"<float>\",\n  \"amount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"mileage\": \"<number>\",\n  \"driverName\": \"<string>\",\n  \"vehicleRegistration\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"payerNumber\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:52:59.000Z",
+                  "updatedAt": "2026-07-28T02:52:59.000Z",
+                  "uid": "35240-10ddf38b-9fe1-4554-b489-5d4cc36ff818"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:59.000Z",
+              "updatedAt": "2026-07-28T02:52:59.000Z",
+              "uid": "35240-0ee9f4fe-3a33-4e18-931e-045bedf157b1"
+            }
+          ],
+          "id": "d8ffb53b-80ca-4eff-a625-40103505e218",
+          "createdAt": "2026-07-28T02:52:59.000Z",
+          "updatedAt": "2026-07-28T02:52:59.000Z",
+          "uid": "35240-d8ffb53b-80ca-4eff-a625-40103505e218"
+        },
+        {
+          "name": "List Transactions",
+          "id": "7fbc6d24-011e-47a0-9fbd-b1eb9cc5dcbc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?colCoCode=<integer>&payerNumber=<string>&accountNumber=<string>&cardPAN=<string>&fromDate=<date>&toDate=<date>&productCode=<string>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "colCoCode",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "payerNumber",
+                  "value": "<string>"
+                },
+                {
+                  "key": "accountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Card PAN to filter transactions",
+                  "key": "cardPAN",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Start date for transaction search (YYYY-MM-DD)",
+                  "key": "fromDate",
+                  "value": "<date>"
+                },
+                {
+                  "description": "(Required) End date for transaction search (YYYY-MM-DD)",
+                  "key": "toDate",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Filter by fuel product code",
+                  "key": "productCode",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of fuel card transactions for the specified date range."
+          },
+          "response": [
+            {
+              "id": "bfbda597-14a7-4c01-80ca-2a9d3247ded5",
+              "name": "A list of transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?colCoCode=<integer>&payerNumber=<string>&accountNumber=<string>&cardPAN=<string>&fromDate=<date>&toDate=<date>&productCode=<string>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Card PAN to filter transactions",
+                      "key": "cardPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date for transaction search (YYYY-MM-DD)",
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date for transaction search (YYYY-MM-DD)",
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter by fuel product code",
+                      "key": "productCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"date\": \"<dateTime>\",\n      \"cardPAN\": \"<string>\",\n      \"maskedPAN\": \"<string>\",\n      \"siteCode\": \"<string>\",\n      \"siteName\": \"<string>\",\n      \"siteCountry\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"quantityUnit\": \"<string>\",\n      \"unitPrice\": \"<float>\",\n      \"amount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"mileage\": \"<number>\",\n      \"driverName\": \"<string>\",\n      \"vehicleRegistration\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"payerNumber\": \"<string>\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"date\": \"<dateTime>\",\n      \"cardPAN\": \"<string>\",\n      \"maskedPAN\": \"<string>\",\n      \"siteCode\": \"<string>\",\n      \"siteName\": \"<string>\",\n      \"siteCountry\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"quantityUnit\": \"<string>\",\n      \"unitPrice\": \"<float>\",\n      \"amount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"mileage\": \"<number>\",\n      \"driverName\": \"<string>\",\n      \"vehicleRegistration\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"payerNumber\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:59.000Z",
+              "updatedAt": "2026-07-28T02:52:59.000Z",
+              "uid": "35240-bfbda597-14a7-4c01-80ca-2a9d3247ded5"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:59.000Z",
+          "updatedAt": "2026-07-28T02:52:59.000Z",
+          "uid": "35240-7fbc6d24-011e-47a0-9fbd-b1eb9cc5dcbc"
+        }
+      ],
+      "id": "2f4e7f2d-fabe-4f2a-b06b-27778c2352c8",
+      "createdAt": "2026-07-28T02:52:59.000Z",
+      "updatedAt": "2026-07-28T02:52:59.000Z",
+      "uid": "35240-2f4e7f2d-fabe-4f2a-b06b-27778c2352c8"
+    },
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "transactions",
+              "item": [
+                {
+                  "name": "List Loyalty Transactions",
+                  "id": "3e407983-29e8-41f3-9081-138427cce1fc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/transactions?fromDate=<date>&toDate=<date>&transactionType=Redeem&page=<integer>&pageSize=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "key": "fromDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "toDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "transactionType",
+                          "value": "Redeem"
+                        },
+                        {
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "09b9193a-e75a-4193-82fd-f292f314308d",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the loyalty transaction history for an account."
+                  },
+                  "response": [
+                    {
+                      "id": "e68da4ea-0833-4957-981d-7a09d9f8b52a",
+                      "name": "Loyalty transactions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/transactions?fromDate=<date>&toDate=<date>&transactionType=Redeem&page=<integer>&pageSize=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "key": "fromDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "toDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "transactionType",
+                              "value": "Redeem"
+                            },
+                            {
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionType\": \"Expire\",\n      \"points\": \"<integer>\",\n      \"balanceAfter\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"siteId\": \"<string>\",\n      \"siteName\": \"<string>\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionType\": \"Bonus\",\n      \"points\": \"<integer>\",\n      \"balanceAfter\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"siteId\": \"<string>\",\n      \"siteName\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:52:59.000Z",
+                      "updatedAt": "2026-07-28T02:52:59.000Z",
+                      "uid": "35240-e68da4ea-0833-4957-981d-7a09d9f8b52a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:52:59.000Z",
+                  "updatedAt": "2026-07-28T02:52:59.000Z",
+                  "uid": "35240-3e407983-29e8-41f3-9081-138427cce1fc"
+                }
+              ],
+              "id": "2c225631-c2a4-4101-9c75-aa58d45730ac",
+              "createdAt": "2026-07-28T02:52:59.000Z",
+              "updatedAt": "2026-07-28T02:52:59.000Z",
+              "uid": "35240-2c225631-c2a4-4101-9c75-aa58d45730ac"
+            }
+          ],
+          "id": "10c29f10-71d0-4424-beb3-0f1771ca6b60",
+          "createdAt": "2026-07-28T02:52:59.000Z",
+          "updatedAt": "2026-07-28T02:52:59.000Z",
+          "uid": "35240-10c29f10-71d0-4424-beb3-0f1771ca6b60"
+        }
+      ],
+      "id": "ce442f0f-f006-46d4-b55d-25211c646bba",
+      "createdAt": "2026-07-28T02:52:59.000Z",
+      "updatedAt": "2026-07-28T02:52:59.000Z",
+      "uid": "35240-ce442f0f-f006-46d4-b55d-25211c646bba"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "info": {
+    "_postman_id": "89a652b3-f742-440a-a8c9-e387c390d2a5",
+    "name": "Shell B2B Mobility Accounts Orders API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:54.000Z",
+    "updatedAt": "2026-07-28T02:52:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89a652b3-f742-440a-a8c9-e387c390d2a5"
+  },
+  "item": [
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "{orderId}",
+          "item": [
+            {
+              "name": "Get Order",
+              "id": "0360cc96-5499-4469-9b06-6238014f0e8c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cd997e77-f704-4456-aacc-95a38cdd29c7",
+                      "key": "orderId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific lubricants order."
+              },
+              "response": [
+                {
+                  "id": "d6e0a6fe-dbb5-4b5e-aab4-021046f7ea86",
+                  "name": "Order details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"orderId\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"status\": \"Delivered\",\n  \"orderDate\": \"<dateTime>\",\n  \"expectedDeliveryDate\": \"<date>\",\n  \"deliveryAddress\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"productId\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"unit\": \"litre\",\n      \"unitPrice\": \"<float>\",\n      \"totalPrice\": \"<float>\"\n    },\n    {\n      \"productId\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"unit\": \"pail\",\n      \"unitPrice\": \"<float>\",\n      \"totalPrice\": \"<float>\"\n    }\n  ],\n  \"totalAmount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"tracking\": {}\n}",
+                  "createdAt": "2026-07-28T02:52:55.000Z",
+                  "updatedAt": "2026-07-28T02:52:55.000Z",
+                  "uid": "35240-d6e0a6fe-dbb5-4b5e-aab4-021046f7ea86"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:55.000Z",
+              "updatedAt": "2026-07-28T02:52:55.000Z",
+              "uid": "35240-0360cc96-5499-4469-9b06-6238014f0e8c"
+            }
+          ],
+          "id": "f17c2648-1e45-4a2a-9804-5123ee8e0722",
+          "createdAt": "2026-07-28T02:52:55.000Z",
+          "updatedAt": "2026-07-28T02:52:55.000Z",
+          "uid": "35240-f17c2648-1e45-4a2a-9804-5123ee8e0722"
+        },
+        {
+          "name": "List Orders",
+          "id": "d55cab62-0dec-4570-bb16-5a1ddbf04f49",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders?accountNumber=<string>&status=Delivered&fromDate=<date>&toDate=<date>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "accountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by order status",
+                  "key": "status",
+                  "value": "Delivered"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "<date>"
+                },
+                {
+                  "key": "toDate",
+                  "value": "<date>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of lubricants orders for the account."
+          },
+          "response": [
+            {
+              "id": "7e9a92e4-df6f-402b-bfbb-ca565c807b2e",
+              "name": "A list of orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?accountNumber=<string>&status=Delivered&fromDate=<date>&toDate=<date>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by order status",
+                      "key": "status",
+                      "value": "Delivered"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"orders\": [\n    {\n      \"orderId\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"status\": \"Shipped\",\n      \"orderDate\": \"<dateTime>\",\n      \"expectedDeliveryDate\": \"<date>\",\n      \"deliveryAddress\": {\n        \"name\": \"<string>\",\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"items\": [\n        {\n          \"productId\": \"<string>\",\n          \"productName\": \"<string>\",\n          \"quantity\": \"<float>\",\n          \"unit\": \"litre\",\n          \"unitPrice\": \"<float>\",\n          \"totalPrice\": \"<float>\"\n        },\n        {\n          \"productId\": \"<string>\",\n          \"productName\": \"<string>\",\n          \"quantity\": \"<float>\",\n          \"unit\": \"drum\",\n          \"unitPrice\": \"<float>\",\n          \"totalPrice\": \"<float>\"\n        }\n      ],\n      \"totalAmount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"tracking\": {}\n    },\n    {\n      \"orderId\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"status\": \"Pending\",\n      \"orderDate\": \"<dateTime>\",\n      \"expectedDeliveryDate\": \"<date>\",\n      \"deliveryAddress\": {\n        \"name\": \"<string>\",\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"items\": [\n        {\n          \"productId\": \"<string>\",\n          \"productName\": \"<string>\",\n          \"quantity\": \"<float>\",\n          \"unit\": \"can\",\n          \"unitPrice\": \"<float>\",\n          \"totalPrice\": \"<float>\"\n        },\n        {\n          \"productId\": \"<string>\",\n          \"productName\": \"<string>\",\n          \"quantity\": \"<float>\",\n          \"unit\": \"pail\",\n          \"unitPrice\": \"<float>\",\n          \"totalPrice\": \"<float>\"\n        }\n      ],\n      \"totalAmount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"tracking\": {}\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:55.000Z",
+              "updatedAt": "2026-07-28T02:52:55.000Z",
+              "uid": "35240-7e9a92e4-df6f-402b-bfbb-ca565c807b2e"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:55.000Z",
+          "updatedAt": "2026-07-28T02:52:55.000Z",
+          "uid": "35240-d55cab62-0dec-4570-bb16-5a1ddbf04f49"
+        },
+        {
+          "name": "Place Order",
+          "id": "598576cb-cf53-49cb-ad23-4583b3a1234b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountNumber\": \"<string>\",\n  \"deliveryAddress\": {},\n  \"items\": [\n    {\n      \"productId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"productId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"poNumber\": \"<string>\",\n  \"requestedDeliveryDate\": \"<date>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Places a new lubricants order."
+          },
+          "response": [
+            {
+              "id": "cefc1d94-861e-47dc-9682-803ab1bdaa25",
+              "name": "Order placed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountNumber\": \"<string>\",\n  \"deliveryAddress\": {},\n  \"items\": [\n    {\n      \"productId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"productId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"poNumber\": \"<string>\",\n  \"requestedDeliveryDate\": \"<date>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"orderId\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"status\": \"Delivered\",\n  \"orderDate\": \"<dateTime>\",\n  \"expectedDeliveryDate\": \"<date>\",\n  \"deliveryAddress\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"productId\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"unit\": \"litre\",\n      \"unitPrice\": \"<float>\",\n      \"totalPrice\": \"<float>\"\n    },\n    {\n      \"productId\": \"<string>\",\n      \"productName\": \"<string>\",\n      \"quantity\": \"<float>\",\n      \"unit\": \"pail\",\n      \"unitPrice\": \"<float>\",\n      \"totalPrice\": \"<float>\"\n    }\n  ],\n  \"totalAmount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"tracking\": {}\n}",
+              "createdAt": "2026-07-28T02:52:55.000Z",
+              "updatedAt": "2026-07-28T02:52:55.000Z",
+              "uid": "35240-cefc1d94-861e-47dc-9682-803ab1bdaa25"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:55.000Z",
+          "updatedAt": "2026-07-28T02:52:55.000Z",
+          "uid": "35240-598576cb-cf53-49cb-ad23-4583b3a1234b"
+        }
+      ],
+      "id": "1ab2580c-88cd-4ac4-a235-9ca957b72605",
+      "createdAt": "2026-07-28T02:52:55.000Z",
+      "updatedAt": "2026-07-28T02:52:55.000Z",
+      "uid": "35240-1ab2580c-88cd-4ac4-a235-9ca957b72605"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

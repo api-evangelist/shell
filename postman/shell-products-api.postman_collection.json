@@ -1,0 +1,259 @@
+{
+  "info": {
+    "_postman_id": "dfdfdbc3-884d-48b6-9a3e-75189d987ae4",
+    "name": "Shell B2B Mobility Accounts Products API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:56.000Z",
+    "updatedAt": "2026-07-28T02:52:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dfdfdbc3-884d-48b6-9a3e-75189d987ae4"
+  },
+  "item": [
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "{productId}",
+          "item": [
+            {
+              "name": "Get Product",
+              "id": "7a156df0-bbda-4d7a-8e24-71055d608349",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products/:productId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dcbcd1ec-8044-4105-a9c8-43965880a7c3",
+                      "key": "productId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific lubricants product."
+              },
+              "response": [
+                {
+                  "id": "dd3c3278-e709-443d-a61a-66ce01e384f9",
+                  "name": "Product details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/products/:productId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "products",
+                        ":productId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "productId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"productId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"application\": \"<string>\",\n  \"viscosity\": \"<string>\",\n  \"description\": \"<string>\",\n  \"packagingOptions\": [\n    {\n      \"unit\": \"<string>\",\n      \"size\": \"<number>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"unit\": \"<string>\",\n      \"size\": \"<number>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"specifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"approvals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:52:57.000Z",
+                  "updatedAt": "2026-07-28T02:52:57.000Z",
+                  "uid": "35240-dd3c3278-e709-443d-a61a-66ce01e384f9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:57.000Z",
+              "updatedAt": "2026-07-28T02:52:57.000Z",
+              "uid": "35240-7a156df0-bbda-4d7a-8e24-71055d608349"
+            }
+          ],
+          "id": "7dca4099-6b30-491e-8086-f1f13689d85c",
+          "createdAt": "2026-07-28T02:52:57.000Z",
+          "updatedAt": "2026-07-28T02:52:57.000Z",
+          "uid": "35240-7dca4099-6b30-491e-8086-f1f13689d85c"
+        },
+        {
+          "name": "List Products",
+          "id": "76d79087-4e96-4a8c-bf64-761fbdec4b78",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products?category=<string>&application=<string>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "description": "Filter by product category (engine oil, gear oil, hydraulic, etc.)",
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by application type",
+                  "key": "application",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns the Shell lubricants product catalogue."
+          },
+          "response": [
+            {
+              "id": "2f136c0d-9267-4349-ae11-ad7bc3a03fb1",
+              "name": "Product catalogue",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products?category=<string>&application=<string>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by product category (engine oil, gear oil, hydraulic, etc.)",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by application type",
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"category\": \"<string>\",\n      \"application\": \"<string>\",\n      \"viscosity\": \"<string>\",\n      \"description\": \"<string>\",\n      \"packagingOptions\": [\n        {\n          \"unit\": \"<string>\",\n          \"size\": \"<number>\",\n          \"price\": \"<number>\"\n        },\n        {\n          \"unit\": \"<string>\",\n          \"size\": \"<number>\",\n          \"price\": \"<number>\"\n        }\n      ],\n      \"specifications\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"approvals\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"category\": \"<string>\",\n      \"application\": \"<string>\",\n      \"viscosity\": \"<string>\",\n      \"description\": \"<string>\",\n      \"packagingOptions\": [\n        {\n          \"unit\": \"<string>\",\n          \"size\": \"<number>\",\n          \"price\": \"<number>\"\n        },\n        {\n          \"unit\": \"<string>\",\n          \"size\": \"<number>\",\n          \"price\": \"<number>\"\n        }\n      ],\n      \"specifications\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"approvals\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:57.000Z",
+              "updatedAt": "2026-07-28T02:52:57.000Z",
+              "uid": "35240-2f136c0d-9267-4349-ae11-ad7bc3a03fb1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:57.000Z",
+          "updatedAt": "2026-07-28T02:52:57.000Z",
+          "uid": "35240-76d79087-4e96-4a8c-bf64-761fbdec4b78"
+        }
+      ],
+      "id": "01bdb541-963a-4567-bae9-cda49ea2092e",
+      "createdAt": "2026-07-28T02:52:57.000Z",
+      "updatedAt": "2026-07-28T02:52:57.000Z",
+      "uid": "35240-01bdb541-963a-4567-bae9-cda49ea2092e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

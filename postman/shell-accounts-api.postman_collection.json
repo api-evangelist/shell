@@ -1,0 +1,460 @@
+{
+  "info": {
+    "_postman_id": "a576ce0a-2131-409b-a696-1ef664bc5975",
+    "name": "Shell B2B Mobility Accounts API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:46.000Z",
+    "updatedAt": "2026-07-28T02:52:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a576ce0a-2131-409b-a696-1ef664bc5975"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "Get Loyalty Account",
+              "id": "47878009-cf2c-47f8-b44d-d03b4f470a53",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dd34a86e-a7a7-4fac-a320-0ddd903868e4",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific loyalty account."
+              },
+              "response": [
+                {
+                  "id": "6e399800-7b2d-41ac-accd-1877a044fc4c",
+                  "name": "Loyalty account details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"status\": \"Active\",\n  \"tier\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:52:47.000Z",
+                  "updatedAt": "2026-07-28T02:52:47.000Z",
+                  "uid": "35240-6e399800-7b2d-41ac-accd-1877a044fc4c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:47.000Z",
+              "updatedAt": "2026-07-28T02:52:47.000Z",
+              "uid": "35240-47878009-cf2c-47f8-b44d-d03b4f470a53"
+            },
+            {
+              "name": "Update Loyalty Account",
+              "id": "4a547c9a-255e-4733-8108-f077526ff3a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"marketingConsent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "93970d9d-5ebc-4d9f-9eb0-9e8a3aa8c06c",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates details for a specific loyalty account."
+              },
+              "response": [
+                {
+                  "id": "b31ebea2-0943-414f-b2bc-4ec132288871",
+                  "name": "Account updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"marketingConsent\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"status\": \"Active\",\n  \"tier\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:52:47.000Z",
+                  "updatedAt": "2026-07-28T02:52:47.000Z",
+                  "uid": "35240-b31ebea2-0943-414f-b2bc-4ec132288871"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:47.000Z",
+              "updatedAt": "2026-07-28T02:52:47.000Z",
+              "uid": "35240-4a547c9a-255e-4733-8108-f077526ff3a0"
+            }
+          ],
+          "id": "cd15f2c3-3852-43cd-b810-8e324eedb312",
+          "createdAt": "2026-07-28T02:52:47.000Z",
+          "updatedAt": "2026-07-28T02:52:47.000Z",
+          "uid": "35240-cd15f2c3-3852-43cd-b810-8e324eedb312"
+        },
+        {
+          "name": "{accountNumber}",
+          "item": [
+            {
+              "name": "Get Account",
+              "id": "4bfd3d59-b223-45ad-8c21-1040f4de2641",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountNumber",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountNumber"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3010bec8-88ae-404c-a442-9d33fbfcee3c",
+                      "key": "accountNumber",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a lubricants customer account."
+              },
+              "response": [
+                {
+                  "id": "b88f4508-eaae-4c78-a43c-c7ef0bfccd58",
+                  "name": "Account details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountNumber",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountNumber"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountNumber\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"accountType\": \"<string>\",\n  \"creditLimit\": \"<number>\",\n  \"availableCredit\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"paymentTerms\": \"<string>\",\n  \"primaryContact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:52:47.000Z",
+                  "updatedAt": "2026-07-28T02:52:47.000Z",
+                  "uid": "35240-b88f4508-eaae-4c78-a43c-c7ef0bfccd58"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:47.000Z",
+              "updatedAt": "2026-07-28T02:52:47.000Z",
+              "uid": "35240-4bfd3d59-b223-45ad-8c21-1040f4de2641"
+            }
+          ],
+          "id": "509abdc3-ad6b-4c7b-afd9-ac2612f5f5d9",
+          "createdAt": "2026-07-28T02:52:47.000Z",
+          "updatedAt": "2026-07-28T02:52:47.000Z",
+          "uid": "35240-509abdc3-ad6b-4c7b-afd9-ac2612f5f5d9"
+        },
+        {
+          "name": "Enroll Loyalty Account",
+          "id": "69c3fa5f-d303-4998-8ed0-54eb0cc6aebd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"countryCode\": \"<string>\",\n  \"marketingConsent\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            },
+            "description": "Creates a new Shell loyalty account for a customer."
+          },
+          "response": [
+            {
+              "id": "d84b1776-740c-4c4d-84a7-2653b169f644",
+              "name": "Account enrolled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"countryCode\": \"<string>\",\n  \"marketingConsent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"accountId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"status\": \"Active\",\n  \"tier\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:52:47.000Z",
+              "updatedAt": "2026-07-28T02:52:47.000Z",
+              "uid": "35240-d84b1776-740c-4c4d-84a7-2653b169f644"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:47.000Z",
+          "updatedAt": "2026-07-28T02:52:47.000Z",
+          "uid": "35240-69c3fa5f-d303-4998-8ed0-54eb0cc6aebd"
+        }
+      ],
+      "id": "3496815d-e9ce-4dbe-8acf-e04ac919bdc4",
+      "createdAt": "2026-07-28T02:52:47.000Z",
+      "updatedAt": "2026-07-28T02:52:47.000Z",
+      "uid": "35240-3496815d-e9ce-4dbe-8acf-e04ac919bdc4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "26981dd5-e4a9-48db-b847-e14e17e12ca7",
+    "name": "Shell B2B Mobility Accounts Sites API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:57.000Z",
+    "updatedAt": "2026-07-28T02:52:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-26981dd5-e4a9-48db-b847-e14e17e12ca7"
+  },
+  "item": [
+    {
+      "name": "sites",
+      "item": [
+        {
+          "name": "{siteId}",
+          "item": [
+            {
+              "name": "Get Site",
+              "id": "3095ddd2-fbdc-4ad4-8ae1-c4fb764f7fac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sites/:siteId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sites",
+                    ":siteId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "58efc489-5be2-4435-962b-878815db8389",
+                      "key": "siteId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific Shell site."
+              },
+              "response": [
+                {
+                  "id": "05b80cc3-f5e5-41da-88e6-b1488b4d4d85",
+                  "name": "Site details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sites/:siteId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sites",
+                        ":siteId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "siteId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"siteId\": \"<string>\",\n  \"siteName\": \"<string>\",\n  \"siteCode\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"location\": {\n    \"latitude\": \"<float>\",\n    \"longitude\": \"<float>\"\n  },\n  \"fuelTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"evCharging\": \"<boolean>\",\n  \"evChargingPoints\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"openingHours\": {}\n}",
+                  "createdAt": "2026-07-28T02:52:58.000Z",
+                  "updatedAt": "2026-07-28T02:52:58.000Z",
+                  "uid": "35240-05b80cc3-f5e5-41da-88e6-b1488b4d4d85"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:58.000Z",
+              "updatedAt": "2026-07-28T02:52:58.000Z",
+              "uid": "35240-3095ddd2-fbdc-4ad4-8ae1-c4fb764f7fac"
+            }
+          ],
+          "id": "5445ff30-e0ed-4972-bdaf-5f2dc93e7a96",
+          "createdAt": "2026-07-28T02:52:58.000Z",
+          "updatedAt": "2026-07-28T02:52:58.000Z",
+          "uid": "35240-5445ff30-e0ed-4972-bdaf-5f2dc93e7a96"
+        },
+        {
+          "name": "List Sites",
+          "id": "e6c1b6ac-48aa-4c16-9862-b8163ef6f1c3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sites?latitude=<float>&longitude=<float>&radius=<float>&countryCode=<string>&fuelType=<string>&evCharging=<boolean>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sites"
+              ],
+              "query": [
+                {
+                  "description": "Latitude coordinate for location-based search",
+                  "key": "latitude",
+                  "value": "<float>"
+                },
+                {
+                  "description": "Longitude coordinate for location-based search",
+                  "key": "longitude",
+                  "value": "<float>"
+                },
+                {
+                  "description": "Search radius in kilometers",
+                  "key": "radius",
+                  "value": "<float>"
+                },
+                {
+                  "description": "ISO 2-letter country code",
+                  "key": "countryCode",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by fuel type",
+                  "key": "fuelType",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter for EV charging available sites",
+                  "key": "evCharging",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of Shell fuel and EV charging sites matching the specified criteria."
+          },
+          "response": [
+            {
+              "id": "9773e989-379c-4338-aac8-f75e9bb8ea0c",
+              "name": "A list of Shell sites",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sites?latitude=<float>&longitude=<float>&radius=<float>&countryCode=<string>&fuelType=<string>&evCharging=<boolean>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sites"
+                  ],
+                  "query": [
+                    {
+                      "description": "Latitude coordinate for location-based search",
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "description": "Longitude coordinate for location-based search",
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "description": "Search radius in kilometers",
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "description": "ISO 2-letter country code",
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by fuel type",
+                      "key": "fuelType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter for EV charging available sites",
+                      "key": "evCharging",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"sites\": [\n    {\n      \"siteId\": \"<string>\",\n      \"siteName\": \"<string>\",\n      \"siteCode\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<float>\",\n        \"longitude\": \"<float>\"\n      },\n      \"fuelTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"evCharging\": \"<boolean>\",\n      \"evChargingPoints\": \"<integer>\",\n      \"amenities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"openingHours\": {}\n    },\n    {\n      \"siteId\": \"<string>\",\n      \"siteName\": \"<string>\",\n      \"siteCode\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<float>\",\n        \"longitude\": \"<float>\"\n      },\n      \"fuelTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"evCharging\": \"<boolean>\",\n      \"evChargingPoints\": \"<integer>\",\n      \"amenities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"openingHours\": {}\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:58.000Z",
+              "updatedAt": "2026-07-28T02:52:58.000Z",
+              "uid": "35240-9773e989-379c-4338-aac8-f75e9bb8ea0c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:58.000Z",
+          "updatedAt": "2026-07-28T02:52:58.000Z",
+          "uid": "35240-e6c1b6ac-48aa-4c16-9862-b8163ef6f1c3"
+        }
+      ],
+      "id": "3cb0bc6c-36c4-4c82-a256-320c2ee79390",
+      "createdAt": "2026-07-28T02:52:58.000Z",
+      "updatedAt": "2026-07-28T02:52:58.000Z",
+      "uid": "35240-3cb0bc6c-36c4-4c82-a256-320c2ee79390"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

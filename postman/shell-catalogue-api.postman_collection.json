@@ -1,0 +1,259 @@
+{
+  "info": {
+    "_postman_id": "cf7a6829-7611-472a-b0f0-9ab20e82ff2e",
+    "name": "Shell B2B Mobility Accounts Catalogue API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:51.000Z",
+    "updatedAt": "2026-07-28T02:52:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf7a6829-7611-472a-b0f0-9ab20e82ff2e"
+  },
+  "item": [
+    {
+      "name": "catalogue",
+      "item": [
+        {
+          "name": "{rewardId}",
+          "item": [
+            {
+              "name": "Get Catalogue Item",
+              "id": "3cd7889d-5734-4296-8981-a3f49736ea20",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/catalogue/:rewardId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "catalogue",
+                    ":rewardId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "08780551-c680-4cab-b526-cdb275026917",
+                      "key": "rewardId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific loyalty reward."
+              },
+              "response": [
+                {
+                  "id": "32f326e5-0299-4c00-9ae5-5de6ec42016d",
+                  "name": "Reward details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/catalogue/:rewardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "catalogue",
+                        ":rewardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "rewardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"rewardId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"pointsRequired\": \"<integer>\",\n  \"imageUrl\": \"<string>\",\n  \"availableCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"validFrom\": \"<date>\",\n  \"validTo\": \"<date>\",\n  \"stock\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:52:52.000Z",
+                  "updatedAt": "2026-07-28T02:52:52.000Z",
+                  "uid": "35240-32f326e5-0299-4c00-9ae5-5de6ec42016d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:52.000Z",
+              "updatedAt": "2026-07-28T02:52:52.000Z",
+              "uid": "35240-3cd7889d-5734-4296-8981-a3f49736ea20"
+            }
+          ],
+          "id": "9d5084bb-9500-4540-aec0-ef0f01bcb626",
+          "createdAt": "2026-07-28T02:52:51.000Z",
+          "updatedAt": "2026-07-28T02:52:51.000Z",
+          "uid": "35240-9d5084bb-9500-4540-aec0-ef0f01bcb626"
+        },
+        {
+          "name": "List Loyalty Catalogue",
+          "id": "68a0d597-ebde-433b-a370-2b17c04cc3c7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/catalogue?category=<string>&countryCode=<string>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "catalogue"
+              ],
+              "query": [
+                {
+                  "description": "Filter by reward category",
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by availability country",
+                  "key": "countryCode",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns the Shell loyalty rewards catalogue."
+          },
+          "response": [
+            {
+              "id": "0f8b0666-3749-4649-90cb-f6aa5ccea3a9",
+              "name": "Loyalty catalogue",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/catalogue?category=<string>&countryCode=<string>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "catalogue"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by reward category",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by availability country",
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"rewardId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"pointsRequired\": \"<integer>\",\n      \"imageUrl\": \"<string>\",\n      \"availableCountries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"validFrom\": \"<date>\",\n      \"validTo\": \"<date>\",\n      \"stock\": \"<integer>\"\n    },\n    {\n      \"rewardId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"pointsRequired\": \"<integer>\",\n      \"imageUrl\": \"<string>\",\n      \"availableCountries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"validFrom\": \"<date>\",\n      \"validTo\": \"<date>\",\n      \"stock\": \"<integer>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:52.000Z",
+              "updatedAt": "2026-07-28T02:52:52.000Z",
+              "uid": "35240-0f8b0666-3749-4649-90cb-f6aa5ccea3a9"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:52.000Z",
+          "updatedAt": "2026-07-28T02:52:52.000Z",
+          "uid": "35240-68a0d597-ebde-433b-a370-2b17c04cc3c7"
+        }
+      ],
+      "id": "d3da7437-cc2d-4113-a3ba-76004fe2513e",
+      "createdAt": "2026-07-28T02:52:51.000Z",
+      "updatedAt": "2026-07-28T02:52:51.000Z",
+      "uid": "35240-d3da7437-cc2d-4113-a3ba-76004fe2513e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

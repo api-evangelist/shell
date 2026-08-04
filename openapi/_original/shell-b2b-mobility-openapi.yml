@@ -1,0 +1,714 @@
+openapi: 3.1.0
+info:
+  title: Shell B2B Mobility API
+  description: >-
+    The Shell B2B Mobility API enables fleet operators and business customers
+    to manage fuel cards, retrieve transaction data, manage invoices, query fuel
+    station sites, and control card limits and restrictions. Supports B2B fleet
+    management workflows across the Shell global network.
+  version: '2.1.0'
+  contact:
+    name: Shell Developer Portal
+    url: https://developer.shell.com/
+    email: api-maintainers@shell.com
+  license:
+    name: Shell API Terms
+    url: https://www.shell.com/terms-and-conditions
+  x-date: '2026-05-02'
+servers:
+  - url: https://api.shell.com/mobility/v2
+    description: Shell B2B Mobility API
+security:
+  - OAuth2: []
+tags:
+  - name: Cards
+    description: Manage B2B fuel cards
+  - name: Transactions
+    description: Retrieve fuel card transaction data
+  - name: Invoices
+    description: Manage fuel card invoices
+  - name: Sites
+    description: Query Shell fuel and EV charging sites
+  - name: Customers
+    description: Manage B2B customer data
+  - name: Limits
+    description: Manage card spending limits and restrictions
+paths:
+  /cards:
+    get:
+      operationId: listCards
+      summary: List Cards
+      description: Returns a list of fuel cards associated with the B2B account.
+      tags:
+        - Cards
+      parameters:
+        - name: colCoCode
+          in: query
+          description: Country code for the collecting company
+          required: true
+          schema:
+            type: integer
+        - name: payerNumber
+          in: query
+          description: Payer account number
+          schema:
+            type: string
+        - name: accountNumber
+          in: query
+          description: Customer account number
+          schema:
+            type: string
+        - name: cardStatus
+          in: query
+          description: Filter cards by status
+          schema:
+            type: string
+            enum: [Active, Blocked, Cancelled, Expired, Pending]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+      responses:
+        '200':
+          description: A list of fuel cards
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardListResponse'
+    post:
+      operationId: orderCard
+      summary: Order Card
+      description: Places an order for a new fuel card.
+      tags:
+        - Cards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardOrderRequest'
+      responses:
+        '200':
+          description: Card order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardOrderResponse'
+  /cards/{cardId}:
+    get:
+      operationId: getCard
+      summary: Get Card
+      description: Returns details for a specific fuel card.
+      tags:
+        - Cards
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: colCoCode
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Card details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+  /cards/{cardId}/cancel:
+    post:
+      operationId: cancelCard
+      summary: Cancel Card
+      description: Cancels a fuel card.
+      tags:
+        - Cards
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                colCoCode:
+                  type: integer
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Card cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+  /cards/{cardId}/block:
+    post:
+      operationId: blockCard
+      summary: Block Card
+      description: Blocks or unblocks a fuel card.
+      tags:
+        - Cards
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                colCoCode:
+                  type: integer
+                action:
+                  type: string
+                  enum: [Block, Unblock]
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Card block status updated
+          content:
+            application/json:
+              schema:
+                type: object
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List Transactions
+      description: Returns a list of fuel card transactions for the specified date range.
+      tags:
+        - Transactions
+      parameters:
+        - name: colCoCode
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: payerNumber
+          in: query
+          schema:
+            type: string
+        - name: accountNumber
+          in: query
+          schema:
+            type: string
+        - name: cardPAN
+          in: query
+          description: Card PAN to filter transactions
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          description: Start date for transaction search (YYYY-MM-DD)
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          description: End date for transaction search (YYYY-MM-DD)
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: productCode
+          in: query
+          description: Filter by fuel product code
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            maximum: 500
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse'
+  /transactions/{transactionId}:
+    get:
+      operationId: getTransaction
+      summary: Get Transaction
+      description: Returns details for a specific fuel card transaction.
+      tags:
+        - Transactions
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: colCoCode
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /invoices:
+    get:
+      operationId: listInvoices
+      summary: List Invoices
+      description: Returns a list of invoices for the B2B account.
+      tags:
+        - Invoices
+      parameters:
+        - name: colCoCode
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: payerNumber
+          in: query
+          schema:
+            type: string
+        - name: accountNumber
+          in: query
+          schema:
+            type: string
+        - name: invoiceDateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: invoiceDateTo
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of invoices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceListResponse'
+  /invoices/{invoiceNumber}:
+    get:
+      operationId: getInvoice
+      summary: Get Invoice
+      description: Returns a specific invoice.
+      tags:
+        - Invoices
+      parameters:
+        - name: invoiceNumber
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: colCoCode
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /sites:
+    get:
+      operationId: listSites
+      summary: List Sites
+      description: Returns a list of Shell fuel and EV charging sites matching the specified criteria.
+      tags:
+        - Sites
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude coordinate for location-based search
+          schema:
+            type: number
+            format: float
+        - name: longitude
+          in: query
+          description: Longitude coordinate for location-based search
+          schema:
+            type: number
+            format: float
+        - name: radius
+          in: query
+          description: Search radius in kilometers
+          schema:
+            type: number
+            format: float
+        - name: countryCode
+          in: query
+          description: ISO 2-letter country code
+          schema:
+            type: string
+        - name: fuelType
+          in: query
+          description: Filter by fuel type
+          schema:
+            type: string
+        - name: evCharging
+          in: query
+          description: Filter for EV charging available sites
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of Shell sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+  /sites/{siteId}:
+    get:
+      operationId: getSite
+      summary: Get Site
+      description: Returns details for a specific Shell site.
+      tags:
+        - Sites
+      parameters:
+        - name: siteId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Site details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+  /limits:
+    post:
+      operationId: updateCardLimits
+      summary: Update Card Limits
+      description: Updates spending limits and restrictions for fuel cards.
+      tags:
+        - Limits
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardLimitUpdateRequest'
+      responses:
+        '200':
+          description: Card limits updated
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.shell.com/oauth/token
+          scopes:
+            mobility.cards: Manage fuel cards
+            mobility.transactions: Access transaction data
+            mobility.invoices: Access invoice data
+            mobility.sites: Query site data
+  schemas:
+    Card:
+      type: object
+      properties:
+        cardId:
+          type: string
+        cardPAN:
+          type: string
+          description: Primary Account Number
+        maskedPAN:
+          type: string
+        cardStatus:
+          type: string
+          enum: [Active, Blocked, Cancelled, Expired, Pending]
+        expiryDate:
+          type: string
+        accountNumber:
+          type: string
+        payerNumber:
+          type: string
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        cardType:
+          type: string
+        colCoCode:
+          type: integer
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardLimit'
+    CardLimit:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: number
+        period:
+          type: string
+        currency:
+          type: string
+    CardListResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    CardOrderRequest:
+      type: object
+      required:
+        - colCoCode
+        - accountNumber
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        cardType:
+          type: string
+        embossText:
+          type: string
+    CardOrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        status:
+          type: string
+        estimatedDeliveryDate:
+          type: string
+          format: date
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        cardPAN:
+          type: string
+        maskedPAN:
+          type: string
+        siteCode:
+          type: string
+        siteName:
+          type: string
+        siteCountry:
+          type: string
+        productCode:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: number
+          format: float
+        quantityUnit:
+          type: string
+        unitPrice:
+          type: number
+          format: float
+        amount:
+          type: number
+          format: float
+        currency:
+          type: string
+        mileage:
+          type: number
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        accountNumber:
+          type: string
+        payerNumber:
+          type: string
+    TransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Invoice:
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        totalAmount:
+          type: number
+          format: float
+        currency:
+          type: string
+        status:
+          type: string
+          enum: [Open, Paid, Overdue, Cancelled]
+        lineItems:
+          type: array
+          items:
+            type: object
+    InvoiceListResponse:
+      type: object
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    Site:
+      type: object
+      properties:
+        siteId:
+          type: string
+        siteName:
+          type: string
+        siteCode:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: float
+            longitude:
+              type: number
+              format: float
+        fuelTypes:
+          type: array
+          items:
+            type: string
+        evCharging:
+          type: boolean
+        evChargingPoints:
+          type: integer
+        amenities:
+          type: array
+          items:
+            type: string
+        openingHours:
+          type: object
+    SiteListResponse:
+      type: object
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    CardLimitUpdateRequest:
+      type: object
+      required:
+        - colCoCode
+        - cardId
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        cardId:
+          type: string
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardLimit'

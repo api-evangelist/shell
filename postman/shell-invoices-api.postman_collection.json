@@ -1,0 +1,295 @@
+{
+  "info": {
+    "_postman_id": "85a6ce64-430f-4e34-a853-a55ffa29c634",
+    "name": "Shell B2B Mobility Accounts Invoices API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:52.000Z",
+    "updatedAt": "2026-07-28T02:52:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-85a6ce64-430f-4e34-a853-a55ffa29c634"
+  },
+  "item": [
+    {
+      "name": "invoices",
+      "item": [
+        {
+          "name": "{invoiceNumber}",
+          "item": [
+            {
+              "name": "Get Invoice",
+              "id": "276c3180-3ee2-4132-a123-1ce1ce0988ac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices/:invoiceNumber?colCoCode=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices",
+                    ":invoiceNumber"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "060f9569-84c4-45d9-a500-3d5aa8f71c64",
+                      "key": "invoiceNumber",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns a specific invoice."
+              },
+              "response": [
+                {
+                  "id": "fad8e087-f253-4bef-9946-97a7ed4d1c8a",
+                  "name": "Invoice details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:invoiceNumber?colCoCode=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":invoiceNumber"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "colCoCode",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "invoiceNumber"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"dueDate\": \"<date>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"totalAmount\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"status\": \"Paid\"\n}",
+                  "createdAt": "2026-07-28T02:52:52.000Z",
+                  "updatedAt": "2026-07-28T02:52:52.000Z",
+                  "uid": "35240-fad8e087-f253-4bef-9946-97a7ed4d1c8a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:52:52.000Z",
+              "updatedAt": "2026-07-28T02:52:52.000Z",
+              "uid": "35240-276c3180-3ee2-4132-a123-1ce1ce0988ac"
+            }
+          ],
+          "id": "eef2c6ee-d728-41ec-8110-6362a8998932",
+          "createdAt": "2026-07-28T02:52:52.000Z",
+          "updatedAt": "2026-07-28T02:52:52.000Z",
+          "uid": "35240-eef2c6ee-d728-41ec-8110-6362a8998932"
+        },
+        {
+          "name": "List Invoices",
+          "id": "90466a9c-1358-41ed-ab4d-7ec359f53fed",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices?colCoCode=<integer>&payerNumber=<string>&accountNumber=<string>&invoiceDateFrom=<date>&invoiceDateTo=<date>&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "colCoCode",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "payerNumber",
+                  "value": "<string>"
+                },
+                {
+                  "key": "accountNumber",
+                  "value": "<string>"
+                },
+                {
+                  "key": "invoiceDateFrom",
+                  "value": "<date>"
+                },
+                {
+                  "key": "invoiceDateTo",
+                  "value": "<date>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of invoices for the B2B account."
+          },
+          "response": [
+            {
+              "id": "5c438f76-cbcc-446d-bbb5-e5a881c507ca",
+              "name": "A list of invoices",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices?colCoCode=<integer>&payerNumber=<string>&accountNumber=<string>&invoiceDateFrom=<date>&invoiceDateTo=<date>&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invoiceDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "invoiceDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"invoices\": [\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"invoiceDate\": \"<date>\",\n      \"dueDate\": \"<date>\",\n      \"payerNumber\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"totalAmount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"status\": \"Overdue\"\n    },\n    {\n      \"invoiceNumber\": \"<string>\",\n      \"invoiceDate\": \"<date>\",\n      \"dueDate\": \"<date>\",\n      \"payerNumber\": \"<string>\",\n      \"accountNumber\": \"<string>\",\n      \"totalAmount\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"status\": \"Paid\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"currentPage\": \"<integer>\",\n  \"pageCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:52:52.000Z",
+              "updatedAt": "2026-07-28T02:52:52.000Z",
+              "uid": "35240-5c438f76-cbcc-446d-bbb5-e5a881c507ca"
+            }
+          ],
+          "createdAt": "2026-07-28T02:52:52.000Z",
+          "updatedAt": "2026-07-28T02:52:52.000Z",
+          "uid": "35240-90466a9c-1358-41ed-ab4d-7ec359f53fed"
+        }
+      ],
+      "id": "d70f4318-9ad4-433e-a372-c33f82054fef",
+      "createdAt": "2026-07-28T02:52:52.000Z",
+      "updatedAt": "2026-07-28T02:52:52.000Z",
+      "uid": "35240-d70f4318-9ad4-433e-a372-c33f82054fef"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}

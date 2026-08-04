@@ -1,0 +1,284 @@
+{
+  "info": {
+    "_postman_id": "e3c81c0a-249e-4f17-aeab-294dcd7787df",
+    "name": "Shell B2B Mobility Accounts Points API",
+    "description": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:52:55.000Z",
+    "updatedAt": "2026-07-28T02:52:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e3c81c0a-249e-4f17-aeab-294dcd7787df"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "balance",
+              "item": [
+                {
+                  "name": "Get Points Balance",
+                  "id": "32a97a2a-ba36-48fd-8724-9be64b782961",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "balance"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e5176208-e741-4108-a6b1-eb179798e4bf",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the current points balance for a loyalty account."
+                  },
+                  "response": [
+                    {
+                      "id": "3aa070f7-26fc-4266-afb6-08fce4c681ee",
+                      "name": "Points balance",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/balance",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "balance"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"accountId\": \"<string>\",\n  \"totalPoints\": \"<integer>\",\n  \"redeemablePoints\": \"<integer>\",\n  \"pendingPoints\": \"<integer>\",\n  \"expiringPoints\": \"<integer>\",\n  \"expiryDate\": \"<date>\",\n  \"tier\": \"<string>\",\n  \"lastUpdated\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:52:56.000Z",
+                      "updatedAt": "2026-07-28T02:52:56.000Z",
+                      "uid": "35240-3aa070f7-26fc-4266-afb6-08fce4c681ee"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:52:56.000Z",
+                  "updatedAt": "2026-07-28T02:52:56.000Z",
+                  "uid": "35240-32a97a2a-ba36-48fd-8724-9be64b782961"
+                }
+              ],
+              "id": "a0692153-db7f-4bee-8d67-44caf708bc13",
+              "createdAt": "2026-07-28T02:52:56.000Z",
+              "updatedAt": "2026-07-28T02:52:56.000Z",
+              "uid": "35240-a0692153-db7f-4bee-8d67-44caf708bc13"
+            },
+            {
+              "name": "redeem",
+              "item": [
+                {
+                  "name": "Redeem Points",
+                  "id": "1faef5f3-8f5f-4266-bcf8-24b85f3b9185",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"rewardId\": \"<string>\",\n  \"pointsToRedeem\": \"<integer>\",\n  \"deliveryMethod\": \"<string>\",\n  \"deliveryAddress\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/redeem",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "redeem"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5cefe32f-97bc-4c1d-a87e-582d52feb0e1",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Redeems loyalty points for a reward or benefit."
+                  },
+                  "response": [
+                    {
+                      "id": "93eb2d53-dbae-4629-b902-6526074c34c6",
+                      "name": "Points redeemed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"rewardId\": \"<string>\",\n  \"pointsToRedeem\": \"<integer>\",\n  \"deliveryMethod\": \"<string>\",\n  \"deliveryAddress\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/redeem",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "redeem"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"redemptionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"pointsRedeemed\": \"<integer>\",\n  \"remainingPoints\": \"<integer>\",\n  \"reward\": {\n    \"rewardId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:52:56.000Z",
+                      "updatedAt": "2026-07-28T02:52:56.000Z",
+                      "uid": "35240-93eb2d53-dbae-4629-b902-6526074c34c6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:52:56.000Z",
+                  "updatedAt": "2026-07-28T02:52:56.000Z",
+                  "uid": "35240-1faef5f3-8f5f-4266-bcf8-24b85f3b9185"
+                }
+              ],
+              "id": "e0ff67d7-d2db-469c-b4e6-bada6798e8e6",
+              "createdAt": "2026-07-28T02:52:56.000Z",
+              "updatedAt": "2026-07-28T02:52:56.000Z",
+              "uid": "35240-e0ff67d7-d2db-469c-b4e6-bada6798e8e6"
+            }
+          ],
+          "id": "5c6969c1-7284-4fb0-b290-46b65ceae3cd",
+          "createdAt": "2026-07-28T02:52:56.000Z",
+          "updatedAt": "2026-07-28T02:52:56.000Z",
+          "uid": "35240-5c6969c1-7284-4fb0-b290-46b65ceae3cd"
+        }
+      ],
+      "id": "3c62de0b-39cd-4dca-8cbf-54e14448e8c1",
+      "createdAt": "2026-07-28T02:52:56.000Z",
+      "updatedAt": "2026-07-28T02:52:56.000Z",
+      "uid": "35240-3c62de0b-39cd-4dca-8cbf-54e14448e8c1"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.shell.com/mobility/v2"
+    }
+  ]
+}
