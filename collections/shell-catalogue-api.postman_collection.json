@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "506e1dd6-dcee-4c05-8f59-779c99f0df2f",
+      "name": "Catalogue",
+      "description": {
+        "content": "Browse loyalty rewards catalogue",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "842e990a-2fb0-49b7-907e-5c5b934df1bc",
+          "name": "List Loyalty Catalogue",
+          "request": {
+            "name": "List Loyalty Catalogue",
+            "description": {
+              "content": "Returns the Shell loyalty rewards catalogue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalogue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by reward category"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "Filter by availability country"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec2d71ee-5724-4f1a-8343-5539db2177bc",
+              "name": "Loyalty catalogue",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalogue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"rewardId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"pointsRequired\": 3478,\n      \"imageUrl\": \"string\",\n      \"availableCountries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"validFrom\": \"1953-02-04\",\n      \"validTo\": \"1956-01-11\",\n      \"stock\": 5757\n    },\n    {\n      \"rewardId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"pointsRequired\": 2795,\n      \"imageUrl\": \"string\",\n      \"availableCountries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"validFrom\": \"1960-01-15\",\n      \"validTo\": \"2024-12-17\",\n      \"stock\": 871\n    }\n  ],\n  \"totalCount\": 8172,\n  \"currentPage\": 4761,\n  \"pageCount\": 5906\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0642355c-5c0b-473c-86cd-d7bc9aae149d",
+          "name": "Get Catalogue Item",
+          "request": {
+            "name": "Get Catalogue Item",
+            "description": {
+              "content": "Returns details for a specific loyalty reward.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalogue",
+                ":rewardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rewardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f7993be-77b0-43d6-b938-8568b38e6535",
+              "name": "Reward details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalogue",
+                    ":rewardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rewardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rewardId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"pointsRequired\": 9119,\n  \"imageUrl\": \"string\",\n  \"availableCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"validFrom\": \"1984-10-11\",\n  \"validTo\": \"1979-04-23\",\n  \"stock\": 9927\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a0775b3b-f373-4ae9-a587-4e87c5178bbe",
+    "name": "Shell B2B Mobility Accounts Catalogue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}

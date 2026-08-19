@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "8258ad99-04d2-458f-b587-78757ddb0160",
+      "name": "Offers",
+      "description": {
+        "content": "Manage loyalty offers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "97dc535c-71ef-4805-bc5c-6e929ee79d98",
+          "name": "List Account Offers",
+          "request": {
+            "name": "List Account Offers",
+            "description": {
+              "content": "Returns available offers for a loyalty account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99b43799-b656-43b9-a5e9-0b1dfb53703f",
+              "name": "Available offers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offers\": [\n    {\n      \"offerId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"bonusPoints\": 4661,\n      \"validFrom\": \"2000-01-19T20:33:23.946Z\",\n      \"validTo\": \"2018-11-24T10:54:48.459Z\",\n      \"conditions\": \"string\"\n    },\n    {\n      \"offerId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"bonusPoints\": 6342,\n      \"validFrom\": \"1950-05-18T05:07:15.866Z\",\n      \"validTo\": \"1989-12-19T05:56:28.931Z\",\n      \"conditions\": \"string\"\n    }\n  ],\n  \"totalCount\": 4300\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20d045b7-a2f2-4dfb-a806-3a2615e896aa",
+          "name": "Assign Offer",
+          "request": {
+            "name": "Assign Offer",
+            "description": {
+              "content": "Assigns a specific offer to a loyalty account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "offers",
+                ":offerId",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f963006e-df27-44b7-ba2e-8bbf974f6f99",
+              "name": "Offer assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "offers",
+                    ":offerId",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7bc48cc9-c47c-447c-99ab-077f6c0dc519",
+    "name": "Shell B2B Mobility Accounts Offers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}

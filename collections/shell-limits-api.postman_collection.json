@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "8b94ded8-bb8d-4dd2-b314-854ae37f2dfd",
+      "name": "Limits",
+      "description": {
+        "content": "Manage card spending limits and restrictions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b2798fd-a6a2-4b48-a2ef-7d1634eb66b7",
+          "name": "Update Card Limits",
+          "request": {
+            "name": "Update Card Limits",
+            "description": {
+              "content": "Updates spending limits and restrictions for fuel cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<number>\",\n      \"period\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26dd4010-5237-4259-8cdc-ada91ca419f3",
+              "name": "Card limits updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"cardId\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"limits\": [\n    {\n      \"type\": \"string\",\n      \"value\": 1255.4805591775087,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": 5302.485435636369,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "062dec07-a883-47ed-b3cf-bc415b4b670b",
+    "name": "Shell B2B Mobility Accounts Limits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shell B2B Mobility Accounts Invoices API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.shell.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shell.com/mobility/v2/invoices",
+            "params": [
+              {
+                "name": "colCoCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "payerNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "invoiceDateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "invoiceDateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of invoices for the B2B account."
+        },
+        {
+          "info": {
+            "name": "Get Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shell.com/mobility/v2/invoices/:invoiceNumber",
+            "params": [
+              {
+                "name": "invoiceNumber",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "colCoCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a specific invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

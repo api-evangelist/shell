@@ -1,0 +1,632 @@
+{
+  "item": [
+    {
+      "id": "0283cbd5-22e7-4b7d-85c1-fe7a1e89d164",
+      "name": "Cards",
+      "description": {
+        "content": "Manage B2B fuel cards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfde9916-a5d0-4577-9ae9-e7a50294f166",
+          "name": "List Cards",
+          "request": {
+            "name": "List Cards",
+            "description": {
+              "content": "Returns a list of fuel cards associated with the B2B account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) Country code for the collecting company"
+                },
+                {
+                  "disabled": false,
+                  "key": "payerNumber",
+                  "value": "<string>",
+                  "description": "Payer account number"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>",
+                  "description": "Customer account number"
+                },
+                {
+                  "disabled": false,
+                  "key": "cardStatus",
+                  "value": "<string>",
+                  "description": "Filter cards by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7d798e9-b9a5-4342-9722-c2b667ecf2af",
+              "name": "A list of fuel cards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "payerNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cards\": [\n    {\n      \"cardId\": \"string\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"cardStatus\": \"Active\",\n      \"expiryDate\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\",\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"cardType\": \"string\",\n      \"colCoCode\": 3835,\n      \"limits\": [\n        {\n          \"type\": \"string\",\n          \"value\": 6692.031717486069,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 4272.245985681211,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"cardId\": \"string\",\n      \"cardPAN\": \"string\",\n      \"maskedPAN\": \"string\",\n      \"cardStatus\": \"Blocked\",\n      \"expiryDate\": \"string\",\n      \"accountNumber\": \"string\",\n      \"payerNumber\": \"string\",\n      \"driverName\": \"string\",\n      \"vehicleRegistration\": \"string\",\n      \"cardType\": \"string\",\n      \"colCoCode\": 9579,\n      \"limits\": [\n        {\n          \"type\": \"string\",\n          \"value\": 1797.8524417172491,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 4355.695181720037,\n          \"period\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalCount\": 6298,\n  \"currentPage\": 432,\n  \"pageCount\": 5988\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1ab4e29-2044-43cb-916e-51346487b531",
+          "name": "Order Card",
+          "request": {
+            "name": "Order Card",
+            "description": {
+              "content": "Places an order for a new fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"accountNumber\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"driverName\": \"<string>\",\n  \"vehicleRegistration\": \"<string>\",\n  \"cardType\": \"<string>\",\n  \"embossText\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa8c9afd-3ed5-478f-9ce8-c2fe7bdb0a38",
+              "name": "Card order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"accountNumber\": \"<string>\",\n  \"payerNumber\": \"<string>\",\n  \"driverName\": \"<string>\",\n  \"vehicleRegistration\": \"<string>\",\n  \"cardType\": \"<string>\",\n  \"embossText\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"status\": \"string\",\n  \"estimatedDeliveryDate\": \"1997-01-14\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "610fef63-01db-47e3-963e-5b9f2bb7f30c",
+          "name": "Get Card",
+          "request": {
+            "name": "Get Card",
+            "description": {
+              "content": "Returns details for a specific fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "colCoCode",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffd98efa-fe15-47d5-90c1-906cc8601a0b",
+              "name": "Card details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "colCoCode",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardId\": \"string\",\n  \"cardPAN\": \"string\",\n  \"maskedPAN\": \"string\",\n  \"cardStatus\": \"Active\",\n  \"expiryDate\": \"string\",\n  \"accountNumber\": \"string\",\n  \"payerNumber\": \"string\",\n  \"driverName\": \"string\",\n  \"vehicleRegistration\": \"string\",\n  \"cardType\": \"string\",\n  \"colCoCode\": 925,\n  \"limits\": [\n    {\n      \"type\": \"string\",\n      \"value\": 7987.462959219618,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"value\": 3981.621644078038,\n      \"period\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4464cae2-5091-4bce-93a3-4aabcb8f95ee",
+          "name": "Cancel Card",
+          "request": {
+            "name": "Cancel Card",
+            "description": {
+              "content": "Cancels a fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bf50605-7cad-48f1-a597-8c959e92e5f6",
+              "name": "Card cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa473829-56a7-4693-8c0c-a2e23f81591c",
+          "name": "Block Card",
+          "request": {
+            "name": "Block Card",
+            "description": {
+              "content": "Blocks or unblocks a fuel card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":cardId",
+                "block"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"action\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be52d28c-dd5a-4eb9-9add-1f89794e05f4",
+              "name": "Card block status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":cardId",
+                    "block"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colCoCode\": \"<integer>\",\n  \"action\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e0dce9fe-1054-45a7-b374-bbcb5df99608",
+    "name": "Shell B2B Mobility Accounts Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}

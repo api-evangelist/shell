@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "604482f5-77d8-4980-9671-ba34c410a102",
+      "name": "Sites",
+      "description": {
+        "content": "Query Shell fuel and EV charging sites",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6bda977-0033-4f28-aadd-ab296a7571c1",
+          "name": "List Sites",
+          "request": {
+            "name": "List Sites",
+            "description": {
+              "content": "Returns a list of Shell fuel and EV charging sites matching the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "Latitude coordinate for location-based search"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "Longitude coordinate for location-based search"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<float>",
+                  "description": "Search radius in kilometers"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "ISO 2-letter country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "fuelType",
+                  "value": "<string>",
+                  "description": "Filter by fuel type"
+                },
+                {
+                  "disabled": false,
+                  "key": "evCharging",
+                  "value": "<boolean>",
+                  "description": "Filter for EV charging available sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e8743c7-0797-464a-ac13-5b90aa0574f1",
+              "name": "A list of Shell sites",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fuelType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "evCharging",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sites\": [\n    {\n      \"siteId\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCode\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 9762.736187691835,\n        \"longitude\": 3849.273177151614\n      },\n      \"fuelTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evCharging\": true,\n      \"evChargingPoints\": 2901,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"openingHours\": {}\n    },\n    {\n      \"siteId\": \"string\",\n      \"siteName\": \"string\",\n      \"siteCode\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 851.9360418874022,\n        \"longitude\": 6311.598199265879\n      },\n      \"fuelTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evCharging\": false,\n      \"evChargingPoints\": 3197,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"openingHours\": {}\n    }\n  ],\n  \"totalCount\": 3089,\n  \"currentPage\": 5576,\n  \"pageCount\": 9786\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "929af0e8-1316-4fa2-8a88-e71de99b3b43",
+          "name": "Get Site",
+          "request": {
+            "name": "Get Site",
+            "description": {
+              "content": "Returns details for a specific Shell site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f9bda4d-104f-4d10-af92-49a759fd0f07",
+              "name": "Site details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteId\": \"string\",\n  \"siteName\": \"string\",\n  \"siteCode\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 9359.241612971759,\n    \"longitude\": 7892.106152321633\n  },\n  \"fuelTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"evCharging\": true,\n  \"evChargingPoints\": 6946,\n  \"amenities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"openingHours\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shell.com/mobility/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "mobility.cards mobility.transactions mobility.invoices mobility.sites"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.shell.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c7b2e4a-57ee-4c9d-ae3a-91a869eebbe5",
+    "name": "Shell B2B Mobility Accounts Sites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.\n\nContact Support:\n Name: Shell Developer Portal\n Email: api-maintainers@shell.com",
+      "type": "text/plain"
+    }
+  }
+}
