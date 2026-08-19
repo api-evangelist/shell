@@ -333,7 +333,7 @@ maintainers:
   - FN: Shell Digital Services
     email: api-maintainers@shell.com
     X-twitter: shell
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/shell/overview
