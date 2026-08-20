@@ -20,6 +20,8 @@ apis:
   description: Manage loyalty accounts
   humanURL: https://developer.shell.com/api-catalog
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -170,6 +172,8 @@ apis:
   description: Manage lubricants orders
   humanURL: https://developer.shell.com/api-catalog
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -220,6 +224,8 @@ apis:
   description: Browse lubricants product catalogue
   humanURL: https://developer.shell.com/api-catalog
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -270,6 +276,8 @@ apis:
   description: Retrieve fuel card transaction data
   humanURL: https://developer.shell.com/api-catalog
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
