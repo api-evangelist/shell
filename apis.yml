@@ -355,6 +355,9 @@ maintainers:
     X-twitter: shell
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/shell-capability-edges.yml
+    name: Shell Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/shell/overview
   - type: AgenticAccess
