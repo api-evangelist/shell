@@ -341,7 +341,7 @@ image: https://www.shell.com/etc/designs/shell/clientlib-main/img/shell-logo.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Royal Dutch Shell plc is a global energy company operating across oil, gas, renewable energy, lubricants, aviation
   fuel, and mobility sectors. The Shell Developer Portal provides APIs for B2B mobility card management, loyalty
