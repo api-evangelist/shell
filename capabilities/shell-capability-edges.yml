@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 4
 edges:
 - tag: Points
   spec_file: shell-points-api-openapi.yml
@@ -23,3 +23,36 @@ edges:
     redeemPoints Redeem Points; schemas: PointsBalance, RedemptionRequest'
   reason: Points balance and redemption operations are the core mechanics of a loyalty programme, matching
     the vendor's stated loyalty program APIs.
+- tag: Catalogue
+  spec_file: shell-catalogue-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.75
+  evidence: GET /catalogue  listCatalogue  List Loyalty Catalogue; schemas CatalogueItem, CatalogueListResponse
+  reason: The operations expose a loyalty reward catalogue (reward items addressable by {rewardId}), which
+    is part of running a loyalty programme rather than a product/commerce catalogue.
+  recovered_from: vertical-automotive-mobility-edges.json
+- tag: Accounts
+  spec_file: shell-accounts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: 'POST /accounts  enrollAccount  Enroll Loyalty Account; GET /accounts/{accountId}  getAccount  Get
+    Loyalty Account; schemas: LoyaltyAccount, LubricantsAccount'
+  reason: Operations enroll, retrieve and update customer loyalty/business accounts, with LoyaltyAccount
+    and LubricantsAccount schemas — this is customer account master data maintenance. Loyalty enrolment
+    could also argue BC-420.40, so confidence is moderate on the sub-capability, but the L1 (Customer
+    Relationship Management) is well grounded.
+  recovered_from: vertical-defense-aerospace-edges.json
+- tag: Invoices
+  spec_file: shell-invoices-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.7
+  evidence: GET /invoices  listInvoices  List Invoices; "manage invoices"
+  reason: Customer-facing retrieval of issued invoices for B2B fleet accounts, i.e. the customer invoicing
+    / receivables side of financial management. Read-only scope keeps confidence moderate.
+  recovered_from: vertical-automotive-mobility-edges.json
