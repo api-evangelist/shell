@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shell B2B Mobility Accounts Points API
-  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
-  version: 2.1.0
+  title: Shell Loyalty Points API
+  description: The Shell Loyalty API enables partners to integrate Shell Go+ loyalty program functionality including account management, points balance queries, points redemption, loyalty catalogue access, and loyalty transaction history.
+  version: 1.0.2
   contact:
     name: Shell Developer Portal
     url: https://developer.shell.com/
@@ -12,8 +12,8 @@ info:
     url: https://www.shell.com/terms-and-conditions
   x-date: '2026-05-02'
 servers:
-- url: https://api.shell.com/mobility/v2
-  description: Shell B2B Mobility API
+- url: https://api.shell.com/loyalty/v1
+  description: Shell Loyalty API
 security:
 - OAuth2: []
 tags:
@@ -68,20 +68,6 @@ paths:
                 $ref: '#/components/schemas/RedemptionResponse'
 components:
   schemas:
-    RedemptionRequest:
-      type: object
-      required:
-      - rewardId
-      - pointsToRedeem
-      properties:
-        rewardId:
-          type: string
-        pointsToRedeem:
-          type: integer
-        deliveryMethod:
-          type: string
-        deliveryAddress:
-          type: object
     PointsBalance:
       type: object
       properties:
@@ -103,6 +89,20 @@ components:
         lastUpdated:
           type: string
           format: date-time
+    RedemptionRequest:
+      type: object
+      required:
+      - rewardId
+      - pointsToRedeem
+      properties:
+        rewardId:
+          type: string
+        pointsToRedeem:
+          type: integer
+        deliveryMethod:
+          type: string
+        deliveryAddress:
+          type: object
     RedemptionResponse:
       type: object
       properties:
@@ -131,7 +131,6 @@ components:
         clientCredentials:
           tokenUrl: https://api.shell.com/oauth/token
           scopes:
-            mobility.cards: Manage fuel cards
-            mobility.transactions: Access transaction data
-            mobility.invoices: Access invoice data
-            mobility.sites: Query site data
+            loyalty.accounts: Manage loyalty accounts
+            loyalty.points: Access points data
+            loyalty.catalogue: Browse rewards catalogue

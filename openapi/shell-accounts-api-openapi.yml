@@ -1,8 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shell B2B Mobility Accounts API
-  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
-  version: 2.1.0
+  title: Shell Accounts API
   contact:
     name: Shell Developer Portal
     url: https://developer.shell.com/
@@ -11,9 +9,13 @@ info:
     name: Shell API Terms
     url: https://www.shell.com/terms-and-conditions
   x-date: '2026-05-02'
+  version: '1.0'
+  description: 'Operations tagged Accounts across 2 of this provider''s published API definitions: shell-loyalty-openapi.yml, shell-lubricants-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.shell.com/mobility/v2
-  description: Shell B2B Mobility API
+- url: https://api.shell.com/loyalty/v1
+  description: Shell Loyalty API
+- url: https://api.shell.com/lubricants/v1
+  description: Shell Lubricants API
 security:
 - OAuth2: []
 tags:
@@ -40,6 +42,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyAccount'
+    servers:
+    - url: https://api.shell.com/loyalty/v1
+      description: Shell Loyalty API
   /accounts/{accountId}:
     get:
       operationId: getAccount
@@ -85,6 +90,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyAccount'
+    servers:
+    - url: https://api.shell.com/loyalty/v1
+      description: Shell Loyalty API
   /accounts/{accountNumber}:
     get:
       operationId: getAccount
@@ -105,34 +113,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LubricantsAccount'
+    servers:
+    - url: https://api.shell.com/lubricants/v1
+      description: Shell Lubricants API
 components:
   schemas:
-    LubricantsAccount:
+    AccountUpdateRequest:
       type: object
       properties:
-        accountNumber:
+        firstName:
           type: string
-        companyName:
+        lastName:
           type: string
-        accountType:
+        email:
           type: string
-        creditLimit:
-          type: number
-        availableCredit:
-          type: number
-        currency:
+        phone:
           type: string
-        paymentTerms:
-          type: string
-        primaryContact:
-          type: object
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-            phone:
-              type: string
+        marketingConsent:
+          type: boolean
     AccountEnrollRequest:
       type: object
       required:
@@ -154,19 +152,6 @@ components:
           type: string
           format: date
         countryCode:
-          type: string
-        marketingConsent:
-          type: boolean
-    AccountUpdateRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
           type: string
         marketingConsent:
           type: boolean
@@ -203,6 +188,32 @@ components:
         updatedAt:
           type: string
           format: date-time
+    LubricantsAccount:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        companyName:
+          type: string
+        accountType:
+          type: string
+        creditLimit:
+          type: number
+        availableCredit:
+          type: number
+        currency:
+          type: string
+        paymentTerms:
+          type: string
+        primaryContact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
   securitySchemes:
     OAuth2:
       type: oauth2
@@ -210,7 +221,9 @@ components:
         clientCredentials:
           tokenUrl: https://api.shell.com/oauth/token
           scopes:
-            mobility.cards: Manage fuel cards
-            mobility.transactions: Access transaction data
-            mobility.invoices: Access invoice data
-            mobility.sites: Query site data
+            loyalty.accounts: Manage loyalty accounts
+            loyalty.points: Access points data
+            loyalty.catalogue: Browse rewards catalogue
+x-refined-from:
+- shell-loyalty-openapi.yml
+- shell-lubricants-openapi.yml

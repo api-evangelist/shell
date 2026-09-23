@@ -1,34 +1,46 @@
 {
   "provider": "shell",
   "sources": [
-    "shell-accounts-api-openapi.yml",
-    "shell-cards-api-openapi.yml",
-    "shell-catalogue-api-openapi.yml",
-    "shell-invoices-api-openapi.yml",
-    "shell-limits-api-openapi.yml",
-    "shell-offers-api-openapi.yml",
-    "shell-orders-api-openapi.yml",
-    "shell-points-api-openapi.yml",
-    "shell-products-api-openapi.yml",
-    "shell-sites-api-openapi.yml",
-    "shell-transactions-api-openapi.yml"
+    "_original/shell-b2b-mobility-openapi.yml",
+    "_original/shell-loyalty-openapi.yml",
+    "_original/shell-lubricants-openapi.yml"
   ],
   "outputs": [
-    "shell-accounts-api-openapi.yml",
     "shell-cards-api-openapi.yml",
-    "shell-catalogue-api-openapi.yml",
     "shell-invoices-api-openapi.yml",
     "shell-limits-api-openapi.yml",
-    "shell-offers-api-openapi.yml",
-    "shell-orders-api-openapi.yml",
-    "shell-points-api-openapi.yml",
-    "shell-products-api-openapi.yml",
     "shell-sites-api-openapi.yml",
-    "shell-transactions-api-openapi.yml"
+    "shell-transactions-api-openapi.yml",
+    "shell-accounts-api-openapi.yml",
+    "shell-catalogue-api-openapi.yml",
+    "shell-offers-api-openapi.yml",
+    "shell-points-api-openapi.yml",
+    "shell-orders-api-openapi.yml",
+    "shell-products-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shell-b2b-mobility-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "shell-loyalty-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "shell-lubricants-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Transactions' spans 2 source specs (shell-b2b-mobility-openapi.yml, shell-loyalty-openapi.yml): per-path servers applied",
+    "tag 'Accounts' spans 2 source specs (shell-loyalty-openapi.yml, shell-lubricants-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "shell-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-cards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-catalogue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-limits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-offers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-points-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-sites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shell-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

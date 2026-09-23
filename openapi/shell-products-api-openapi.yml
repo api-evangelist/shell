@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shell B2B Mobility Accounts Products API
-  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
-  version: 2.1.0
+  title: Shell Lubricants Products API
+  description: The Shell Lubricants API enables business customers and distributors to place and manage orders for Shell lubricants products, query the product catalogue, manage delivery schedules, and track orders.
+  version: 1.0.0
   contact:
     name: Shell Developer Portal
     url: https://developer.shell.com/
@@ -12,8 +12,8 @@ info:
     url: https://www.shell.com/terms-and-conditions
   x-date: '2026-05-02'
 servers:
-- url: https://api.shell.com/mobility/v2
-  description: Shell B2B Mobility API
+- url: https://api.shell.com/lubricants/v1
+  description: Shell Lubricants API
 security:
 - OAuth2: []
 tags:
@@ -131,7 +131,5 @@ components:
         clientCredentials:
           tokenUrl: https://api.shell.com/oauth/token
           scopes:
-            mobility.cards: Manage fuel cards
-            mobility.transactions: Access transaction data
-            mobility.invoices: Access invoice data
-            mobility.sites: Query site data
+            lubricants.orders: Manage lubricants orders
+            lubricants.products: Access product catalogue

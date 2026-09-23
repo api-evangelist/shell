@@ -1,8 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shell B2B Mobility Accounts Transactions API
-  description: The Shell B2B Mobility API enables fleet operators and business customers to manage fuel cards, retrieve transaction data, manage invoices, query fuel station sites, and control card limits and restrictions. Supports B2B fleet management workflows across the Shell global network.
-  version: 2.1.0
+  title: Shell Transactions API
   contact:
     name: Shell Developer Portal
     url: https://developer.shell.com/
@@ -11,9 +9,13 @@ info:
     name: Shell API Terms
     url: https://www.shell.com/terms-and-conditions
   x-date: '2026-05-02'
+  version: '1.0'
+  description: 'Operations tagged Transactions across 2 of this provider''s published API definitions: shell-b2b-mobility-openapi.yml, shell-loyalty-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.shell.com/mobility/v2
   description: Shell B2B Mobility API
+- url: https://api.shell.com/loyalty/v1
+  description: Shell Loyalty API
 security:
 - OAuth2: []
 tags:
@@ -81,6 +83,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionListResponse'
+    servers:
+    - url: https://api.shell.com/mobility/v2
+      description: Shell B2B Mobility API
   /transactions/{transactionId}:
     get:
       operationId: getTransaction
@@ -106,6 +111,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Transaction'
+    servers:
+    - url: https://api.shell.com/mobility/v2
+      description: Shell B2B Mobility API
   /accounts/{accountId}/transactions:
     get:
       operationId: listLoyaltyTransactions
@@ -153,6 +161,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionListResponse_2'
+    servers:
+    - url: https://api.shell.com/loyalty/v1
+      description: Shell Loyalty API
 components:
   schemas:
     TransactionListResponse:
@@ -168,44 +179,6 @@ components:
           type: integer
         pageCount:
           type: integer
-    TransactionListResponse_2:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoyaltyTransaction'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
-    LoyaltyTransaction:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        transactionType:
-          type: string
-          enum:
-          - Earn
-          - Redeem
-          - Expire
-          - Bonus
-        points:
-          type: integer
-        balanceAfter:
-          type: integer
-        description:
-          type: string
-        transactionDate:
-          type: string
-          format: date-time
-        siteId:
-          type: string
-        siteName:
-          type: string
     Transaction:
       type: object
       properties:
@@ -251,6 +224,44 @@ components:
           type: string
         payerNumber:
           type: string
+    TransactionListResponse_2:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyTransaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    LoyaltyTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionType:
+          type: string
+          enum:
+          - Earn
+          - Redeem
+          - Expire
+          - Bonus
+        points:
+          type: integer
+        balanceAfter:
+          type: integer
+        description:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        siteId:
+          type: string
+        siteName:
+          type: string
   securitySchemes:
     OAuth2:
       type: oauth2
@@ -262,3 +273,6 @@ components:
             mobility.transactions: Access transaction data
             mobility.invoices: Access invoice data
             mobility.sites: Query site data
+x-refined-from:
+- shell-b2b-mobility-openapi.yml
+- shell-loyalty-openapi.yml
