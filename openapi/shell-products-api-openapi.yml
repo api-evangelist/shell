@@ -75,19 +75,6 @@ paths:
                 $ref: '#/components/schemas/Product'
 components:
   schemas:
-    ProductListResponse:
-      type: object
-      properties:
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
     Product:
       type: object
       properties:
@@ -124,6 +111,19 @@ components:
           type: array
           items:
             type: string
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

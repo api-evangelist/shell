@@ -301,6 +301,17 @@ apis:
 name: Shell
 tags:
   - Aviation
+  - EV Charging
+  - Energy
+  - Fleet Management
+  - Fuel
+  - Gas
+  - Loyalty
+  - Lubricants
+  - Oil and Gas
+  - Renewable Energy
+tags_raw:
+  - Aviation
   - Electric Vehicle Charging
   - Energy
   - Fleet Management
@@ -308,7 +319,6 @@ tags:
   - Gas
   - Loyalty
   - Lubricants
-  - Mobility
   - Oil and Gas
   - Renewable Energy
 kind: contract

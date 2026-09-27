@@ -93,19 +93,6 @@ paths:
                 $ref: '#/components/schemas/Invoice'
 components:
   schemas:
-    InvoiceListResponse:
-      type: object
-      properties:
-        invoices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
     Invoice:
       type: object
       properties:
@@ -137,6 +124,19 @@ components:
           type: array
           items:
             type: object
+    InvoiceListResponse:
+      type: object
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

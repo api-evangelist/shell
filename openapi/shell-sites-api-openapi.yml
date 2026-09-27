@@ -98,6 +98,19 @@ paths:
                 $ref: '#/components/schemas/Site'
 components:
   schemas:
+    SiteListResponse:
+      type: object
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
     Site:
       type: object
       properties:
@@ -141,19 +154,6 @@ components:
             type: string
         openingHours:
           type: object
-    SiteListResponse:
-      type: object
-      properties:
-        sites:
-          type: array
-          items:
-            $ref: '#/components/schemas/Site'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -184,26 +184,16 @@ paths:
                 type: object
 components:
   schemas:
-    CardOrderRequest:
+    CardOrderResponse:
       type: object
-      required:
-      - colCoCode
-      - accountNumber
       properties:
-        colCoCode:
-          type: integer
-        payerNumber:
+        orderId:
           type: string
-        accountNumber:
+        status:
           type: string
-        driverName:
+        estimatedDeliveryDate:
           type: string
-        vehicleRegistration:
-          type: string
-        cardType:
-          type: string
-        embossText:
-          type: string
+          format: date
     CardListResponse:
       type: object
       properties:
@@ -253,6 +243,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardLimit'
+    CardOrderRequest:
+      type: object
+      required:
+      - colCoCode
+      - accountNumber
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        cardType:
+          type: string
+        embossText:
+          type: string
     CardLimit:
       type: object
       properties:
@@ -264,16 +274,6 @@ components:
           type: string
         currency:
           type: string
-    CardOrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        status:
-          type: string
-        estimatedDeliveryDate:
-          type: string
-          format: date
   securitySchemes:
     OAuth2:
       type: oauth2

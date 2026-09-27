@@ -95,7 +95,7 @@ paths:
       description: Shell Loyalty API
   /accounts/{accountNumber}:
     get:
-      operationId: getAccount
+      operationId: getAccountsByAccountNumber
       summary: Get Account
       description: Returns details for a lubricants customer account.
       tags:
@@ -113,24 +113,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LubricantsAccount'
+      x-operation-id-source: normalized
+      x-operation-id-original: getAccount
     servers:
     - url: https://api.shell.com/lubricants/v1
       description: Shell Lubricants API
 components:
   schemas:
-    AccountUpdateRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        marketingConsent:
-          type: boolean
     AccountEnrollRequest:
       type: object
       required:
@@ -188,6 +177,19 @@ components:
         updatedAt:
           type: string
           format: date-time
+    AccountUpdateRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        marketingConsent:
+          type: boolean
     LubricantsAccount:
       type: object
       properties:

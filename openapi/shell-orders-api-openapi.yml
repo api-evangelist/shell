@@ -111,6 +111,36 @@ paths:
                 $ref: '#/components/schemas/Order'
 components:
   schemas:
+    OrderCreateRequest:
+      type: object
+      required:
+      - accountNumber
+      - deliveryAddress
+      - items
+      properties:
+        accountNumber:
+          type: string
+        poNumber:
+          type: string
+          description: Customer purchase order number
+        requestedDeliveryDate:
+          type: string
+          format: date
+        deliveryAddress:
+          type: object
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              quantity:
+                type: number
+              unit:
+                type: string
+        notes:
+          type: string
     OrderItem:
       type: object
       properties:
@@ -135,6 +165,19 @@ components:
         totalPrice:
           type: number
           format: float
+    OrderListResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
     Order:
       type: object
       properties:
@@ -181,49 +224,6 @@ components:
           type: string
         tracking:
           type: object
-    OrderListResponse:
-      type: object
-      properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
-    OrderCreateRequest:
-      type: object
-      required:
-      - accountNumber
-      - deliveryAddress
-      - items
-      properties:
-        accountNumber:
-          type: string
-        poNumber:
-          type: string
-          description: Customer purchase order number
-        requestedDeliveryDate:
-          type: string
-          format: date
-        deliveryAddress:
-          type: object
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              quantity:
-                type: number
-              unit:
-                type: string
-        notes:
-          type: string
   securitySchemes:
     OAuth2:
       type: oauth2
