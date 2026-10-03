@@ -75,6 +75,19 @@ paths:
                 $ref: '#/components/schemas/CatalogueItem'
 components:
   schemas:
+    CatalogueListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogueItem'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
     CatalogueItem:
       type: object
       properties:
@@ -101,19 +114,6 @@ components:
           type: string
           format: date
         stock:
-          type: integer
-    CatalogueListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogueItem'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
           type: integer
   securitySchemes:
     OAuth2:

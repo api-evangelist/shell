@@ -166,6 +166,19 @@ paths:
       description: Shell Loyalty API
 components:
   schemas:
+    TransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
     Transaction:
       type: object
       properties:
@@ -211,19 +224,6 @@ components:
           type: string
         payerNumber:
           type: string
-    TransactionListResponse:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
     TransactionListResponse_2:
       type: object
       properties:

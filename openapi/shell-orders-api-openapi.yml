@@ -111,6 +111,52 @@ paths:
                 $ref: '#/components/schemas/Order'
 components:
   schemas:
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        accountNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Confirmed
+          - Processing
+          - Shipped
+          - Delivered
+          - Cancelled
+        orderDate:
+          type: string
+          format: date-time
+        expectedDeliveryDate:
+          type: string
+          format: date
+        deliveryAddress:
+          type: object
+          properties:
+            name:
+              type: string
+            street:
+              type: string
+            city:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        totalAmount:
+          type: number
+          format: float
+        currency:
+          type: string
+        tracking:
+          type: object
     OrderCreateRequest:
       type: object
       required:
@@ -178,52 +224,6 @@ components:
           type: integer
         pageCount:
           type: integer
-    Order:
-      type: object
-      properties:
-        orderId:
-          type: string
-        accountNumber:
-          type: string
-        status:
-          type: string
-          enum:
-          - Pending
-          - Confirmed
-          - Processing
-          - Shipped
-          - Delivered
-          - Cancelled
-        orderDate:
-          type: string
-          format: date-time
-        expectedDeliveryDate:
-          type: string
-          format: date
-        deliveryAddress:
-          type: object
-          properties:
-            name:
-              type: string
-            street:
-              type: string
-            city:
-              type: string
-            postalCode:
-              type: string
-            country:
-              type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderItem'
-        totalAmount:
-          type: number
-          format: float
-        currency:
-          type: string
-        tracking:
-          type: object
   securitySchemes:
     OAuth2:
       type: oauth2

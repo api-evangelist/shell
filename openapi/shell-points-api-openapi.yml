@@ -68,41 +68,6 @@ paths:
                 $ref: '#/components/schemas/RedemptionResponse'
 components:
   schemas:
-    RedemptionResponse:
-      type: object
-      properties:
-        redemptionId:
-          type: string
-        status:
-          type: string
-        pointsRedeemed:
-          type: integer
-        remainingPoints:
-          type: integer
-        reward:
-          type: object
-          properties:
-            rewardId:
-              type: string
-            name:
-              type: string
-            code:
-              type: string
-              description: Redemption code if applicable
-    RedemptionRequest:
-      type: object
-      required:
-      - rewardId
-      - pointsToRedeem
-      properties:
-        rewardId:
-          type: string
-        pointsToRedeem:
-          type: integer
-        deliveryMethod:
-          type: string
-        deliveryAddress:
-          type: object
     PointsBalance:
       type: object
       properties:
@@ -124,6 +89,41 @@ components:
         lastUpdated:
           type: string
           format: date-time
+    RedemptionRequest:
+      type: object
+      required:
+      - rewardId
+      - pointsToRedeem
+      properties:
+        rewardId:
+          type: string
+        pointsToRedeem:
+          type: integer
+        deliveryMethod:
+          type: string
+        deliveryAddress:
+          type: object
+    RedemptionResponse:
+      type: object
+      properties:
+        redemptionId:
+          type: string
+        status:
+          type: string
+        pointsRedeemed:
+          type: integer
+        remainingPoints:
+          type: integer
+        reward:
+          type: object
+          properties:
+            rewardId:
+              type: string
+            name:
+              type: string
+            code:
+              type: string
+              description: Redemption code if applicable
   securitySchemes:
     OAuth2:
       type: oauth2

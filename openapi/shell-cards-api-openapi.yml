@@ -184,16 +184,6 @@ paths:
                 type: object
 components:
   schemas:
-    CardOrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        status:
-          type: string
-        estimatedDeliveryDate:
-          type: string
-          format: date
     CardListResponse:
       type: object
       properties:
@@ -207,6 +197,37 @@ components:
           type: integer
         pageCount:
           type: integer
+    CardOrderRequest:
+      type: object
+      required:
+      - colCoCode
+      - accountNumber
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        cardType:
+          type: string
+        embossText:
+          type: string
+    CardLimit:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: number
+        period:
+          type: string
+        currency:
+          type: string
     Card:
       type: object
       properties:
@@ -243,37 +264,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardLimit'
-    CardOrderRequest:
-      type: object
-      required:
-      - colCoCode
-      - accountNumber
-      properties:
-        colCoCode:
-          type: integer
-        payerNumber:
-          type: string
-        accountNumber:
-          type: string
-        driverName:
-          type: string
-        vehicleRegistration:
-          type: string
-        cardType:
-          type: string
-        embossText:
-          type: string
-    CardLimit:
+    CardOrderResponse:
       type: object
       properties:
-        type:
+        orderId:
           type: string
-        value:
-          type: number
-        period:
+        status:
           type: string
-        currency:
+        estimatedDeliveryDate:
           type: string
+          format: date
   securitySchemes:
     OAuth2:
       type: oauth2
