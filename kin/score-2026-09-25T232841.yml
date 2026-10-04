@@ -1,21 +1,19 @@
-# Kin Score artifact — shell — 2026-09-02T211804
+# Kin Score artifact — shell — 2026-09-25T232841
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: shell
-  schema_version: 0.18.0
-  scored_at: '2026-09-02'
-  run_ts: 2026-09-02T211804
-  composite: 53.9
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T232841
+  composite: 50.9
   band: developing
   facets:
-    discoverability: 64.8
-    contract_quality: 68.6
-    governance: 28.8
+    discoverability: 62.5
+    contract_quality: 62.5
+    contract_governance: 27.3
     operational_transparency: 26.3
-    developer_ergonomics: 54.8
-    commercial_clarity: 34.2
-    contract_governance: 28.8
+    developer_ergonomics: 51.2
     access_clarity: 34.2
   agent_readiness:
     score: 24.4
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Energy & Utilities
     regime_id: energy_utilities
-    score: 56.8
+    score: 34.4
     matched_via: tags
   provenance:
     agentic_access: derived
