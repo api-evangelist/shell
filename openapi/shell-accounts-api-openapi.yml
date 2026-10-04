@@ -120,19 +120,6 @@ paths:
       description: Shell Lubricants API
 components:
   schemas:
-    AccountUpdateRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        marketingConsent:
-          type: boolean
     LoyaltyAccount:
       type: object
       properties:
@@ -187,6 +174,19 @@ components:
           type: string
           format: date
         countryCode:
+          type: string
+        marketingConsent:
+          type: boolean
+    AccountUpdateRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
           type: string
         marketingConsent:
           type: boolean

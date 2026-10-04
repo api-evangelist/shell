@@ -184,19 +184,6 @@ paths:
                 type: object
 components:
   schemas:
-    CardListResponse:
-      type: object
-      properties:
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
     CardOrderRequest:
       type: object
       required:
@@ -228,6 +215,29 @@ components:
           type: string
         currency:
           type: string
+    CardListResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
+    CardOrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        status:
+          type: string
+        estimatedDeliveryDate:
+          type: string
+          format: date
     Card:
       type: object
       properties:
@@ -264,16 +274,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardLimit'
-    CardOrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        status:
-          type: string
-        estimatedDeliveryDate:
-          type: string
-          format: date
   securitySchemes:
     OAuth2:
       type: oauth2

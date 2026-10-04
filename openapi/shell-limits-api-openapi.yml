@@ -42,6 +42,17 @@ paths:
                 type: object
 components:
   schemas:
+    CardLimit:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: number
+        period:
+          type: string
+        currency:
+          type: string
     CardLimitUpdateRequest:
       type: object
       required:
@@ -60,17 +71,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardLimit'
-    CardLimit:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: number
-        period:
-          type: string
-        currency:
-          type: string
   securitySchemes:
     OAuth2:
       type: oauth2

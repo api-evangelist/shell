@@ -67,15 +67,6 @@ paths:
                 type: object
 components:
   schemas:
-    OfferListResponse:
-      type: object
-      properties:
-        offers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-        totalCount:
-          type: integer
     Offer:
       type: object
       properties:
@@ -95,6 +86,15 @@ components:
           format: date-time
         conditions:
           type: string
+    OfferListResponse:
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+        totalCount:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
