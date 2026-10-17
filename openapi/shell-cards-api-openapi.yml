@@ -184,50 +184,6 @@ paths:
                 type: object
 components:
   schemas:
-    CardOrderRequest:
-      type: object
-      required:
-      - colCoCode
-      - accountNumber
-      properties:
-        colCoCode:
-          type: integer
-        payerNumber:
-          type: string
-        accountNumber:
-          type: string
-        driverName:
-          type: string
-        vehicleRegistration:
-          type: string
-        cardType:
-          type: string
-        embossText:
-          type: string
-    CardLimit:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: number
-        period:
-          type: string
-        currency:
-          type: string
-    CardListResponse:
-      type: object
-      properties:
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-        totalCount:
-          type: integer
-        currentPage:
-          type: integer
-        pageCount:
-          type: integer
     CardOrderResponse:
       type: object
       properties:
@@ -274,6 +230,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardLimit'
+    CardOrderRequest:
+      type: object
+      required:
+      - colCoCode
+      - accountNumber
+      properties:
+        colCoCode:
+          type: integer
+        payerNumber:
+          type: string
+        accountNumber:
+          type: string
+        driverName:
+          type: string
+        vehicleRegistration:
+          type: string
+        cardType:
+          type: string
+        embossText:
+          type: string
+    CardLimit:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: number
+        period:
+          type: string
+        currency:
+          type: string
+    CardListResponse:
+      type: object
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        totalCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageCount:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
