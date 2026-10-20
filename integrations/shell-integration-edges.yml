@@ -11,6 +11,11 @@ checked:
 - https://monid.ai/tools/shell
 - https://n8n.io/integrations/shell/
 - https://zapier.com/apps/shell/integrations
+- https://evroaming.org/members/
+- https://openchargealliance.org/certified-companies/
+- https://openchargealliance.org/withdrawn/
+- https://www.charin.global/community/membership:core
+- https://www.charin.global/community/membership:regular
 summary: null
 marketplace_apps: []
 edges:
@@ -30,4 +35,31 @@ edges:
   listing_count: 1
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
+- partner_name: CharIN e.V. (Charging Interface Initiative)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.charin.global/community/shell
+  category: charging-interface standards association membership
+  contract_reference:
+    register: CharIN e.V. members (charin.global/community, membership:core + membership:regular)
+    standard: CCS / MCS / ISO 15118 (Plug & Charge)
+    spec_file: null
+    role: charin-member
+    registered_name: Shell
+    register_id: https://www.charin.global/community/shell
+    partner_tier: core
+    member_since: null
+    matched_domain: shell.com
+    matched_by: domain
+    signal_note: 'participation only: association membership; tier is context, never counted'
+    detected_by: sweep-ev-charging.py
+    detected: '2026-10-20'
+    identity: wikidata Q154950 'Shell' P856 https://www.shell.com/
+    identity_source: wikidata P856 (member page gives no website; labelled provenance step)
+  detected_by: sweep-ev-charging.py
+  first_seen: '2026-10-20'
 templates: []
