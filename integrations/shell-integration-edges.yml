@@ -16,6 +16,12 @@ checked:
 - https://openchargealliance.org/withdrawn/
 - https://www.charin.global/community/membership:core
 - https://www.charin.global/community/membership:regular
+- https://pidx.org/current-members/
+- https://reports.opengroup.org/energistics.shtml
+- https://reports.opengroup.org/osdu_forum.shtml
+- https://www.energistics.org/witsml-v131-certified-products
+- https://www.energistics.org/witsml-v1411-certified-products
+- https://www.icmm.com/our-members
 summary: null
 marketplace_apps: []
 edges:
@@ -61,5 +67,55 @@ edges:
     identity: wikidata Q154950 'Shell' P856 https://www.shell.com/
     identity_source: wikidata P856 (member page gives no website; labelled provenance step)
   detected_by: sweep-ev-charging.py
+  first_seen: '2026-10-20'
+- partner_name: The Open Group OSDU Forum
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://reports.opengroup.org/osdu_forum.shtml
+  category: subsurface data platform standards forum membership
+  contract_reference:
+    register: The Open Group OSDU Forum membership report (reports.opengroup.org/osdu_forum.shtml)
+    standard: OSDU Data Platform
+    spec_file: null
+    role: osdu-forum-member
+    registered_name: Shell
+    register_country: Netherlands
+    register_id: https://www.shell.com
+    matched_domain: shell.com
+    matched_by: domain
+    signal_note: 'participation only: membership of the standards forum / consortium (The Open Group hourly membership
+      report, which links each member''s website); listing is not conformance'
+    detected_by: sweep-energy-subsurface.py
+    detected: '2026-10-20'
+  detected_by: sweep-energy-subsurface.py
+  first_seen: '2026-10-20'
+- partner_name: Energistics Consortium (WITSML / PRODML / RESQML)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://reports.opengroup.org/energistics.shtml
+  category: upstream data-exchange standards consortium membership
+  contract_reference:
+    register: The Open Group Energistics Consortium membership report (reports.opengroup.org/energistics.shtml)
+    standard: Energistics standards (WITSML / PRODML / RESQML / ETP)
+    spec_file: null
+    role: energistics-member
+    registered_name: Shell
+    register_country: Netherlands
+    register_id: https://www.shell.com
+    matched_domain: shell.com
+    matched_by: domain
+    signal_note: 'participation only: membership of the standards forum / consortium (The Open Group hourly membership
+      report, which links each member''s website); listing is not conformance'
+    detected_by: sweep-energy-subsurface.py
+    detected: '2026-10-20'
+  detected_by: sweep-energy-subsurface.py
   first_seen: '2026-10-20'
 templates: []
