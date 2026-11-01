@@ -1,4 +1,4 @@
-# Shell (shell)
+# Shell
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,256 +66,225 @@
 
 Royal Dutch Shell plc is a global energy company operating across oil, gas, renewable energy, lubricants, aviation fuel, and mobility sectors. The Shell Developer Portal provides APIs for B2B mobility card management, loyalty programs, lubricants ordering, aviation fuel reselling, and fleet management. SDKs are available in Java, .NET, TypeScript, PHP, Python, and Ruby.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shell/refs/heads/main/apis.yml)
+**Areas:** Aviation · EV Charging · Energy · Fleet Management · Fuel · Gas · Loyalty · Lubricants · Oil and Gas · Renewable Energy
 
-## Scope
+## Shell on APIs.io
 
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Shell is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shell/](https://apis.io/providers/shell/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- Aviation
-- Electric Vehicle Charging
-- Energy
-- Fleet Management
-- Fuel
-- Gas
-- Loyalty
-- Lubricants
-- Mobility
-- Oil and Gas
-- Renewable Energy
+- [Shell Aviation Fuel Reseller API](https://apis.io/apis/shell/aviation-fuel-reseller/) — The Shell Aviation Fuel Reseller API enables aviation fuel resellers and operators to manage fuel procurement, pricing queries, order placement, and…
+- [Shell Accounts API](https://apis.io/apis/shell/shell-accounts-api/) — Manage loyalty accounts
+- [Shell Cards API](https://apis.io/apis/shell/shell-cards-api/) — Manage B2B fuel cards
+- [Shell Catalogue API](https://apis.io/apis/shell/shell-catalogue-api/) — Browse loyalty rewards catalogue
+- [Shell Invoices API](https://apis.io/apis/shell/shell-invoices-api/) — Manage fuel card invoices
+- [Shell Limits API](https://apis.io/apis/shell/shell-limits-api/) — Manage card spending limits and restrictions
+- [Shell Offers API](https://apis.io/apis/shell/shell-offers-api/) — Manage loyalty offers
+- [Shell Orders API](https://apis.io/apis/shell/shell-orders-api/) — Manage lubricants orders
+- [Shell Points API](https://apis.io/apis/shell/shell-points-api/) — Query and manage loyalty points
+- [Shell Products API](https://apis.io/apis/shell/shell-products-api/) — Browse lubricants product catalogue
+- [Shell Sites API](https://apis.io/apis/shell/shell-sites-api/) — Query Shell fuel and EV charging sites
+- [Shell Transactions API](https://apis.io/apis/shell/shell-transactions-api/) — Retrieve fuel card transaction data
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Shell Agentic Access](https://apis.io/agentic-access/shell/shell-agentic-access/)
 
-### Shell B2B Mobility Card Management API
+#### JSON Schema (31)
 
-The Shell B2B Mobility Card Management API enables fleet operators and business customers to manage fuel cards, control spending limits, restrict usage by fuel type, location, or time, and monitor card status. Supports card issuance, updates, and lifecycle management for corporate fuel card programs.
+The data models the API reads and writes.
 
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
+- [AccountEnrollRequest](https://apis.io/schemas/shell/shell-accountenrollrequest/)
+- [AccountUpdateRequest](https://apis.io/schemas/shell/shell-accountupdaterequest/)
+- [Card](https://apis.io/schemas/shell/shell-card/)
+- [CardLimit](https://apis.io/schemas/shell/shell-cardlimit/)
+- [CardLimitUpdateRequest](https://apis.io/schemas/shell/shell-cardlimitupdaterequest/)
+- [CardListResponse](https://apis.io/schemas/shell/shell-cardlistresponse/)
+- [CardOrderRequest](https://apis.io/schemas/shell/shell-cardorderrequest/)
+- [CardOrderResponse](https://apis.io/schemas/shell/shell-cardorderresponse/)
+- [CatalogueItem](https://apis.io/schemas/shell/shell-catalogueitem/)
+- [CatalogueListResponse](https://apis.io/schemas/shell/shell-cataloguelistresponse/)
+- [Shell Fuel Card](https://apis.io/schemas/shell/shell-fuel-card/)
+- [Invoice](https://apis.io/schemas/shell/shell-invoice/)
+- [InvoiceListResponse](https://apis.io/schemas/shell/shell-invoicelistresponse/)
+- [LoyaltyAccount](https://apis.io/schemas/shell/shell-loyaltyaccount/)
+- [LoyaltyTransaction](https://apis.io/schemas/shell/shell-loyaltytransaction/)
+- [LubricantsAccount](https://apis.io/schemas/shell/shell-lubricantsaccount/)
+- [Offer](https://apis.io/schemas/shell/shell-offer/)
+- [OfferListResponse](https://apis.io/schemas/shell/shell-offerlistresponse/)
+- [Order](https://apis.io/schemas/shell/shell-order/)
+- [OrderCreateRequest](https://apis.io/schemas/shell/shell-ordercreaterequest/)
+- [OrderItem](https://apis.io/schemas/shell/shell-orderitem/)
+- [OrderListResponse](https://apis.io/schemas/shell/shell-orderlistresponse/)
+- [PointsBalance](https://apis.io/schemas/shell/shell-pointsbalance/)
+- [Product](https://apis.io/schemas/shell/shell-product/)
+- [ProductListResponse](https://apis.io/schemas/shell/shell-productlistresponse/)
+- …and 6 more published on APIs.io
 
-#### Tags
+#### JSON Structure (2)
 
-- B2B
-- Cards
-- Fleet
-- Mobility
+Data models expressed in JSON Structure.
 
-#### Properties
+- [Shell Fuel Card Structure](https://apis.io/json-structure/shell/shell-fuel-card-structure/)
+- [Shell Structure](https://apis.io/json-structure/shell/shell-structure/)
 
-- [Documentation](https://developer.shell.com/api-catalog)
-- [OpenAPI](openapi/shell-b2b-mobility-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-b2b-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-b2b-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/shell-fuel-card-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shell-transaction-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](rules/shell-rules.yml)
+#### JSON-LD (1)
 
-### Shell B2B Mobility Card Transaction Data API
+Linked-data contexts for the provider's vocabulary.
 
-Provides access to fuel card transaction data for B2B customers. Enables retrieval of transaction history, spend analytics, fuel type breakdowns, and location-based purchase data for corporate fleet management and expense reporting.
+- [Shell Context](https://apis.io/jsonld/shell/shell-context/)
 
-- **Human URL:** [https://developer.shell.com/api-catalog/v2.1.0/b2b-mobility-card-transaction-data](https://developer.shell.com/api-catalog/v2.1.0/b2b-mobility-card-transaction-data)
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
-- B2B
-- Fleet
-- Mobility
-- Transactions
+- [Shell API Vocabulary](https://apis.io/vocabularies/shell/shell-vocabulary/)
 
-#### Properties
+#### Examples (1)
 
-- [Documentation](https://developer.shell.com/api-catalog/v2.1.0/b2b-mobility-card-transaction-data)
-- [OpenAPI](openapi/shell-b2b-mobility-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-b2b-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-b2b-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Example requests and responses.
 
-### Shell B2B Mobility Invoice API
+- [Shell List Transactions Example](https://apis.io/examples/shell/shell-list-transactions-example/)
 
-Enables business customers to retrieve and manage invoices for Shell fuel card programs. Supports invoice download, payment status queries, and reconciliation workflows for fleet finance teams.
+#### Collections (25)
 
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Shell B2B Mobility Accounts API](https://apis.io/collections/shell/open-shell-accounts-api/)
+- [Shell B2B Mobility API](https://apis.io/collections/shell/open-shell-b2b-mobility/)
+- [Shell B2B Mobility Accounts Cards API](https://apis.io/collections/shell/open-shell-cards-api/)
+- [Shell B2B Mobility Accounts Catalogue API](https://apis.io/collections/shell/open-shell-catalogue-api/)
+- [Shell B2B Mobility Accounts Invoices API](https://apis.io/collections/shell/open-shell-invoices-api/)
+- [Shell B2B Mobility Accounts Limits API](https://apis.io/collections/shell/open-shell-limits-api/)
+- [Shell Loyalty API](https://apis.io/collections/shell/open-shell-loyalty/)
+- [Shell Lubricants API](https://apis.io/collections/shell/open-shell-lubricants/)
+- [Shell B2B Mobility Accounts Offers API](https://apis.io/collections/shell/open-shell-offers-api/)
+- [Shell B2B Mobility Accounts Orders API](https://apis.io/collections/shell/open-shell-orders-api/)
+- [Shell B2B Mobility Accounts Points API](https://apis.io/collections/shell/open-shell-points-api/)
+- [Shell B2B Mobility Accounts Products API](https://apis.io/collections/shell/open-shell-products-api/)
+- [Shell B2B Mobility Accounts Sites API](https://apis.io/collections/shell/open-shell-sites-api/)
+- [Shell B2B Mobility Accounts Transactions API](https://apis.io/collections/shell/open-shell-transactions-api/)
+- [Shell B2B Mobility Accounts API](https://apis.io/collections/shell/postman-shell-accounts-api/)
+- [Shell B2B Mobility Accounts Cards API](https://apis.io/collections/shell/postman-shell-cards-api/)
+- [Shell B2B Mobility Accounts Catalogue API](https://apis.io/collections/shell/postman-shell-catalogue-api/)
+- [Shell B2B Mobility Accounts Invoices API](https://apis.io/collections/shell/postman-shell-invoices-api/)
+- [Shell B2B Mobility Accounts Limits API](https://apis.io/collections/shell/postman-shell-limits-api/)
+- [Shell B2B Mobility Accounts Offers API](https://apis.io/collections/shell/postman-shell-offers-api/)
+- [Shell B2B Mobility Accounts Orders API](https://apis.io/collections/shell/postman-shell-orders-api/)
+- [Shell B2B Mobility Accounts Points API](https://apis.io/collections/shell/postman-shell-points-api/)
+- [Shell B2B Mobility Accounts Products API](https://apis.io/collections/shell/postman-shell-products-api/)
+- [Shell B2B Mobility Accounts Sites API](https://apis.io/collections/shell/postman-shell-sites-api/)
+- [Shell B2B Mobility Accounts Transactions API](https://apis.io/collections/shell/postman-shell-transactions-api/)
 
-- B2B
-- Finance
-- Fleet
-- Invoices
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://developer.shell.com/api-catalog)
-- [OpenAPI](openapi/shell-b2b-mobility-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-b2b-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-b2b-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Shell — jsonschema rules](https://apis.io/rules/shell/shell-jsonschema-spectral-rules/)
+- [Shell API Rules](https://apis.io/rules/shell/shell-rules/)
 
-### Shell Loyalty Catalogue API
+#### Security (2)
 
-The Shell Loyalty Catalogue API provides access to the Shell Go+ loyalty program product and rewards catalogue. Partners can retrieve available rewards, offers, and redemption options to display within their applications and loyalty program integrations.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developer.shell.com/api-catalog/v1.0.2/loyalty-catalogue](https://developer.shell.com/api-catalog/v1.0.2/loyalty-catalogue)
+- [Shell Authentication](https://apis.io/security/shell/shell-authentication/)
+- [Shell Domain Security](https://apis.io/security/shell/shell-domain-security/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Loyalty
-- Rewards
-- Retail
+The permissions the API asks for.
 
-#### Properties
+- [Shell Scopes](https://apis.io/scopes/shell/shell-scopes/)
 
-- [Documentation](https://developer.shell.com/api-catalog/v1.0.2/loyalty-catalogue)
-- [OpenAPI](openapi/shell-loyalty-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-loyalty.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-loyalty.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Shell Loyalty Account Management API
+Published plans, tiers and prices.
 
-Enables partners to manage Shell loyalty accounts, including enrolment, profile management, points balance queries, and account status updates. Integrates Shell Go+ loyalty program into partner digital platforms.
+- [Shell Plans Pricing](https://apis.io/plans/shell/shell-plans-pricing/)
 
-- **Human URL:** [https://developer.shell.com/use-cases/shell-loyalty-api-partners](https://developer.shell.com/use-cases/shell-loyalty-api-partners)
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Loyalty
-- Rewards
-- Accounts
+- [Shell Rate Limits](https://apis.io/rate-limits/shell/shell-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://developer.shell.com/use-cases/shell-loyalty-api-partners)
-- [OpenAPI](openapi/shell-loyalty-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-loyalty.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-loyalty.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Shell Loyalty Points Balance API
+- [Shell Finops](https://apis.io/finops/shell/shell-finops/)
 
-Provides real-time query access to Shell loyalty points balances for program members. Enables partners to display current points, tier status, and points expiry information within their applications.
+## Where to find this API
 
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Loyalty
-- Points
-- Rewards
-
-#### Properties
-
-- [Documentation](https://developer.shell.com/api-catalog)
-- [OpenAPI](openapi/shell-loyalty-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-loyalty.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-loyalty.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Shell Loyalty Points Redemption API
-
-Enables partners to process loyalty points redemptions within Shell Go+ loyalty program. Supports redeeming points for fuel savings, partner rewards, and gift cards through the Shell Loyalty platform.
-
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
-
-#### Tags
-
-- Loyalty
-- Points
-- Redemption
-
-#### Properties
-
-- [Documentation](https://developer.shell.com/api-catalog)
-- [OpenAPI](openapi/shell-loyalty-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-loyalty.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-loyalty.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Shell Lubricants Order Management API
-
-The Shell Lubricants Order Management API enables business customers and distributors to place and manage orders for Shell lubricants products. Supports order creation, status tracking, delivery scheduling, and product catalogue queries.
-
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
-
-#### Tags
-
-- Lubricants
-- Oil
-- Orders
-- B2B
-
-#### Properties
-
-- [Documentation](https://developer.shell.com/api-catalog)
-- [OpenAPI](openapi/shell-lubricants-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-lubricants.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-lubricants.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Shell Aviation Fuel Reseller API
-
-The Shell Aviation Fuel Reseller API enables aviation fuel resellers and operators to manage fuel procurement, pricing queries, order placement, and delivery logistics for Shell Aviation fuel products at airports and FBOs worldwide.
-
-- **Human URL:** [https://developer.shell.com/api-catalog](https://developer.shell.com/api-catalog)
-
-#### Tags
-
-- Aviation
-- Fuel
-- B2B
-
-#### Properties
-
-- [Documentation](https://developer.shell.com/api-catalog)
-- [Postman Collection](collections/shell-b2b-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-b2b-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/shell-loyalty.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-loyalty.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/shell-lubricants.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-lubricants.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Shell B2B Mobility Sites API
-
-Provides access to the Shell network of fuel and EV charging sites for B2B mobility customers. Enables applications to query site locations, available fuel types, EV charging availability, amenities, and opening hours across the Shell station network.
-
-- **Human URL:** [https://developer.shell.com/api-catalog/b2b-mobility-sites/quick-start-guide](https://developer.shell.com/api-catalog/b2b-mobility-sites/quick-start-guide)
-
-#### Tags
-
-- B2B
-- Fleet
-- Locations
-- Mobility
-
-#### Properties
-
-- [Documentation](https://developer.shell.com/api-catalog/b2b-mobility-sites/quick-start-guide)
-- [OpenAPI](openapi/shell-b2b-mobility-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shell-b2b-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shell-b2b-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/shell)
-- [Developer  Portal](https://developer.shell.com)
-- [A P I  Catalog](https://developer.shell.com/api-catalog)
-- [Getting Started](https://developer.shell.com/docs/welcome-shell-developer-portal)
-- [A P I  Key  Registration](https://developer.shell.com/signup)
-- [Authentication](https://developer.shell.com/docs/authentication)
-- [Terms of Service](https://www.shell.com/terms-and-conditions)
-- [Privacy Policy](https://www.shell.com/privacy)
-- [Support](https://developer.shell.com/support)
-- [Status Page](https://developer.shell.com/support/api-status)
-- [Blog](https://developer.shell.com/latest-updates)
-- [GitHub Organization](https://github.com/shell)
 - [Website](https://www.shell.com)
-- [JSON-LD](json-ld/shell-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/shell-vocabulary.yml)
+- [Getting started](https://developer.shell.com/docs/welcome-shell-developer-portal)
+- [Support](https://developer.shell.com/support)
+- [Blog](https://developer.shell.com/latest-updates)
+- [Terms of service](https://www.shell.com/terms-and-conditions)
+- [Privacy policy](https://www.shell.com/privacy)
+- [GitHub](https://github.com/shell)
+- [Status](https://developer.shell.com/support/api-status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**FN:** Shell Digital Services
-**Email:** api-maintainers@shell.com
+**Kin Score 49.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 62.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 51.2 |
+| Access clarity | 26.3 |
+
+**Agent readiness 25.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.4** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shell/](https://apis.io/providers/shell/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shell: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shell/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
